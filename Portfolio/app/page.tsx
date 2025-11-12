@@ -7,31 +7,38 @@ import ScrollReveal from "@/components/scroll-reveal"
 
 export default function Home() {
   return (
-    <div className="space-y-12 pb-20">
+    <div className="space-y-20 pb-20">
+      {/* Hero Section */}
       <ScrollReveal direction="up">
-        <Hero />
+        <div className="">
+          <Hero />
+        </div>
       </ScrollReveal>
 
+      {/* Now Section */}
       <ScrollReveal direction="left" delay={0.2}>
-        <div className="max-w-4xl">
+        <div className="mx-auto w-full max-w-4xl">
           <NowSection />
         </div>
       </ScrollReveal>
 
+      {/* Coding Activity Chart */}
       <ScrollReveal direction="right" delay={0.2}>
-        <div className="max-w-4xl">
+        <div className="mx-auto w-full max-w-6xl">
           <CodingActivityChart />
         </div>
       </ScrollReveal>
 
+      {/* Stats Dashboard */}
       <ScrollReveal direction="up" delay={0.2}>
-        <div className="max-w-4xl">
+        <div className="mx-auto w-full max-w-6xl">
           <StatsDashboard />
         </div>
       </ScrollReveal>
 
+      {/* Testimonials */}
       <ScrollReveal direction="up" delay={0.4}>
-        <div className="max-w-4xl">
+        <div className="mx-auto w-full max-w-4xl">
           <Testimonials />
         </div>
       </ScrollReveal>

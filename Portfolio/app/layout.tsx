@@ -17,7 +17,7 @@ const firaCode = Fira_Code({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Zakaria TIKIALINE - Fullstack Developer & Data Scientist",
   description: "Portfolio of Zakaria TIKIALINE | Building intelligent systems with Next.js, Python, and AI",
-  generator: "v0.app",
+  generator: "Zakaria Tikialine",
   keywords: ["fullstack developer", "data scientist", "AI", "Next.js", "Python", "machine learning"],
 }
 
@@ -46,21 +46,28 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <DynamicTheme />
         <NeuralBackground />
+
         <div className="relative min-h-screen bg-background text-foreground overflow-hidden">
+          {/* Subtle gradient background */}
           <div className="fixed inset-0 -z-10 bg-gradient-to-br from-accent/5 via-transparent to-secondary/5" />
 
+          {/* Sidebar */}
           <SidebarNav />
 
-          <div className="fixed top-6 right-6 z-50">
+          {/* Top-right theme toggle (desktop only) */}
+          <div className="hidden lg:fixed lg:top-6 lg:right-6 lg:z-50 lg:block">
             <ThemeToggle />
           </div>
 
-          <main className="relative ml-64 min-h-screen overflow-y-auto custom-scrollbar">{children}</main>
+          {/* MAIN CONTENT */}
+          <main className="relative lg:ml-64 min-h-screen overflow-y-auto custom-scrollbar">
+            {children}
+          </main>
 
           <CommandPalette />
-
           <AiTerminal />
         </div>
+
         <Analytics />
       </body>
     </html>

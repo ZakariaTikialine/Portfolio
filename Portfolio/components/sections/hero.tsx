@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import TypingEffect from "@/components/typing-effect"
 import CVDownload from "../cv-download"
 import CVDownloadSimple from "../cv-download-simple"
+import { useRouter } from "next/navigation"
 
 interface Particle {
   id: number
@@ -30,12 +31,10 @@ const Hero = () => {
     setParticles(newParticles)
   }, [])
 
-  const handleScroll = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    const element = document.querySelector("#projects")
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
+  const router = useRouter()
+
+  const handleClick = () => {
+    router.push("/projects")
   }
 
   return (
@@ -115,7 +114,7 @@ const Hero = () => {
           <Button
             size="lg"
             className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8 cursor-pointer"
-            onClick={handleScroll}
+            onClick={handleClick}
           >
             View My Work
             <ArrowRight size={18} className="ml-2" />
