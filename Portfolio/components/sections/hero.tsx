@@ -5,7 +5,6 @@ import { useEffect, useState } from "react"
 import { ArrowRight, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import TypingEffect from "@/components/typing-effect"
-import CVDownload from "../cv-download"
 import CVDownloadSimple from "../cv-download-simple"
 import { useRouter } from "next/navigation"
 
@@ -92,25 +91,23 @@ const Hero = () => {
           </span>
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-balance">
+        <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-balance">
           <span className="text-foreground block mb-4">
-            <TypingEffect text="Building Intelligent Systems" speed={50} />
-          </span>
-          <span className="bg-linear-to-r from-accent via-secondary rounded-full to-accent bg-clip-text text-transparent animate-shimmer px-2">
-            with me
+            <div className="whitespace-pre-line">
+              <TypingEffect text={"Smart Systems.\nClean Code.\nReal Impact."} speed={50} />
+            </div>
           </span>
         </h1>
 
-        <p className="text-lg md:text-xl text-muted-foreground mb-6 text-balance max-w-2xl mx-auto leading-relaxed font-medium">
-          Transforming complex challenges into elegant, intelligent solutions
+        <p className="text-lg md:text-xl text-muted-foreground mb-4 text-balance max-w-2xl mx-auto leading-relaxed font-medium">
+          Turning complex challenges into intelligent, elegant digital experiences.
         </p>
 
-        <p className="text-base md:text-lg text-muted-foreground mb-12 text-balance max-w-2xl mx-auto leading-relaxed">
-          Building intelligent, elegant systems by blending backend and frontend engineering with data science and AI.
-          Passionate about clean code, elegant solutions, and continuous learning.
+        <p className="text-base md:text-lg text-muted-foreground mb-8 text-balance max-w-2xl mx-auto leading-relaxed">
+          Crafting fullstack solutions that merge backend precision, frontend creativity, and data-driven intelligence — all built with clean code and continuous curiosity.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center p-4">
           <Button
             size="lg"
             className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8 cursor-pointer"
