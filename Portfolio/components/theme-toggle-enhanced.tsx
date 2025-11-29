@@ -31,7 +31,7 @@ export default function ThemeToggleEnhanced() {
       onClick={toggleTheme}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="p-2 rounded-lg bg-muted/50 hover:bg-muted border border-border/50 transition-colors"
+      className="p-2 cursor-pointer rounded-lg bg-muted/50 hover:bg-muted border border-border/50 transition-colors"
       title="Toggle theme"
     >
       {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}

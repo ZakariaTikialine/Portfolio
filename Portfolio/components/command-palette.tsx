@@ -1,26 +1,33 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useEffect, useMemo, useState } from "react"
 import { Command } from "cmdk"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
-import { usePathname } from "next/navigation"
+import { useTranslations } from "next-intl"
+import { usePathname, useRouter, locales } from "@/navigation"
 
-const commands = [
-  { id: "home", label: "Home", href: "/" },
-  { id: "about", label: "About", href: "/about" },
-  { id: "experience", label: "Experience", href: "/experience" },
-  { id: "education", label: "Education", href: "/education" },
-  { id: "skills", label: "Skills", href: "/skills" },
-  { id: "projects", label: "Projects", href: "/projects" },
-  { id: "blog", label: "Blog", href: "/blog" },
-  { id: "contact", label: "Contact", href: "/contact" },
+const commandItems = [
+  { id: "home", href: "/" },
+  { id: "about", href: "/about" },
+  { id: "experience", href: "/experience" },
+  { id: "education", href: "/education" },
+  { id: "skills", href: "/skills" },
+  { id: "projects", href: "/projects" },
+  { id: "blog", href: "/blog" },
+  { id: "contact", href: "/contact" },
 ]
 
 export default function CommandPalette() {
   const [open, setOpen] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
+  const tNav = useTranslations("nav")
+  const tCommand = useTranslations("command")
+  const normalizedPath = useMemo(() => {
+    const localePattern = new RegExp(`^/(?:${locales.join("|")})(?=/|$)`)
+    const stripped = pathname.replace(localePattern, "")
+    return stripped === "" ? "/" : stripped
+  }, [pathname])
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -42,12 +49,12 @@ export default function CommandPalette() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="overflow-hidden p-0 shadow-lg">
-        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group]:overflow-hidden] [&_[cmdk-group-heading]]:text-xs">
-          <Command.Input placeholder="Type a command or search..." />
+        <Command className="**:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:font-mono **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:text-muted-foreground **:[[cmdk-group-heading]]:uppercase **:[[cmdk-group]]:overflow-hidden">
+          <Command.Input placeholder={tCommand("placeholder")} />
           <Command.List className="max-h-[300px] overflow-y-auto">
-            <Command.Empty>No results found.</Command.Empty>
-            <Command.Group heading="Navigation">
-              {commands.map((command) => (
+            <Command.Empty>{tCommand("empty")}</Command.Empty>
+            <Command.Group heading={tCommand("heading")}>
+              {commandItems.map((command) => (
                 <Command.Item
                   key={command.id}
                   value={command.id}
@@ -57,11 +64,11 @@ export default function CommandPalette() {
                     })
                   }
                   className={`cursor-pointer font-mono text-sm ${
-                    pathname === command.href ? "bg-accent text-accent-foreground" : ""
+                    normalizedPath === command.href ? "bg-accent text-accent-foreground" : ""
                   }`}
                 >
                   <span className="text-accent mr-2">{">"}</span>
-                  {command.label}
+                  {tNav(command.id)}
                 </Command.Item>
               ))}
             </Command.Group>

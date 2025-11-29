@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "title": "Zakaria TIKIALINE · Fullstack Engineer & AI Practitioner",
+    "description": "Portfolio of Zakaria TIKIALINE showcasing AI-assisted logistics, developer tooling, and data-led products."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "experience": "Experience",
+    "education": "Education",
+    "skills": "Skills",
+    "projects": "Projects",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "activity": {
+    "title": "<stats.coding />",
+    "loading": "Loading activity…",
+    "error": "Failed to load contributions"
+  },
+  "command": {
+    "placeholder": "Type a command or search…",
+    "empty": "No results found.",
+    "heading": "Navigation"
+  },
+  "a11y": {
+    "languageSwitcher": "Language switcher"
+  },
+  "cta": {
+    "downloadCv": "Download CV"
+  }
+}

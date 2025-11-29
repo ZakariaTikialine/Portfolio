@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "title": "Zakaria TIKIALINE · Ingénieur Fullstack & Praticien IA",
+    "description": "Portfolio de Zakaria TIKIALINE : logistique augmentée, outils développeurs et produits pilotés par la donnée."
+  },
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "experience": "Expérience",
+    "education": "Formation",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "activity": {
+    "title": "<stats.coding />",
+    "loading": "Chargement de l'activité…",
+    "error": "Impossible de charger les contributions"
+  },
+  "command": {
+    "placeholder": "Tapez une commande ou recherchez…",
+    "empty": "Aucun résultat.",
+    "heading": "Navigation"
+  },
+  "a11y": {
+    "languageSwitcher": "Sélecteur de langue"
+  },
+  "cta": {
+    "downloadCv": "Télécharger le CV"
+  }
+}

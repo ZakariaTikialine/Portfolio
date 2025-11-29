@@ -1,67 +1,73 @@
-import { ArrowRight } from "lucide-react"
+"use client"
+
+import { BookOpen } from "lucide-react"
+import { useLocale } from "next-intl"
+import type { Locale } from "@/navigation"
+import { getBlogContent } from "@/content/blog"
 
 const Blog = () => {
+  const locale = useLocale() as Locale
+  const copy = getBlogContent(locale)
+
   return (
-    <section id="blog" className="py-20 md:py-32 border-t border-border/50">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto">
-          <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-2">Learning Journey</h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-accent to-secondary rounded-full" />
-          </div>
+    <section id="blog" className="relative overflow-hidden border-t border-border/40 py-24">
+      <div className="pointer-events-none absolute inset-0 opacity-60">
+        <div className="mx-auto h-72 max-w-4xl bg-linear-to-r from-accent/15 via-transparent to-secondary/20 blur-3xl" />
+      </div>
 
-          {/* Now Learning Widget */}
-          <div className="mb-12 p-6 rounded-lg border border-accent/50 bg-accent/5 backdrop-blur-sm">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              <p className="text-sm font-semibold text-accent">Currently Exploring</p>
-            </div>
-            <p className="text-lg text-foreground font-medium">Go & System Design Patterns</p>
-            <p className="text-sm text-muted-foreground mt-2">
-              Deep diving into backend systems architecture, distributed computing concepts, and writing performant
-              services in Go.
-            </p>
+      <div className="relative mx-auto flex w-full max-w-4xl flex-col gap-10 px-4">
+        <div className="space-y-4 text-center md:text-left">
+          <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-4 py-1 text-[11px] uppercase tracking-[0.35em] text-muted-foreground">
+            {copy.badge}
+            <span className="h-1 w-6 bg-accent" />
+          </span>
+          <div>
+            <h2 className="text-4xl font-semibold">{copy.heading}</h2>
+            <p className="mt-2 text-base text-muted-foreground">{copy.description}</p>
           </div>
+        </div>
 
-          {/* Blog posts placeholder */}
-          <div className="space-y-6">
-            <h3 className="text-lg font-semibold mb-4">Recent Posts</h3>
-            {[
-              {
-                title: "Machine Learning Fundamentals: From Theory to Practice",
-                date: "Coming Soon",
-                readTime: "8 min read",
-              },
-              {
-                title: "Building Scalable Backend Systems with Go",
-                date: "Coming Soon",
-                readTime: "12 min read",
-              },
-              {
-                title: "Constraint Satisfaction Problems: Solving Real-World Optimization",
-                date: "Coming Soon",
-                readTime: "10 min read",
-              },
-            ].map((post) => (
-              <article
-                key={post.title}
-                className="group p-4 rounded-lg border border-border/50 hover:border-accent/50 hover:bg-card/50 transition-all cursor-pointer"
-              >
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <h4 className="font-semibold group-hover:text-accent transition-colors">{post.title}</h4>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      {post.date} • {post.readTime}
-                    </p>
-                  </div>
-                  <ArrowRight
-                    size={18}
-                    className="text-muted-foreground group-hover:text-accent transition-colors opacity-0 group-hover:opacity-100"
-                  />
-                </div>
-              </article>
+        <div className="rounded-3xl border border-accent/40 bg-background/80 p-6 shadow-lg shadow-black/10 backdrop-blur">
+          <div className="flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-accent">
+            <div className="h-2 w-2 rounded-full bg-accent animate-pulse" />
+            {copy.exploringLabel}
+          </div>
+          <div className="mt-4 space-y-2">
+            <p className="text-2xl font-semibold">{copy.exploringTitle}</p>
+            <p className="text-sm text-muted-foreground">{copy.exploringSummary}</p>
+          </div>
+          <div className="mt-4 flex flex-wrap gap-3 text-xs text-muted-foreground">
+            {copy.tags.map((tag) => (
+              <span key={tag} className="rounded-full border border-border/50 px-3 py-1">
+                {tag}
+              </span>
             ))}
           </div>
+        </div>
+
+        <div className="rounded-3xl border border-border/60 bg-background/70 p-6 shadow-inner shadow-black/10">
+          <div className="flex items-center gap-3">
+            <BookOpen size={20} className="text-accent" />
+            <div>
+              <p className="text-sm uppercase tracking-[0.35em] text-muted-foreground">{copy.prepLabel}</p>
+              <p className="text-base text-foreground">{copy.prepTitle}</p>
+            </div>
+          </div>
+          <div className="mt-4 rounded-2xl border border-dashed border-border/50 bg-muted/20 p-5 text-sm text-muted-foreground">
+            {copy.prepBody}
+          </div>
+
+          {/*
+          <article className="mt-5 rounded-2xl border border-border/50 p-4">
+            <div className="flex items-center justify-between text-sm text-muted-foreground">
+              <span>Machine Learning Fundamentals</span>
+              <span>8 min read</span>
+            </div>
+            <h3 className="mt-2 text-lg font-semibold">From Theory to Practice</h3>
+            <p className="text-sm text-muted-foreground">A future deep dive once experiments stabilize.</p>
+            <ArrowRight className="mt-3 h-4 w-4 text-muted-foreground" />
+          </article>
+          */}
         </div>
       </div>
     </section>

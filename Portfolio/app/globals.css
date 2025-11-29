@@ -38,6 +38,12 @@
   --sidebar-accent-foreground: oklch(0.1 0 0);
   --sidebar-border: oklch(0.9 0 0);
   --sidebar-ring: oklch(0.3 0.3 220);
+  --font-base: var(--font-latin, "JetBrains Mono", "Geist", "Inter", "Segoe UI", system-ui, sans-serif);
+  --font-code: var(--font-latin, "JetBrains Mono", "Fira Code", "SFMono-Regular", "Courier New", monospace);
+}
+
+html[dir="rtl"] {
+  --font-base: var(--font-arabic, "Cairo", "Inter", "Segoe UI", system-ui, sans-serif);
 }
 
 .dark {
@@ -77,8 +83,8 @@
 }
 
 @theme inline {
-  --font-sans: "Inter", "Geist", "Geist Fallback";
-  --font-mono: "Fira Code", "Geist Mono", "Geist Mono Fallback";
+  --font-sans: var(--font-base);
+  --font-mono: var(--font-code);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -109,8 +115,6 @@
   --radius-xl: calc(var(--radius) + 4px);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
   --color-sidebar-accent: var(--sidebar-accent);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
@@ -123,6 +127,19 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-base);
+  }
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
+  button:hover,
+  [role="button"]:hover {
+    cursor: pointer;
+  }
+  button:disabled,
+  [role="button"][aria-disabled="true"] {
+    cursor: not-allowed;
   }
 }
 
@@ -130,11 +147,11 @@
 .font-mono {
   font-family: var(--font-mono);
 }
-
-/* Custom scrollbar styling for main content area */
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(6, 182, 212, 0.3) transparent;
+@supports (scrollbar-width: thin) {
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(6, 182, 212, 0.3) transparent;
+  }
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -221,4 +238,64 @@
 
 .animate-slide-in {
   animation: slideIn 0.5s ease-out;
+}
+
+/* RTL layout adjustments */
+[dir="rtl"] {
+  direction: rtl;
+}
+
+[dir="rtl"] :is(.text-left, .sm\:text-left, .md\:text-left, .lg\:text-left, .xl\:text-left, .\32 xl\:text-left) {
+  text-align: right !important;
+}
+
+[dir="rtl"] .lg\:ml-64 {
+  margin-left: 0 !important;
+  margin-right: 16rem !important;
+}
+
+[dir="rtl"] .ml-0 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+[dir="rtl"] .ml-1 {
+  margin-left: 0 !important;
+  margin-right: 0.25rem !important;
+}
+
+[dir="rtl"] .ml-2,
+[dir="rtl"] .md\:peer-data-\[variant\=inset\]\:peer-data-\[state\=collapsed\]\:ml-2 {
+  margin-left: 0 !important;
+  margin-right: 0.5rem !important;
+}
+
+[dir="rtl"] .ml-4 {
+  margin-left: 0 !important;
+  margin-right: 1rem !important;
+}
+
+[dir="rtl"] .ml-auto {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+[dir="rtl"] .-ml-4 {
+  margin-left: 0 !important;
+  margin-right: -1rem !important;
+}
+
+[dir="rtl"] .md\:peer-data-\[variant\=inset\]\:ml-0 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+[dir="rtl"] .has-\[>button\]\:ml-\[-0\.45rem\] {
+  margin-left: 0 !important;
+  margin-right: -0.45rem !important;
+}
+
+[dir="rtl"] .has-\[>kbd\]\:ml-\[-0\.35rem\] {
+  margin-left: 0 !important;
+  margin-right: -0.35rem !important;
 }

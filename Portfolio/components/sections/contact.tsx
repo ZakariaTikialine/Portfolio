@@ -3,12 +3,24 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Mail, Github, Linkedin, Send } from "lucide-react"
+import { motion } from "framer-motion"
+import { Github, Linkedin, Mail, MessageSquare, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { useLocale } from "next-intl"
+import type { Locale } from "@/navigation"
+import { getContactContent, type ContactChannelType } from "@/content/contact"
+
+const channelIcons: Record<ContactChannelType, typeof Mail> = {
+  mail: Mail,
+  github: Github,
+  linkedin: Linkedin,
+}
 
 const Contact = () => {
+  const locale = useLocale() as Locale
+  const copy = getContactContent(locale)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,83 +40,123 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" className="py-20 md:py-32 border-t border-border/50">
-      <div className="container mx-auto px-4">
-        <div className="max-w-2xl mx-auto">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Let's Work Together</h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-accent to-secondary rounded-full mx-auto mb-4" />
-            <p className="text-muted-foreground">
-              Have a project in mind or want to discuss ideas? I'd love to hear from you.
-            </p>
-          </div>
+    <section id="contact" className="relative overflow-hidden border-t border-border/40 py-24">
+      <div className="pointer-events-none absolute inset-0 opacity-60">
+        <div className="mx-auto h-72 max-w-5xl bg-linear-to-r from-accent/15 via-transparent to-secondary/15 blur-3xl" />
+      </div>
 
-          {/* Contact form */}
-          <form onSubmit={handleSubmit} className="space-y-6 mb-12">
-            <Input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              className="bg-card/50 border-border/50 rounded-lg focus:border-accent focus:ring-accent/50"
-              required
-            />
-            <Input
-              type="email"
-              name="email"
-              placeholder="your@email.com"
-              value={formData.email}
-              onChange={handleChange}
-              className="bg-card/50 border-border/50 rounded-lg focus:border-accent focus:ring-accent/50"
-              required
-            />
-            <Textarea
-              name="message"
-              placeholder="Tell me about your project or idea..."
-              value={formData.message}
-              onChange={handleChange}
-              rows={5}
-              className="bg-card/50 border-border/50 rounded-lg focus:border-accent focus:ring-accent/50 resize-none"
-              required
-            />
-            <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-lg">
-              Send Message
+      <div className="relative mx-auto flex w-full max-w-5xl flex-col gap-10 px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="space-y-4 text-center md:text-left"
+        >
+          <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-4 py-1 text-[11px] uppercase tracking-[0.35em] text-muted-foreground">
+            {copy.badge}
+            <span className="h-1 w-6 bg-accent" />
+          </span>
+          <div>
+            <h2 className="text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</h2>
+            <p className="mt-2 text-base text-muted-foreground">{copy.description}</p>
+          </div>
+        </motion.div>
+
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <motion.form
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="space-y-5 rounded-3xl border border-border/60 bg-background/80 p-6 shadow-lg shadow-black/10 backdrop-blur"
+          >
+            <div>
+              <label className="text-xs uppercase tracking-[0.35em] text-muted-foreground">{copy.form.nameLabel}</label>
+              <Input
+                type="text"
+                name="name"
+                placeholder={copy.form.namePlaceholder}
+                value={formData.name}
+                onChange={handleChange}
+                className="mt-2 rounded-2xl border-border/40 bg-muted/30"
+                required
+              />
+            </div>
+            <div>
+              <label className="text-xs uppercase tracking-[0.35em] text-muted-foreground">{copy.form.emailLabel}</label>
+              <Input
+                type="email"
+                name="email"
+                placeholder={copy.form.emailPlaceholder}
+                value={formData.email}
+                onChange={handleChange}
+                className="mt-2 rounded-2xl border-border/40 bg-muted/30"
+                required
+              />
+            </div>
+            <div>
+              <label className="text-xs uppercase tracking-[0.35em] text-muted-foreground">{copy.form.messageLabel}</label>
+              <Textarea
+                name="message"
+                placeholder={copy.form.messagePlaceholder}
+                value={formData.message}
+                onChange={handleChange}
+                rows={5}
+                className="mt-2 rounded-2xl border-border/40 bg-muted/30 resize-none"
+                required
+              />
+            </div>
+            <Button type="submit" className="w-full rounded-2xl bg-accent py-6 text-accent-foreground hover:bg-accent/90">
+              {copy.form.submitLabel}
               <Send size={18} className="ml-2" />
             </Button>
-          </form>
+          </motion.form>
 
-          {/* Direct contact links */}
-          <div className="p-6 rounded-lg border border-border/50 bg-card/30 backdrop-blur-sm">
-            <p className="text-sm text-muted-foreground mb-4 text-center">Or reach out directly:</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="mailto:zakaria@example.com"
-                className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-border/50 hover:border-accent/50 hover:bg-muted transition-colors"
-              >
-                <Mail size={18} />
-                Email
-              </a>
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-border/50 hover:border-accent/50 hover:bg-muted transition-colors"
-              >
-                <Github size={18} />
-                GitHub
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-border/50 hover:border-accent/50 hover:bg-muted transition-colors"
-              >
-                <Linkedin size={18} />
-                LinkedIn
-              </a>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="space-y-5 rounded-3xl border border-border/60 bg-background/70 p-6 shadow-inner shadow-black/10"
+          >
+            <div className="rounded-2xl border border-border/50 bg-muted/20 p-5">
+              <div className="flex items-center gap-3">
+                <MessageSquare size={18} className="text-accent" />
+                <div>
+                  <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">{copy.direct.label}</p>
+                  <p className="text-sm text-foreground/80">{copy.direct.response}</p>
+                </div>
+              </div>
+              <div className="mt-4 space-y-3 text-sm text-muted-foreground">
+                {copy.direct.channels.map((channel) => {
+                  const Icon = channelIcons[channel.type]
+                  return (
+                    <a
+                      key={channel.href}
+                      href={channel.href}
+                      target={channel.type === "mail" ? undefined : "_blank"}
+                      rel={channel.type === "mail" ? undefined : "noopener noreferrer"}
+                      className="flex items-center gap-3 rounded-xl border border-border/50 px-3 py-2 hover:border-accent/40 hover:text-foreground"
+                    >
+                      <Icon size={16} className="text-accent" />
+                      {channel.label}
+                    </a>
+                  )
+                })}
+              </div>
             </div>
-          </div>
+
+            <div className="grid gap-3 rounded-2xl border border-dashed border-border/50 bg-muted/15 p-5 text-sm text-muted-foreground">
+              <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">{copy.support.label}</p>
+              <ul className="space-y-2 text-foreground/80">
+                {copy.support.bullets.map((bullet) => (
+                  <li key={bullet}>• {bullet}</li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,8 +1,10 @@
 "use client"
 
 import { Download } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export default function CVDownloadSimple() {
+    const t = useTranslations("cta")
     const handleDownload = () => {
         const link = document.createElement("a")
         link.href = "/Zakaria_CV.pdf" // place your CV file inside /public
@@ -13,10 +15,10 @@ export default function CVDownloadSimple() {
     return (
         <button
         onClick={handleDownload}
-        className="flex items-center gap-2 border border-border/50 rounded-full px-8 py-3 hover:bg-muted bg-transparent cursor-pointer text-sm font-medium transition-all"
+        className="flex items-center gap-2 rounded-full border border-accent bg-accent px-8 text-sm font-medium cursor-pointer text-accent-foreground transition-all hover:bg-accent/90"
         >
         <Download size={16} />
-        Download CV
+        {t("downloadCv")}
         </button>
     )
 }

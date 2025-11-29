@@ -1,9 +1,14 @@
 import path from "path";
 import { fileURLToPath } from "url";
+import createNextIntlPlugin from "next-intl/plugin";
 
 /** @type {import('next').NextConfig} */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+const withNextIntl = createNextIntlPlugin({
+  requestConfig: "./src/i18n/request.ts",
+});
 
 const nextConfig = {
   webpack(config) {
@@ -16,9 +21,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  experimental: {
-    turbo: false,
+  turbopack: {
+    root: __dirname,
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);
