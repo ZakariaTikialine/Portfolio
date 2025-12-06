@@ -7,10 +7,9 @@ import { NextIntlClientProvider } from "next-intl"
 import { getMessages, getTranslations } from "next-intl/server"
 import SidebarNav from "@/components/sidebar-nav"
 import ThemeToggle from "@/components/theme-toggle"
-import AiTerminal from "@/components/ai-terminal"
-import CommandPalette from "@/components/command-palette"
-import NeuralBackground from "@/components/neural-background"
 import DynamicTheme from "@/components/dynamic-theme"
+import { ThemeProvider } from "@/components/theme-provider"
+import { AiTerminal, CommandPalette, NeuralBackground } from "@/components/client-components"
 import { locales, type Locale } from "@/i18n"
 import "@/app/globals.css"
 
@@ -57,49 +56,37 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   const themeToggleAnchor = locale === "ar" ? "lg:left-6" : "lg:right-6"
 
   return (
-    <html lang={locale} dir={direction} suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                  document.documentElement.classList.add('dark')
-                } else {
-                  document.documentElement.classList.remove('dark')
-                }
-              } catch (e) {}
-            `,
-          }}
-        />
-      </head>
+    <html lang={locale} dir={direction} suppressHydrationWarning className="custom-scrollbar">
+      <head />
       <body className={`${jetBrains.variable} ${cairo.variable} antialiased`}>
-        <NextIntlClientProvider locale={locale} messages={messages} timeZone="Europe/Paris">
-          <DynamicTheme />
-          <NeuralBackground />
+        <ThemeProvider>
+          <NextIntlClientProvider locale={locale} messages={messages} timeZone="Europe/Paris">
+            <DynamicTheme />
+            <NeuralBackground />
 
-          <div className="relative min-h-screen overflow-hidden bg-background text-foreground" data-locale={locale}>
-            <div className="fixed inset-0 -z-10 bg-linear-to-br from-accent/5 via-transparent to-secondary/5" />
+            <div className="relative min-h-screen text-foreground" data-locale={locale}>
+              <div className="fixed inset-0 -z-10 bg-linear-to-br from-accent/5 via-transparent to-secondary/5" />
 
-            <SidebarNav />
+              <SidebarNav />
 
-            <div className={`hidden lg:fixed ${themeToggleAnchor} lg:top-6 lg:z-50 lg:block`}>
-              <ThemeToggle />
+              <div className={`hidden lg:fixed ${themeToggleAnchor} lg:top-6 lg:z-50 lg:block`}>
+                <ThemeToggle />
+              </div>
+
+              <main
+                className={`custom-scrollbar relative min-h-screen overflow-y-auto pb-24 pt-16 lg:pt-0 ${sidebarOffsetClass}`}
+                dir={direction}
+              >
+                {children}
+              </main>
+
+              <CommandPalette />
+              <AiTerminal />
             </div>
+          </NextIntlClientProvider>
 
-            <main
-              className={`custom-scrollbar relative min-h-screen overflow-y-auto pt-20 lg:pt-0 ${sidebarOffsetClass}`}
-              dir={direction}
-            >
-              {children}
-            </main>
-
-            <CommandPalette />
-            <AiTerminal />
-          </div>
-        </NextIntlClientProvider>
-
-        <Analytics />
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   )

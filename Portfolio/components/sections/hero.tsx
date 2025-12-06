@@ -1,9 +1,10 @@
 "use client"
 
 import type React from "react"
-import { useEffect, useState } from "react"
+import { useEffect, useState, memo } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight, Cpu } from "lucide-react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import TypingEffect from "@/components/typing-effect"
 import CVDownloadSimple from "../cv-download-simple"
@@ -20,13 +21,15 @@ interface Particle {
   opacity: number
 }
 
+const PARTICLE_COUNT = 15 // Reduced from 30 for better performance
+
 const Hero = () => {
   const [particles, setParticles] = useState<Particle[]>([])
   const locale = useLocale() as Locale
   const heroCopy = getHeroContent(locale)
 
   useEffect(() => {
-    const newParticles = Array.from({ length: 30 }, (_, i) => ({
+    const newParticles = Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -43,7 +46,7 @@ const Hero = () => {
   }
 
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden border-b border-border/30 py-24 pt-28">
+    <section className="relative flex min-h-screen items-center overflow-hidden border-b border-border/30 py-20 md:py-28">
       {/* Animated background particles */}
       <div className="absolute inset-0 overflow-hidden">
         {particles.map((particle) => (
@@ -67,8 +70,8 @@ const Hero = () => {
       <div className="absolute inset-0 bg-linear-to-br from-accent/15 via-transparent to-secondary/10 blur-3xl" />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-16 px-4 lg:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 md:px-10 lg:px-12">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-8 text-center lg:text-left">
             <div className="inline-flex items-center gap-3 rounded-full border border-border/60 bg-background/60 px-5 py-2 text-xs uppercase tracking-[0.4em] text-muted-foreground">
               {heroCopy.badge}
@@ -117,9 +120,12 @@ const Hero = () => {
             <div className="relative rounded-4xl border border-border/60 bg-background/80 p-8 shadow-2xl shadow-black/20 backdrop-blur">
               <div className="relative mx-auto h-40 w-40">
                 <div className="absolute inset-0 rounded-full border-2 border-accent/40 opacity-70" />
-                <img
+                <Image
                   src="/professional-developer-portrait.png"
                   alt="Zakaria TIKIALINE"
+                  width={160}
+                  height={160}
+                  priority
                   className="relative z-10 h-full w-full rounded-full border-2 border-accent/60 object-cover"
                 />
                 <div className="absolute -top-3 -right-3 flex h-8 w-8 items-center justify-center rounded-full bg-accent text-background shadow-lg">
@@ -156,4 +162,4 @@ const Hero = () => {
   )
 }
 
-export default Hero
+export default memo(Hero)

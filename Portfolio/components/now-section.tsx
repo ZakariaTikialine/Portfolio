@@ -1,5 +1,6 @@
 "use client"
 
+import { memo } from "react"
 import { motion } from "framer-motion"
 import { useLocale } from "next-intl"
 import type { Locale } from "@/navigation"
@@ -31,7 +32,7 @@ const lastUpdatedCopy: Record<Locale, string> = {
   ar: "آخر تحديث: اليوم",
 }
 
-export default function NowSection() {
+function NowSection() {
   const locale = useLocale() as Locale
   const entries = nowContent[locale]
   return (
@@ -64,3 +65,5 @@ export default function NowSection() {
     </motion.div>
   )
 }
+
+export default memo(NowSection)

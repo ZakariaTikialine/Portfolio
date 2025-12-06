@@ -3,12 +3,13 @@
 import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
-import { Send, MessageCircle, X, Minimize2, Maximize2, Bot, UserRound } from "lucide-react"
+import { Send, X, Minimize2, Maximize2, Bot, UserRound, Expand, Shrink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useLocale } from "next-intl"
 import type { Locale } from "@/navigation"
 import { getAiTerminalContent } from "@/content/ai-terminal"
+import { cn } from "@/lib/utils"
 
 interface Message {
   id: string
@@ -23,6 +24,7 @@ const AiTerminal = () => {
   const copy = getAiTerminalContent(locale)
   const [isOpen, setIsOpen] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
+  const [isFullscreen, setIsFullscreen] = useState(false)
   const [messages, setMessages] = useState<Message[]>(() => [
     {
       id: "intro",
@@ -58,6 +60,19 @@ const AiTerminal = () => {
   }, [messages])
 
   const getFallbackResponse = () => copy.defaultResponses[Math.floor(Math.random() * copy.defaultResponses.length)]
+
+  useEffect(() => {
+    if (!isFullscreen) {
+      document.body.style.overflow = ""
+      return
+    }
+
+    const previous = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = previous
+    }
+  }, [isFullscreen])
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -118,58 +133,119 @@ const AiTerminal = () => {
     }
   }
 
-  const horizontalAnchor = isRTL ? "left-6" : "right-6"
+  const horizontalAnchor = isRTL ? "left-5" : "right-5"
 
-  if (!isOpen) {
+  const renderedMessages = messages.map((message) => {
+    const isUser = message.type === "user"
     return (
-      <button
-        aria-label={copy.openLabel}
-        onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 ${horizontalAnchor} z-40 group focus:outline-none`}
-      >
-        <div className="flex items-center gap-3 rounded-full border border-accent/40 bg-background/90 px-4 py-2 shadow-[0_15px_35px_rgba(15,23,42,0.45)] transition-all group-hover:-translate-y-0.5 group-hover:border-accent/70">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/90 text-accent-foreground shadow-inner shadow-black/40">
-            <MessageCircle size={20} />
+      <div key={message.id} className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
+        <div className={`flex max-w-[85%] items-start gap-2.5 ${isUser ? "flex-row-reverse" : "flex-row"}`}>
+          <div
+            className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border ${
+              isUser ? "border-accent/50 bg-accent/10 text-accent" : "border-border/60 bg-muted/30 text-foreground"
+            }`}
+            aria-hidden
+          >
+            {isUser ? <UserRound size={13} /> : <Bot size={13} />}
           </div>
-          <div className="flex flex-col text-left">
-            <span className="text-xs uppercase tracking-[0.35em] text-muted-foreground">AI</span>
-            <span className="text-sm font-semibold text-foreground">{copy.headerTitle}</span>
+          <div
+            className={`rounded-2xl border px-3.5 py-2.5 text-sm leading-relaxed ${
+              isUser
+                ? "border-accent/30 bg-accent/10 text-foreground"
+                : "border-border/50 bg-muted/20 text-foreground"
+            }`}
+          >
+            {message.content}
           </div>
         </div>
-      </button>
+      </div>
+    )
+  })
+
+  const showSuggestions = messages.length <= 1 && copy.suggestions.length > 0
+
+  // Closed state - floating button (matches minimized header exactly)
+  if (!isOpen) {
+    return (
+      <div
+        onClick={() => setIsOpen(true)}
+        className={`fixed bottom-6 ${horizontalAnchor} z-50 flex cursor-pointer items-center justify-between rounded-2xl border border-border/60 bg-background/98 px-4 py-3 shadow-2xl shadow-black/20 backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:shadow-xl`}
+        role="button"
+        tabIndex={0}
+        aria-label={copy.openLabel}
+        onKeyDown={(e) => e.key === "Enter" && setIsOpen(true)}
+      >
+        <div className="flex items-center gap-3">
+          <div className="relative flex h-9 w-9 items-center justify-center rounded-full border border-border/60 bg-accent/10 text-accent">
+            <Bot size={16} />
+            <span className="absolute -right-0.5 -bottom-0.5 h-2 w-2 rounded-full border-2 border-background bg-emerald-400" />
+          </div>
+          <p className="text-sm font-semibold text-foreground">{copy.headerTitle}</p>
+        </div>
+      </div>
     )
   }
 
+  // Container classes - properly centered for fullscreen
+  const containerClasses = cn(
+    "fixed z-50 flex flex-col overflow-hidden border border-border/60 bg-background/98 shadow-2xl shadow-black/20 backdrop-blur-xl transition-all duration-300",
+    isFullscreen
+      ? "inset-4 sm:inset-8 md:inset-12 lg:inset-16 rounded-2xl"
+      : `bottom-5 ${horizontalAnchor} w-[380px] rounded-2xl ${isMinimized ? "h-auto" : "h-[520px]"}`,
+  )
+
+  const handleClose = () => {
+    setIsOpen(false)
+    setIsFullscreen(false)
+    setIsMinimized(false)
+    document.body.style.overflow = ""
+  }
+
+  const toggleMinimize = () => {
+    if (isFullscreen) return
+    setIsMinimized((prev) => !prev)
+  }
+
+  const toggleFullscreen = () => {
+    setIsFullscreen((prev) => {
+      const next = !prev
+      if (next) {
+        setIsMinimized(false)
+      }
+      return next
+    })
+  }
+
   return (
-    <div
-      className={`fixed bottom-6 ${horizontalAnchor} z-50 w-[360px] overflow-hidden rounded-3xl border border-border/40 bg-card/95 shadow-[0_25px_80px_rgba(15,23,42,0.55)] backdrop-blur-xl transition-all duration-300 ${
-        isMinimized ? "h-16" : "h-[520px]"
-      }`}
-      dir={isRTL ? "rtl" : "ltr"}
-    >
+    <div className={containerClasses} dir={isRTL ? "rtl" : "ltr"}>
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-border/40 bg-linear-to-r from-background/60 via-background/20 to-background/60 px-4 py-3">
+      <div className={`flex items-center justify-between bg-muted/30 px-4 py-2.5 ${isMinimized ? "" : "border-b border-border/40"}`}>
         <div className="flex items-center gap-3">
-          <div className="relative flex h-10 w-10 items-center justify-center rounded-2xl border border-accent/30 bg-accent/10 text-accent">
-            <Bot size={18} />
-            <span className="absolute -right-1 -bottom-1 h-2.5 w-2.5 rounded-full border border-background bg-emerald-400" />
+          <div className="relative flex h-9 w-9 items-center justify-center rounded-full border border-border/60 bg-accent/10 text-accent">
+            <Bot size={16} />
+            <span className="absolute -right-0.5 -bottom-0.5 h-2 w-2 rounded-full border-2 border-background bg-emerald-400" />
           </div>
-          <div>
-            <p className="text-sm font-semibold text-foreground">{copy.headerTitle}</p>
-            <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{copy.openLabel}</p>
-          </div>
+          <p className="text-sm font-semibold text-foreground">{copy.headerTitle}</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-1.5">
           <button
-            onClick={() => setIsMinimized(!isMinimized)}
-            className="rounded-full border border-border/60 p-2 text-muted-foreground transition-colors hover:text-foreground"
+            onClick={toggleFullscreen}
+            className="rounded-lg border border-border/40 bg-background/80 p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            aria-label={isFullscreen ? copy.exitFullscreenLabel : copy.fullscreenLabel}
+          >
+            {isFullscreen ? <Shrink size={14} /> : <Expand size={14} />}
+          </button>
+          <button
+            onClick={toggleMinimize}
+            className="rounded-lg border border-border/40 bg-background/80 p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:opacity-40"
             aria-label={isMinimized ? copy.maximizeLabel : copy.minimizeLabel}
+            disabled={isFullscreen}
           >
             {isMinimized ? <Maximize2 size={14} /> : <Minimize2 size={14} />}
           </button>
           <button
-            onClick={() => setIsOpen(false)}
-            className="rounded-full border border-border/60 p-2 text-muted-foreground transition-colors hover:text-foreground"
+            onClick={handleClose}
+            className="rounded-lg border border-border/40 bg-background/80 p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             aria-label={copy.closeLabel}
           >
             <X size={14} />
@@ -177,75 +253,56 @@ const AiTerminal = () => {
         </div>
       </div>
 
-      {/* Messages area */}
+      {/* Body */}
       {!isMinimized && (
-        <>
-          <div className="h-[360px] space-y-4 overflow-y-auto px-4 py-5">
-            {messages.map((message) => {
-              const isUser = message.type === "user"
-              return (
-                <div key={message.id} className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
-                  <div className={`flex max-w-[85%] items-start gap-3 ${isUser ? "flex-row-reverse" : "flex-row"}`}>
-                    <div
-                      className={`mt-1 flex h-8 w-8 items-center justify-center rounded-2xl border text-xs ${
-                        isUser ? "border-accent/50 text-accent" : "border-border/40 text-foreground"
-                      }`}
-                      aria-hidden
+        <div className="flex flex-1 flex-col overflow-hidden">
+          {/* Messages area */}
+          <div className="custom-scrollbar flex-1 overflow-y-auto p-4">
+            <div className="flex flex-col space-y-3">
+              {renderedMessages}
+
+              {showSuggestions && (
+                <div className="flex flex-wrap gap-1.5 pt-2">
+                  {copy.suggestions.map((suggestion) => (
+                    <button
+                      key={suggestion}
+                      type="button"
+                      className="rounded-full border border-border/50 bg-muted/30 px-3 py-1.5 text-[11px] text-muted-foreground transition-all hover:border-border hover:bg-muted/50 hover:text-foreground"
+                      onClick={() => {
+                        setInputValue(suggestion)
+                        inputRef.current?.focus()
+                      }}
                     >
-                      {isUser ? <UserRound size={14} /> : <Bot size={14} />}
-                    </div>
-                    <div
-                      className={`rounded-2xl border px-4 py-3 text-sm leading-relaxed shadow-sm ${
-                        isUser
-                          ? "border-accent/40 bg-accent text-accent-foreground"
-                          : "border-border/40 bg-card/80 text-foreground"
-                      }`}
-                    >
-                      {message.content}
+                      {suggestion}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {isLoading && (
+                <div className="flex justify-start">
+                  <div className="rounded-full border border-border/50 bg-muted/30 px-4 py-2">
+                    <div className="flex gap-1">
+                      <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-muted-foreground" />
+                      <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-muted-foreground [animation-delay:120ms]" />
+                      <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-muted-foreground [animation-delay:240ms]" />
                     </div>
                   </div>
                 </div>
-              )
-            })}
-            {messages.length <= 1 && copy.suggestions.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {copy.suggestions.map((suggestion) => (
-                  <button
-                    key={suggestion}
-                    type="button"
-                    className="rounded-full border border-border/40 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-accent/50 hover:text-foreground"
-                    onClick={() => {
-                      setInputValue(suggestion)
-                      inputRef.current?.focus()
-                    }}
-                  >
-                    {suggestion}
-                  </button>
-                ))}
-              </div>
-            )}
-            {isLoading && (
-              <div className="flex justify-start">
-                <div className="rounded-2xl border border-border/40 bg-card/80 px-4 py-3">
-                  <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" />
-                    <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-100" />
-                    <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-200" />
-                  </div>
-                </div>
-              </div>
-            )}
-            <div ref={messagesEndRef} />
+              )}
+
+              <div ref={messagesEndRef} />
+            </div>
           </div>
 
           {/* Input area */}
-          <div className="border-t border-border/50">
+          <div className="border-t border-border/40 bg-muted/20 p-3">
             {errorMessage && (
-              <p className="px-4 pt-3 text-xs text-red-400" role="status">
+              <p className="mb-2 text-center text-xs text-red-400" role="status">
                 {errorMessage}
               </p>
             )}
-            <form onSubmit={handleSendMessage} className="flex gap-2 px-4 pb-4 pt-3">
+            <form onSubmit={handleSendMessage} className="flex items-center gap-2">
               <Input
                 type="text"
                 placeholder={copy.placeholder}
@@ -253,20 +310,19 @@ const AiTerminal = () => {
                 onChange={(e) => setInputValue(e.target.value)}
                 disabled={isLoading}
                 ref={inputRef}
-                className="text-sm border-border/40 bg-muted/40 placeholder:text-muted-foreground/60 focus:border-accent focus:ring-accent/50"
+                className="h-10 flex-1 rounded-xl border-border/40 bg-background/80 text-sm placeholder:text-muted-foreground/60 focus:border-accent focus:ring-accent/30"
               />
               <Button
                 type="submit"
                 size="icon"
                 disabled={isLoading || !inputValue.trim()}
-                className="h-11 w-11 rounded-2xl bg-accent text-accent-foreground shadow-lg shadow-accent/30 hover:bg-accent/90"
+                className="h-10 w-10 rounded-xl bg-accent text-accent-foreground shadow-sm hover:bg-accent/90"
               >
-                <Send size={16} />
+                <Send size={15} />
               </Button>
             </form>
-            <p className="px-4 pb-4 text-center text-[11px] text-muted-foreground/70">{copy.poweredBy}</p>
           </div>
-        </>
+        </div>
       )}
     </div>
   )

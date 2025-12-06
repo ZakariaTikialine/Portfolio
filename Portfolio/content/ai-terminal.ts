@@ -12,9 +12,10 @@ export interface AiTerminalContent {
   closeLabel: string
   minimizeLabel: string
   maximizeLabel: string
+  fullscreenLabel: string
+  exitFullscreenLabel: string
   placeholder: string
   errorMessage: string
-  poweredBy: string
   suggestions: string[]
   defaultResponses: string[]
   responses: AiResponse[]
@@ -28,9 +29,10 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
     closeLabel: "Close AI assistant",
     minimizeLabel: "Minimize chat",
     maximizeLabel: "Expand chat",
+    fullscreenLabel: "Go full screen",
+    exitFullscreenLabel: "Exit full screen",
     placeholder: "Ask about skills, projects…",
     errorMessage: "I couldn't reach the live model. Here's a quick recap instead:",
-    poweredBy: "Answers run on Groq's Llama 3 and stay focused on Zakaria's work.",
     suggestions: [
       "What projects are you proud of?",
       "Which stack do you use most?",
@@ -81,9 +83,10 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
     closeLabel: "Fermer l'assistant IA",
     minimizeLabel: "Réduire la fenêtre",
     maximizeLabel: "Agrandir la fenêtre",
+    fullscreenLabel: "Passer en plein écran",
+    exitFullscreenLabel: "Quitter le plein écran",
     placeholder: "Demandez des infos sur les compétences, projets…",
     errorMessage: "Impossible de joindre le modèle en direct. Voici un rappel rapide :",
-    poweredBy: "Réponses servies par Llama 3 (Groq) et centrées sur le profil de Zakaria.",
     suggestions: [
       "Quels sont tes derniers projets ?",
       "Quelles technologies maîtrises-tu ?",
@@ -134,9 +137,10 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
     closeLabel: "أغلق المساعد",
     minimizeLabel: "تصغير النافذة",
     maximizeLabel: "تكبير النافذة",
+    fullscreenLabel: "عرض بملء الشاشة",
+    exitFullscreenLabel: "الخروج من العرض الكامل",
     placeholder: "اسأل عن المهارات أو المشاريع…",
     errorMessage: "تعذّر الاتصال بالذكاء الاصطناعي الآن. إليك ملخص سريع بدلاً من ذلك:",
-    poweredBy: "الإجابات تعمل عبر Llama 3 على منصة Groq وتركّز على عمل زكريا.",
     suggestions: [
       "ما هي أبرز مشاريعك؟",
       "ما التقنيات التي تستخدمها يوميًا؟",

@@ -1,8 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, memo } from "react"
 import { useLocale, useTranslations } from "next-intl"
 import { motion, AnimatePresence } from "framer-motion"
+import Image from "next/image"
 import {
   Home,
   User,
@@ -16,7 +17,7 @@ import {
   X,
 } from "lucide-react"
 import { Link, usePathname } from "@/navigation"
-import ThemeToggleEnhanced from "./theme-toggle-enhanced"
+import ThemeToggle from "./theme-toggle"
 import SocialLinks from "./social-links"
 import CVDownload from "./cv-download"
 import LanguageSwitcher from "./language-switcher"
@@ -94,7 +95,7 @@ export default function SidebarNav() {
         <div className="flex items-center gap-3">
           <LanguageSwitcher onSelect={() => setIsOpen(false)} />
           <CVDownload />
-          <ThemeToggleEnhanced />
+          <ThemeToggle className="p-2" />
         </div>
       </div>
 
@@ -129,7 +130,14 @@ export default function SidebarNav() {
             <div className="hidden border-b border-border/40 px-6 py-7 lg:block">
               <div className="flex flex-col items-center gap-3 text-center">
                 <div className="h-16 w-16 overflow-hidden rounded-full border border-border/60 ring-2 ring-accent/50">
-                  <img src="/professional-developer-portrait.png" alt="Profile" className="h-full w-full object-cover" />
+                  <Image 
+                    src="/professional-developer-portrait.png" 
+                    alt="Profile" 
+                    width={64} 
+                    height={64}
+                    priority
+                    className="h-full w-full object-cover" 
+                  />
                 </div>
                 <div className="space-y-1">
                   <p className="font-mono text-base font-semibold text-accent">&lt;Zakaria /&gt;</p>
@@ -195,7 +203,7 @@ export default function SidebarNav() {
                 <CVDownload />
                 <div className="flex items-center justify-between gap-3">
                   <LanguageSwitcher />
-                  <ThemeToggleEnhanced />
+                  <ThemeToggle />
                 </div>
               </div>
               <div className="flex justify-center pt-2">

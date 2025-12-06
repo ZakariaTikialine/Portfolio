@@ -9,12 +9,12 @@ export default function Experience() {
   const locale = useLocale() as Locale
   const copy = getExperienceContent(locale)
   return (
-    <section id="experience" className="relative overflow-hidden border-t border-border/40 py-24 px-4 md:px-10">
+    <section id="experience" className="relative overflow-hidden border-t border-border/40 py-20 px-6 md:py-28 md:px-10 lg:px-12">
       <div className="pointer-events-none absolute inset-0 opacity-50">
         <div className="mx-auto h-64 max-w-4xl bg-linear-to-r from-accent/15 via-transparent to-secondary/20 blur-3xl" aria-hidden />
       </div>
 
-      <div className="relative mx-auto max-w-5xl space-y-14">
+      <div className="relative mx-auto max-w-6xl space-y-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ export default function Experience() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                className="relative overflow-hidden rounded-3xl border border-border/60 bg-background/80 p-6 shadow-lg shadow-black/5 backdrop-blur-sm md:grid md:grid-cols-[auto_1fr] md:gap-8 md:p-10"
+                className="relative overflow-hidden rounded-2xl border border-border/60 bg-background/80 p-5 shadow-lg shadow-black/5 backdrop-blur-sm md:grid md:grid-cols-[auto_1fr] md:gap-6 md:p-8"
               >
                 <div className="mb-6 flex items-center gap-4 md:mb-0 md:flex-col">
                   <span className="hidden h-4 w-4 rounded-full border-4 border-background bg-accent md:block" />

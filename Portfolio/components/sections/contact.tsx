@@ -40,12 +40,12 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" className="relative overflow-hidden border-t border-border/40 py-24">
+    <section id="contact" className="relative overflow-hidden border-t border-border/40 py-20 md:py-28">
       <div className="pointer-events-none absolute inset-0 opacity-60">
         <div className="mx-auto h-72 max-w-5xl bg-linear-to-r from-accent/15 via-transparent to-secondary/15 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-5xl flex-col gap-10 px-4">
+      <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 md:px-10 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -70,7 +70,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="space-y-5 rounded-3xl border border-border/60 bg-background/80 p-6 shadow-lg shadow-black/10 backdrop-blur"
+            className="space-y-4 rounded-2xl border border-border/60 bg-background/80 p-5 shadow-lg shadow-black/10 backdrop-blur"
           >
             <div>
               <label className="text-xs uppercase tracking-[0.35em] text-muted-foreground">{copy.form.nameLabel}</label>
@@ -119,7 +119,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
-            className="space-y-5 rounded-3xl border border-border/60 bg-background/70 p-6 shadow-inner shadow-black/10"
+            className="space-y-4 rounded-2xl border border-border/60 bg-background/70 p-5 shadow-inner shadow-black/10"
           >
             <div className="rounded-2xl border border-border/50 bg-muted/20 p-5">
               <div className="flex items-center gap-3">

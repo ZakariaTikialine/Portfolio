@@ -1,5 +1,6 @@
 "use client"
 
+import { memo } from "react"
 import { motion } from "framer-motion"
 import { Folder, Trophy, Users, Code2 } from "lucide-react"
 import { useLocale } from "next-intl"
@@ -27,7 +28,7 @@ const statCopies: Record<Locale, { label: string; value: string; icon: ReactElem
   ],
 }
 
-export default function StatsDashboard() {
+function StatsDashboard() {
   const locale = useLocale() as Locale
   const stats = statCopies[locale]
 
@@ -50,3 +51,5 @@ export default function StatsDashboard() {
     </div>
   )
 }
+
+export default memo(StatsDashboard)

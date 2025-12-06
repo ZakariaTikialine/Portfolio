@@ -21,19 +21,19 @@ const Skills = () => {
   const copy = getSkillsContent(locale)
 
   return (
-    <section id="skills" className="relative overflow-hidden border-t border-border/40 py-20 px-4 md:px-10">
+    <section id="skills" className="relative overflow-hidden border-t border-border/40 py-20 px-6 md:py-28 md:px-10 lg:px-12">
       <div className="pointer-events-none absolute inset-0 opacity-50">
         <div className="mx-auto h-72 max-w-4xl bg-linear-to-r from-accent/15 via-transparent to-secondary/20 blur-3xl" aria-hidden />
       </div>
 
-      <div className="relative mx-auto max-w-6xl space-y-12">
+      <div className="relative mx-auto max-w-6xl space-y-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="space-y-4 text-center md:text-left">
+          <div className="space-y-3 text-center md:text-left">
             <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-4 py-1 text-[11px] uppercase tracking-[0.35em] text-muted-foreground">
               {copy.badge}
               <span className="h-1 w-6 bg-accent" />
@@ -50,9 +50,9 @@ const Skills = () => {
             ))}
           </div>
 
-          <div className="mt-5 grid gap-4 lg:grid-cols-3">
+          <div className="mt-4 grid gap-4 lg:grid-cols-3">
             {copy.focusTracks.map((track) => (
-              <div key={track.title} className="rounded-3xl border border-border/60 bg-background/85 p-4 text-left shadow-lg shadow-black/5">
+              <div key={track.title} className="rounded-2xl border border-border/60 bg-background/85 p-4 text-left shadow-lg shadow-black/5">
                 <div className="flex items-center gap-2 text-xs uppercase tracking-[0.35em] text-muted-foreground">
                   {copy.focusLabel}
                   <ArrowUpRight size={12} />
@@ -70,7 +70,7 @@ const Skills = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="rounded-3xl border border-border/60 bg-background/85 shadow-xl shadow-black/10"
+          className="rounded-2xl border border-border/60 bg-background/85 shadow-xl shadow-black/10"
         >
           <div className="hidden items-center gap-4 border-b border-border/35 bg-background/70 px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.35em] text-muted-foreground md:grid md:grid-cols-[220px_1fr]">
             <span className="inline-flex items-center gap-2">

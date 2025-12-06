@@ -1,12 +1,13 @@
 "use client"
 
+import { memo } from "react"
 import { motion } from "framer-motion"
 import { Star } from "lucide-react"
 import { useLocale } from "next-intl"
 import { getTestimonialsContent } from "@/content/testimonials"
 import type { Locale } from "@/navigation"
 
-export default function Testimonials() {
+function Testimonials() {
   const locale = useLocale() as Locale
   const copy = getTestimonialsContent(locale)
 
@@ -63,3 +64,5 @@ export default function Testimonials() {
     </div>
   )
 }
+
+export default memo(Testimonials)

@@ -23,12 +23,12 @@ const Projects = () => {
   const projects = copy.projects as Project[]
 
   return (
-    <section id="projects" className="relative overflow-hidden border-t border-border/40 py-24">
+    <section id="projects" className="relative overflow-hidden border-t border-border/40 py-20 md:py-28">
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-60">
         <div className="mx-auto h-80 max-w-5xl bg-linear-to-r from-accent/15 via-transparent to-secondary/15 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-12 px-4 lg:px-8">
+      <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 md:px-10 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -70,7 +70,7 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="group relative overflow-hidden rounded-3xl border border-border/60 bg-background/80 p-6 shadow-xl shadow-black/10 backdrop-blur"
+              className="group relative overflow-hidden rounded-2xl border border-border/60 bg-background/80 p-5 shadow-xl shadow-black/10 backdrop-blur"
             >
               <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                 <div className="h-full w-full bg-linear-to-br from-accent/15 via-transparent to-secondary/20" />

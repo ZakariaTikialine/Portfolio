@@ -143,6 +143,41 @@ html[dir="rtl"] {
   }
 }
 
+/* Performance-optimized animation utilities */
+@layer utilities {
+  .will-change-transform {
+    will-change: transform;
+  }
+  .will-change-opacity {
+    will-change: opacity;
+  }
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  .contain-layout {
+    contain: layout;
+  }
+  .contain-paint {
+    contain: paint;
+  }
+  .contain-strict {
+    contain: strict;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Added monospace font class for coding style text */
 .font-mono {
   font-family: var(--font-mono);

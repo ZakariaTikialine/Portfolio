@@ -1,5 +1,6 @@
 "use client"
 
+import { memo } from "react"
 import type { ReactNode } from "react"
 import { motion } from "framer-motion"
 
@@ -10,7 +11,7 @@ interface ScrollRevealProps {
   className?: string
 }
 
-export default function ScrollReveal({ children, direction = "up", delay = 0, className = "" }: ScrollRevealProps) {
+function ScrollReveal({ children, direction = "up", delay = 0, className = "" }: ScrollRevealProps) {
   const directions = {
     up: { initial: { opacity: 0, y: 40 }, animate: { opacity: 1, y: 0 } },
     down: { initial: { opacity: 0, y: -40 }, animate: { opacity: 1, y: 0 } },
@@ -30,3 +31,5 @@ export default function ScrollReveal({ children, direction = "up", delay = 0, cl
     </motion.div>
   )
 }
+
+export default memo(ScrollReveal)

@@ -10,12 +10,12 @@ const Blog = () => {
   const copy = getBlogContent(locale)
 
   return (
-    <section id="blog" className="relative overflow-hidden border-t border-border/40 py-24">
+    <section id="blog" className="relative overflow-hidden border-t border-border/40 py-20 md:py-28">
       <div className="pointer-events-none absolute inset-0 opacity-60">
         <div className="mx-auto h-72 max-w-4xl bg-linear-to-r from-accent/15 via-transparent to-secondary/20 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-4xl flex-col gap-10 px-4">
+      <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 md:px-10 lg:px-12">
         <div className="space-y-4 text-center md:text-left">
           <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-4 py-1 text-[11px] uppercase tracking-[0.35em] text-muted-foreground">
             {copy.badge}
@@ -27,7 +27,7 @@ const Blog = () => {
           </div>
         </div>
 
-        <div className="rounded-3xl border border-accent/40 bg-background/80 p-6 shadow-lg shadow-black/10 backdrop-blur">
+        <div className="rounded-2xl border border-accent/40 bg-background/80 p-5 shadow-lg shadow-black/10 backdrop-blur">
           <div className="flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-accent">
             <div className="h-2 w-2 rounded-full bg-accent animate-pulse" />
             {copy.exploringLabel}
@@ -45,7 +45,7 @@ const Blog = () => {
           </div>
         </div>
 
-        <div className="rounded-3xl border border-border/60 bg-background/70 p-6 shadow-inner shadow-black/10">
+        <div className="rounded-2xl border border-border/60 bg-background/70 p-5 shadow-inner shadow-black/10">
           <div className="flex items-center gap-3">
             <BookOpen size={20} className="text-accent" />
             <div>
