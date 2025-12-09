@@ -11,9 +11,15 @@ export interface ContactContent {
     namePlaceholder: string
     emailLabel: string
     emailPlaceholder: string
+    subjectLabel: string
+    subjectPlaceholder: string
     messageLabel: string
     messagePlaceholder: string
     submitLabel: string
+    sendingLabel: string
+    sentLabel: string
+    successMessage: string
+    errorMessage: string
   }
   direct: {
     label: string
@@ -51,85 +57,106 @@ const channels = {
 const contactContent: Record<Locale, ContactContent> = {
   en: {
     badge: "Contact",
-    heading: "Let's design the next iteration together",
+    heading: "Let's build something great together",
     description:
-      "Share the context, constraints, and ambition. I'll bring structured collaboration, rapid prototyping, and measurable outcomes.",
+      "Have a project in mind? I'd love to hear about it. Share your vision, and let's turn ideas into reality.",
     form: {
       nameLabel: "Your name",
-      namePlaceholder: "Your name",
-      emailLabel: "Work email",
-      emailPlaceholder: "you@email.com",
-      messageLabel: "Project or idea",
-      messagePlaceholder: "Tell me about your project or idea...",
-      submitLabel: "Send message",
+      namePlaceholder: "John Doe",
+      emailLabel: "Email address",
+      emailPlaceholder: "john@company.com",
+      subjectLabel: "Subject",
+      subjectPlaceholder: "Project inquiry / Collaboration / Other",
+      messageLabel: "Your message",
+      messagePlaceholder: "Tell me about your project, timeline, and goals...",
+      submitLabel: "Send Message",
+      sendingLabel: "Sending...",
+      sentLabel: "Message Sent!",
+      successMessage: "Thank you! I'll get back to you within 24 hours.",
+      errorMessage: "Something went wrong. Please try again or email me directly.",
     },
     direct: {
-      label: "Direct channels",
-      response: "I reply within 24h",
+      label: "Prefer direct contact?",
+      response: "I typically respond within 24 hours",
       channels: [channels.mail, channels.github, channels.linkedin],
     },
     support: {
-      label: "How I can help",
+      label: "What I can help with",
       bullets: [
-        "Audits & strategy for AI-assisted tooling",
-        "Fullstack product sprints (Next.js + Go)",
-        "Logistics / education platforms with data viz",
+        "Full-stack web applications (Next.js, React, Go)",
+        "AI-powered tools and integrations",
+        "Data visualization dashboards",
+        "Technical consulting and code reviews",
       ],
     },
   },
   fr: {
     badge: "Contact",
-    heading: "Co-concevons la prochaine itération",
+    heading: "Construisons quelque chose de génial ensemble",
     description:
-      "Donnez-moi le contexte, les contraintes et la vision. J'apporte la collaboration structurée, le prototypage rapide et des résultats mesurables.",
+      "Vous avez un projet en tête ? J'aimerais en savoir plus. Partagez votre vision et transformons vos idées en réalité.",
     form: {
       nameLabel: "Votre nom",
-      namePlaceholder: "Votre nom",
-      emailLabel: "Email pro",
-      emailPlaceholder: "vous@email.com",
-      messageLabel: "Projet ou idée",
-      messagePlaceholder: "Parlez-moi de votre projet ou idée...",
+      namePlaceholder: "Jean Dupont",
+      emailLabel: "Adresse email",
+      emailPlaceholder: "jean@entreprise.com",
+      subjectLabel: "Sujet",
+      subjectPlaceholder: "Demande de projet / Collaboration / Autre",
+      messageLabel: "Votre message",
+      messagePlaceholder: "Parlez-moi de votre projet, délais et objectifs...",
       submitLabel: "Envoyer",
+      sendingLabel: "Envoi...",
+      sentLabel: "Message envoyé !",
+      successMessage: "Merci ! Je vous répondrai sous 24 heures.",
+      errorMessage: "Une erreur s'est produite. Réessayez ou contactez-moi directement.",
     },
     direct: {
-      label: "Canaux directs",
-      response: "Je réponds sous 24h",
+      label: "Préférez un contact direct ?",
+      response: "Je réponds généralement sous 24h",
       channels: [channels.mail, channels.github, channels.linkedin],
     },
     support: {
-      label: "Comment j'interviens",
+      label: "Comment je peux vous aider",
       bullets: [
-        "Audits & stratégie pour outils assistés par IA",
-        "Sprints produit fullstack (Next.js + Go)",
-        "Plateformes logistique / éducation avec data viz",
+        "Applications web full-stack (Next.js, React, Go)",
+        "Outils et intégrations IA",
+        "Tableaux de bord de visualisation de données",
+        "Consulting technique et revues de code",
       ],
     },
   },
   ar: {
     badge: "تواصل",
-    heading: "لنصمم النسخة التالية معًا",
+    heading: "لنبني شيئًا رائعًا معًا",
     description:
-      "شارك السياق والقيود والطموح. سأقدّم تعاونًا منظمًا، ونماذج أولية سريعة، ونتائج قابلة للقياس.",
+      "هل لديك مشروع في ذهنك؟ يسعدني سماع المزيد عنه. شارك رؤيتك ولنحول الأفكار إلى واقع.",
     form: {
       nameLabel: "اسمك",
-      namePlaceholder: "اكتب اسمك",
-      emailLabel: "بريد العمل",
-      emailPlaceholder: "you@email.com",
-      messageLabel: "المشروع أو الفكرة",
-      messagePlaceholder: "أخبرني عن مشروعك أو فكرتك...",
-      submitLabel: "أرسل الرسالة",
+      namePlaceholder: "محمد أحمد",
+      emailLabel: "البريد الإلكتروني",
+      emailPlaceholder: "mohamed@company.com",
+      subjectLabel: "الموضوع",
+      subjectPlaceholder: "استفسار عن مشروع / تعاون / آخر",
+      messageLabel: "رسالتك",
+      messagePlaceholder: "أخبرني عن مشروعك والجدول الزمني والأهداف...",
+      submitLabel: "إرسال الرسالة",
+      sendingLabel: "جاري الإرسال...",
+      sentLabel: "تم الإرسال!",
+      successMessage: "شكرًا لك! سأرد عليك خلال 24 ساعة.",
+      errorMessage: "حدث خطأ ما. حاول مرة أخرى أو راسلني مباشرة.",
     },
     direct: {
-      label: "قنوات مباشرة",
-      response: "أرد خلال 24 ساعة",
+      label: "تفضل التواصل المباشر؟",
+      response: "أرد عادة خلال 24 ساعة",
       channels: [channels.mail, channels.github, channels.linkedin],
     },
     support: {
-      label: "كيف أستطيع المساعدة",
+      label: "كيف يمكنني مساعدتك",
       bullets: [
-        "تدقيقات واستراتيجيات لأدوات مدعومة بالذكاء الاصطناعي",
-        "سباقات تطوير متكاملة (Next.js + Go)",
-        "منصات لوجستية / تعليمية مع رسوم بيانية",
+        "تطبيقات ويب متكاملة (Next.js, React, Go)",
+        "أدوات وتكاملات الذكاء الاصطناعي",
+        "لوحات معلومات تصور البيانات",
+        "استشارات تقنية ومراجعات الكود",
       ],
     },
   },

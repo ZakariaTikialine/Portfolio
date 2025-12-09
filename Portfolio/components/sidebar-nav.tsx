@@ -209,7 +209,7 @@ export default function SidebarNav() {
               <div className="flex justify-center pt-2">
                 <SocialLinks />
               </div>
-              <p className="text-center text-xs font-mono text-muted-foreground">© 2025 ZT</p>
+              <p className="text-center text-xs font-mono text-muted-foreground">© 2025 ZakariaTikialine</p>
             </div>
           </motion.aside>
         )}

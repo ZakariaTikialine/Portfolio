@@ -43,7 +43,9 @@
 }
 
 html[dir="rtl"] {
-  --font-base: var(--font-arabic, "Cairo", "Inter", "Segoe UI", system-ui, sans-serif);
+  --font-base: var(--font-arabic, "Noto Sans Arabic", "Segoe UI", system-ui, sans-serif);
+  letter-spacing: 0;
+  line-height: 1.8;
 }
 
 .dark {

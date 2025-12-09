@@ -22,46 +22,72 @@ export interface ProjectsContent {
   stackLabel: string
 }
 
-const sharedProjects: ProjectCard[] = [
+const projectsEn: ProjectCard[] = [
   {
     id: 1,
-    title: "Tahwisa NAFTAL",
+    title: "Tahwisa NAFTAL Frontend",
     description:
       "Fullstack web app for company trip registrations with RBAC, CSV export, winner auto-generation, and admin dashboards.",
-    tech: ["Next.js", "Express.js", "PostgreSQL", "React", "TypeScript"],
-    deployment: "Railway",
-    github: "#",
-    demo: "#",
+    tech: ["Next.js", "PostgreSQL", "TypeScript", "Tailwind CSS", "CSS"],
+    deployment: "Vercel",
+    github: "https://github.com/ZakariaTikialine/Tahwisa-frontend",
+    demo: "https://tahwisa.vercel.app/",
   },
   {
     id: 2,
-    title: "University Timetable Scheduler",
+    title: "Tahwisa NAFTAL Backend",
     description:
-      "Python-based Constraint Satisfaction solver with AC-3, backtracking, and forward checking algorithms.",
-    tech: ["Python", "Constraint Solving", "Algorithm Design"],
-    deployment: "GitHub",
-    github: "#",
-    demo: "#",
+      "RESTful API backend for trip management system with authentication, role-based access control, and database management.",
+    tech: ["Express.js", "PostgreSQL", "Node.js", "JWT", "JavaScript"],
+    deployment: "Railway",
+    github: "https://github.com/ZakariaTikialine/Tahwisa-backend",
+    demo: "https://github.com/ZakariaTikialine/Tahwisa-backend",
   },
+]
+
+const projectsFr: ProjectCard[] = [
   {
-    id: 3,
-    title: "Maze Pathfinding Visualizer",
+    id: 1,
+    title: "Tahwisa NAFTAL Frontend",
     description:
-      "Interactive Next.js + TypeScript experience visualizing pathfinding algorithms with smooth animations.",
-    tech: ["Next.js", "TypeScript", "React", "Framer Motion"],
+      "Application web fullstack pour les inscriptions aux voyages d'entreprise avec RBAC, export CSV, génération automatique des gagnants et tableaux de bord admin.",
+    tech: ["Next.js", "PostgreSQL", "TypeScript", "Tailwind CSS", "CSS"],
     deployment: "Vercel",
-    github: "#",
-    demo: "#",
+    github: "https://github.com/ZakariaTikialine/Tahwisa-frontend",
+    demo: "https://tahwisa.vercel.app/",
   },
   {
-    id: 4,
-    title: "Spurious Correlation Analysis",
+    id: 2,
+    title: "Tahwisa NAFTAL Backend",
     description:
-      "Data science notebook exploring misleading statistical correlations using pandas, matplotlib, and hypothesis testing.",
-    tech: ["Python", "Pandas", "Matplotlib", "Statistics"],
-    deployment: "GitHub",
-    github: "#",
-    demo: "#",
+      "API backend RESTful pour le système de gestion des voyages avec authentification, contrôle d'accès basé sur les rôles et gestion de base de données.",
+    tech: ["Express.js", "PostgreSQL", "Node.js", "JWT", "JavaScript"],
+    deployment: "Railway",
+    github: "https://github.com/ZakariaTikialine/Tahwisa-backend",
+    demo: "https://github.com/ZakariaTikialine/Tahwisa-backend",
+  },
+]
+
+const projectsAr: ProjectCard[] = [
+  {
+    id: 1,
+    title: "تحويسة نفطال - الواجهة الأمامية",
+    description:
+      "تطبيق ويب متكامل لتسجيل رحلات الشركة مع التحكم بالصلاحيات، تصدير CSV، توليد الفائزين تلقائياً، ولوحات تحكم المسؤولين.",
+    tech: ["Next.js", "PostgreSQL", "TypeScript", "Tailwind CSS", "CSS"],
+    deployment: "Vercel",
+    github: "https://github.com/ZakariaTikialine/Tahwisa-frontend",
+    demo: "https://tahwisa.vercel.app/",
+  },
+  {
+    id: 2,
+    title: "تحويسة نفطال - الخادم الخلفي",
+    description:
+      "واجهة برمجة تطبيقات RESTful لنظام إدارة الرحلات مع المصادقة والتحكم بالوصول المبني على الأدوار وإدارة قواعد البيانات.",
+    tech: ["Express.js", "PostgreSQL", "Node.js", "JWT", "JavaScript"],
+    deployment: "Railway",
+    github: "https://github.com/ZakariaTikialine/Tahwisa-backend",
+    demo: "https://github.com/ZakariaTikialine/Tahwisa-backend",
   },
 ]
 
@@ -73,11 +99,11 @@ const projectsContent: Record<Locale, ProjectsContent> = {
       "Selected initiatives ranging from constraint solvers to AI-powered logistics, built with production deployment in mind.",
     tags: ["Fullstack", "AI", "Data", "Tools"],
     stats: [
-      { label: "Projects", value: "12+", detail: "Fullstack & AI" },
-      { label: "Deployments", value: "6", detail: "Production" },
-      { label: "In progress", value: "3", detail: "Research" },
+      { label: "Projects", value: "10+", detail: "Fullstack & AI" },
+      { label: "Deployments", value: "5", detail: "Production" },
+      { label: "In progress", value: "...", detail: "Research" },
     ],
-    projects: sharedProjects,
+    projects: projectsEn,
     codeLabel: "Code",
     demoLabel: "Demo",
     stackLabel: "Stack overview",
@@ -89,11 +115,11 @@ const projectsContent: Record<Locale, ProjectsContent> = {
       "Quelques initiatives, des solveurs de contraintes aux logistiques IA, pensées pour la mise en production.",
     tags: ["Fullstack", "IA", "Données", "Outils"],
     stats: [
-      { label: "Projets", value: "12+", detail: "Fullstack & IA" },
-      { label: "Déploiements", value: "6", detail: "Production" },
-      { label: "En cours", value: "3", detail: "Recherche" },
+      { label: "Projets", value: "10+", detail: "Fullstack & IA" },
+      { label: "Déploiements", value: "5", detail: "Production" },
+      { label: "En cours", value: "...", detail: "Recherche" },
     ],
-    projects: sharedProjects,
+    projects: projectsFr,
     codeLabel: "Code",
     demoLabel: "Démo",
     stackLabel: "Stack technique",
@@ -105,11 +131,11 @@ const projectsContent: Record<Locale, ProjectsContent> = {
       "مختارات من المبادرات، من محللات القيود إلى اللوجستيات المدعومة بالذكاء الاصطناعي، جاهزة للإطلاق.",
     tags: ["متكامل", "ذكاء اصطناعي", "بيانات", "أدوات"],
     stats: [
-      { label: "المشاريع", value: "12+", detail: "منتجات متكاملة وذكاء اصطناعي" },
-      { label: "النشرات", value: "6", detail: "جاهز للإنتاج" },
-      { label: "قيد العمل", value: "3", detail: "بحث" },
+      { label: "المشاريع", value: "+10", detail: "متكامل وذكاء اصطناعي" },
+      { label: "النشرات", value: "5", detail: "جاهز للإنتاج" },
+      { label: "قيد العمل", value: "...", detail: "بحث" },
     ],
-    projects: sharedProjects,
+    projects: projectsAr,
     codeLabel: "الشيفرة",
     demoLabel: "عرض حي",
     stackLabel: "نظرة على المكدس",

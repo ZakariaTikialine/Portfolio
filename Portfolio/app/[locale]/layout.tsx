@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { Cairo, JetBrains_Mono } from "next/font/google"
+import { Noto_Sans_Arabic, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages, getTranslations } from "next-intl/server"
@@ -14,7 +14,12 @@ import { locales, type Locale } from "@/i18n"
 import "@/app/globals.css"
 
 const jetBrains = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-latin" })
-const cairo = Cairo({ subsets: ["arabic"], weight: ["400", "500", "600", "700"], variable: "--font-arabic" })
+const notoArabic = Noto_Sans_Arabic({ 
+  subsets: ["arabic"], 
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-arabic",
+  display: "swap",
+})
 
 interface LayoutProps {
   children: React.ReactNode
@@ -58,7 +63,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning className="custom-scrollbar">
       <head />
-      <body className={`${jetBrains.variable} ${cairo.variable} antialiased`}>
+      <body className={`${jetBrains.variable} ${notoArabic.variable} antialiased`}>
         <ThemeProvider>
           <NextIntlClientProvider locale={locale} messages={messages} timeZone="Europe/Paris">
             <DynamicTheme />

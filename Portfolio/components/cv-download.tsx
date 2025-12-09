@@ -18,7 +18,7 @@ export default function CVDownload() {
       onClick={handleDownload}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="flex items-center cursor-pointer gap-2 rounded-lg border border-accent bg-accent px-4 py-2 font-mono text-sm text-accent-foreground transition-shadow hover:shadow-lg hover:shadow-accent/50"
+      className="flex items-center cursor-pointer gap-2 rounded-lg border border-accent bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-shadow hover:shadow-lg hover:shadow-accent/50"
     >
       <Download size={16} />
       {t("downloadCv")}
