@@ -45,6 +45,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: t("description"),
     generator: "Zakaria Tikialine",
     keywords: ["fullstack developer", "data scientist", "AI", "Next.js", "Python", "machine learning"],
+    icons: {
+      icon: "/icon.svg",
+      apple: "/apple-icon.svg",
+    },
   }
 }
 
