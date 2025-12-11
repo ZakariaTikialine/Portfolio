@@ -40,7 +40,7 @@ const experienceContent: Record<Locale, ExperienceContent> = {
     entries: [
       {
         id: 1,
-        title: "Logistics Coordinator",
+        title: "Logistics Manager",
         company: "Nexus Security Club",
         period: "2024 - 2025",
         description: "Assisted in organizing club events and coordinating activities to support cybersecurity awareness.",
@@ -57,14 +57,13 @@ const experienceContent: Record<Locale, ExperienceContent> = {
       },
       {
         id: 2,
-        title: "Technical Logistics Support",
-        company: "NexZero.FTC Hackathon",
+        title: "Logistics Manager",
+        company: "NexZero.FTC CTF",
         period: "May 2025",
-        description: "Assisted with the technical organization of a multi-day hackathon for 75+ participants.",
+        description: "Assisted with the technical organization of a 3-days CTF for 75+ participants.",
         achievements: [
           "Supported registration and check-in processes for participants.",
           "Coordinated with organizers for smooth technical setup and event execution.",
-          "Provided technical guidance during coding challenges.",
         ],
         metrics: [
           { label: "Event Days", value: "3" },
@@ -89,7 +88,7 @@ const experienceContent: Record<Locale, ExperienceContent> = {
           { label: "Duration", value: "2 months" },
           { label: "Methodology", value: "Agile" },
         ],
-        tags: ["Fullstack", "AI-ready"],
+        tags: ["Fullstack"],
       },
     ],
   },
