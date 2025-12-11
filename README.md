@@ -2,7 +2,7 @@
 
 **Full-Stack Web Developer & AI/Data Science Student**
 
-🌐 [zakariatikialine.tech](https://www.zakaria-tikialine.tech)
+🌐 [zakaria-tikialine.tech](https://www.zakaria-tikialine.tech)
 
 ---
 
