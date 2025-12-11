@@ -24,11 +24,13 @@ export interface SkillsContent {
   certifications: string[]
   focusLabel: string
   blockLabel: string
+  blockIndexLabel: string
   stackLabel: string
   transversalTitle: string
   transversalSubtitle: string
   certificationsTitle: string
   certificationsSubtitle: string
+  certificationsNote: string
 }
 
 const sharedTechnical = {
@@ -48,7 +50,7 @@ const skillsContent: Record<Locale, SkillsContent> = {
     badge: "Skills",
     heading: "A solid technical base built for impact",
     description:
-      "From AI-augmented logistics to fullstack delivery, every tool is chosen for fast execution and quality.",
+      "From fullstack web development to AI exploration, every tool is chosen for building meaningful digital experiences.",
     stats: [
       { label: "Languages mastered", value: "3" },
       { label: "Core stack", value: "Fullstack" },
@@ -56,26 +58,28 @@ const skillsContent: Record<Locale, SkillsContent> = {
     ],
     focusLabel: "Focus track",
     blockLabel: "Block",
+    blockIndexLabel: "Block",
     stackLabel: "Stack & key tools",
     transversalTitle: "Transversal skills",
     transversalSubtitle: "Soft skills steering the way of working.",
     certificationsTitle: "Certifications & online courses",
     certificationsSubtitle: "Continuous learning and specialization.",
+    certificationsNote: "Verified session and guided practice",
     focusTracks: [
       {
-        title: "AI × Operations",
-        detail: "Automation for logistics, copilots, and dashboards",
-        stack: "Next.js, Python, LLM APIs",
+        title: "AI & Machine Learning",
+        detail: "Building ML models, deep learning experiments, and data pipelines",
+        stack: "Python, TensorFlow, scikit-learn",
       },
       {
-        title: "Developer Experience",
-        detail: "Tooling, living docs, and design systems",
-        stack: "Node.js, CLIs, Storybook",
+        title: "Fullstack Development",
+        detail: "End-to-end web apps with modern frameworks and clean architecture",
+        stack: "Next.js, Node.js, PostgreSQL",
       },
       {
-        title: "Data Storytelling",
-        detail: "Visualizations and insights for decision-makers",
-        stack: "React, Tailwind CSS, DataViz",
+        title: "Data Visualization",
+        detail: "Dashboards and insights for decision-makers",
+        stack: "React, Tailwind CSS, Recharts",
       },
     ],
     technicalBlocks: [
@@ -139,7 +143,7 @@ const skillsContent: Record<Locale, SkillsContent> = {
     badge: "Compétences",
     heading: "Une base technique solide, orientée impact",
     description:
-      "De la logistique augmentée par l’IA à la livraison fullstack, chaque outil est aligné sur l’exécution rapide et la qualité.",
+      "Du développement fullstack à l'exploration de l'IA, chaque outil est choisi pour créer des expériences numériques significatives.",
     stats: [
       { label: "Langues maîtrisées", value: "3" },
       { label: "Stack principal", value: "Fullstack" },
@@ -147,26 +151,28 @@ const skillsContent: Record<Locale, SkillsContent> = {
     ],
     focusLabel: "Piste focus",
     blockLabel: "Bloc",
+    blockIndexLabel: "Bloc",
     stackLabel: "Stack & outils principaux",
     transversalTitle: "Compétences transversales",
     transversalSubtitle: "Soft skills qui pilotent la manière de travailler.",
     certificationsTitle: "Certifications & cours en ligne",
     certificationsSubtitle: "Veille technique et spécialisation continue.",
+    certificationsNote: "Session vérifiée et pratique guidée",
     focusTracks: [
       {
-        title: "AI × Operations",
-        detail: "Automatisation logistique, copilotes et dashboards",
-        stack: "Next.js, Python, APIs LLM",
+        title: "IA & Machine Learning",
+        detail: "Construction de modèles ML, expérimentations deep learning et pipelines de données",
+        stack: "Python, TensorFlow, scikit-learn",
       },
       {
-        title: "Developer Experience",
-        detail: "Tooling, documentation vivante et design systems",
-        stack: "Node.js, CLIs, Storybook",
+        title: "Développement Fullstack",
+        detail: "Applications web complètes avec frameworks modernes et architecture propre",
+        stack: "Next.js, Node.js, PostgreSQL",
       },
       {
-        title: "Data Storytelling",
-        detail: "Visualisations et insights pour décideurs",
-        stack: "React, Tailwind CSS, DataViz",
+        title: "Visualisation de données",
+        detail: "Tableaux de bord et insights pour décideurs",
+        stack: "React, Tailwind CSS, Recharts",
       },
     ],
     technicalBlocks: [
@@ -230,7 +236,7 @@ const skillsContent: Record<Locale, SkillsContent> = {
     badge: "المهارات",
     heading: "قاعدة تقنية متينة موجّهة للأثر",
     description:
-      "من اللوجستيات المدعومة بالذكاء الاصطناعي إلى التسليم المتكامل، تُختار الأدوات بما يخدم السرعة والجودة.",
+      "من تطوير الويب المتكامل إلى استكشاف الذكاء الاصطناعي، تُختار الأدوات لبناء تجارب رقمية ذات معنى.",
     stats: [
       { label: "اللغات المتقنة", value: "3" },
       { label: "المكدس الأساسي", value: "Fullstack" },
@@ -238,26 +244,28 @@ const skillsContent: Record<Locale, SkillsContent> = {
     ],
     focusLabel: "مسار تركيز",
     blockLabel: "الوحدة",
+    blockIndexLabel: "الوحدة",
     stackLabel: "التقنيات والأدوات",
-    transversalTitle: "مهارات عرضية",
-    transversalSubtitle: "قدرات شخصية تنظّم طريقة العمل.",
+    transversalTitle: "مهارات شخصية",
+    transversalSubtitle: "قدرات تنظّم أسلوب العمل.",
     certificationsTitle: "شهادات ودورات عبر الإنترنت",
     certificationsSubtitle: "تعلّم مستمر وتخصص متدرج.",
+    certificationsNote: "جلسة موثقة وتدريب موجه",
     focusTracks: [
       {
-        title: "الذكاء الاصطناعي × العمليات",
-        detail: "أتمتة لوجستية، مساعدين ولوحات تحكم",
-        stack: "Next.js، Python، واجهات LLM",
+        title: "الذكاء الاصطناعي والتعلم الآلي",
+        detail: "بناء نماذج ML، تجارب التعلم العميق، وخطوط بيانات",
+        stack: "Python، TensorFlow، scikit-learn",
       },
       {
-        title: "تجربة المطور",
-        detail: "أدوات، توثيق حي، وأنظمة تصميم",
-        stack: "Node.js، أدوات سطر الأوامر، Storybook",
+        title: "تطوير ويب متكامل",
+        detail: "تطبيقات ويب كاملة بأطر حديثة ومعمارية نظيفة",
+        stack: "Next.js، Node.js، PostgreSQL",
       },
       {
-        title: "سرد البيانات",
-        detail: "تصوير ومعرفة لصانعي القرار",
-        stack: "React، Tailwind CSS، DataViz",
+        title: "تصور البيانات",
+        detail: "لوحات تحكم ورؤى لصانعي القرار",
+        stack: "React، Tailwind CSS، Recharts",
       },
     ],
     technicalBlocks: [

@@ -23,46 +23,46 @@ const Projects = () => {
   const projects = copy.projects as Project[]
 
   return (
-    <section id="projects" className="relative overflow-hidden border-t border-border/40 py-20 md:py-28">
+    <section id="projects" className="relative overflow-hidden border-t border-border/40 py-12 md:py-20">
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-60">
         <div className="mx-auto h-80 max-w-5xl bg-linear-to-r from-accent/15 via-transparent to-secondary/15 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 md:px-10 lg:px-12">
+      <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-6 sm:gap-8 px-6 md:px-10 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="space-y-6 text-center md:text-left"
+          className="space-y-4 sm:space-y-6 text-center md:text-left"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-4 py-1 text-[11px] uppercase tracking-[0.35em] text-muted-foreground">
+          <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 sm:px-4 py-1 text-[10px] sm:text-[11px] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-muted-foreground">
             {copy.badge}
-            <span className="h-1 w-6 bg-accent" />
+            <span className="h-1 w-4 sm:w-6 bg-accent" />
           </span>
           <div>
-            <h2 className="text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</h2>
-            <p className="mt-3 text-base text-muted-foreground md:max-w-3xl">{copy.description}</p>
+            <h2 className="text-3xl sm:text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</h2>
+            <p className="mt-2 sm:mt-3 text-sm sm:text-base text-muted-foreground md:max-w-3xl">{copy.description}</p>
           </div>
-          <div className="flex flex-wrap justify-center gap-2 md:justify-start">
+          <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 md:justify-start">
             {copy.tags.map((tag) => (
-              <span key={tag} className="rounded-full border border-border/50 bg-background/70 px-3 py-1 text-xs font-semibold text-muted-foreground">
+              <span key={tag} className="rounded-full border border-border/50 bg-background/70 px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-semibold text-muted-foreground">
                 {tag}
               </span>
             ))}
           </div>
-          <div className="grid gap-3 sm:grid-cols-3">
+          <div className="grid gap-2 sm:gap-3 grid-cols-3">
             {copy.stats.map((stat) => (
-              <div key={stat.label} className="rounded-2xl border border-border/60 bg-background/80 p-4 text-center shadow-inner shadow-black/5">
-                <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">{stat.label}</p>
-                <p className="mt-2 text-3xl font-semibold text-foreground">{stat.value}</p>
-                <p className="text-xs text-muted-foreground">{stat.detail}</p>
+              <div key={stat.label} className="rounded-xl sm:rounded-2xl border border-border/60 bg-background/80 p-2 sm:p-4 text-center shadow-inner shadow-black/5">
+                <p className="text-[9px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.35em] text-muted-foreground">{stat.label}</p>
+                <p className="mt-1 sm:mt-2 text-xl sm:text-3xl font-semibold text-foreground">{stat.value}</p>
+                <p className="text-[9px] sm:text-xs text-muted-foreground">{stat.detail}</p>
               </div>
             ))}
           </div>
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
           {projects.map((project, idx) => (
             <motion.article
               key={project.id}
@@ -70,7 +70,7 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="group relative overflow-hidden rounded-2xl border border-border/60 bg-background/80 p-5 shadow-xl shadow-black/10 backdrop-blur"
+              className="group relative overflow-hidden rounded-xl sm:rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5 shadow-xl shadow-black/10 backdrop-blur"
             >
               <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                 <div className="h-full w-full bg-linear-to-br from-accent/15 via-transparent to-secondary/20" />

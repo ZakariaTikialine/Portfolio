@@ -96,7 +96,7 @@ const projectsContent: Record<Locale, ProjectsContent> = {
     badge: "Featured Lab",
     heading: "Systems that went from idea to impact",
     description:
-      "Selected initiatives ranging from constraint solvers to AI-powered logistics, built with production deployment in mind.",
+      "Selected projects ranging from fullstack web apps to AI experiments, built with production deployment in mind.",
     tags: ["Fullstack", "AI", "Data", "Tools"],
     stats: [
       { label: "Projects", value: "10+", detail: "Fullstack & AI" },
@@ -112,7 +112,7 @@ const projectsContent: Record<Locale, ProjectsContent> = {
     badge: "Lab sélectionné",
     heading: "Des systèmes passés de l'idée à l'impact",
     description:
-      "Quelques initiatives, des solveurs de contraintes aux logistiques IA, pensées pour la mise en production.",
+      "Projets sélectionnés allant des apps web fullstack aux expérimentations IA, pensés pour la mise en production.",
     tags: ["Fullstack", "IA", "Données", "Outils"],
     stats: [
       { label: "Projets", value: "10+", detail: "Fullstack & IA" },
@@ -128,7 +128,7 @@ const projectsContent: Record<Locale, ProjectsContent> = {
     badge: "مختبر مميز",
     heading: "أنظمة انتقلت من الفكرة إلى الأثر",
     description:
-      "مختارات من المبادرات، من محللات القيود إلى اللوجستيات المدعومة بالذكاء الاصطناعي، جاهزة للإطلاق.",
+      "مشاريع مختارة تتراوح بين تطبيقات ويب متكاملة وتجارب ذكاء اصطناعي، جاهزة للإطلاق.",
     tags: ["متكامل", "ذكاء اصطناعي", "بيانات", "أدوات"],
     stats: [
       { label: "المشاريع", value: "+10", detail: "متكامل وذكاء اصطناعي" },

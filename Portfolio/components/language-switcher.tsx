@@ -4,6 +4,7 @@ import { useTransition } from "react"
 import { useLocale, useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
 import { locales, usePathname, useRouter } from "@/navigation"
+import { ChevronsUpDown } from "lucide-react"
 
 interface LanguageSwitcherProps {
   className?: string
@@ -26,10 +27,12 @@ export default function LanguageSwitcher({ className, onSelect }: LanguageSwitch
     })
   }
 
+  const current = locale.toUpperCase()
+
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-1 rounded-full border border-border/50 bg-background/70 p-1 text-[11px] font-semibold uppercase",
+        "inline-flex items-center gap-0.5 sm:gap-1 rounded-full border border-border/50 bg-background/70 p-0.5 sm:p-1 text-[10px] sm:text-[11px] font-semibold uppercase",
         className,
       )}
       role="group"
@@ -42,7 +45,7 @@ export default function LanguageSwitcher({ className, onSelect }: LanguageSwitch
           onClick={() => handleChange(availableLocale)}
           disabled={isPending && availableLocale === locale}
           className={cn(
-            "cursor-pointer rounded-full px-3 py-1.5 transition-all",
+            "cursor-pointer rounded-full px-2 sm:px-3 py-1 sm:py-1.5 transition-all",
             availableLocale === locale
               ? "bg-accent text-accent-foreground shadow"
               : "text-muted-foreground hover:text-foreground",

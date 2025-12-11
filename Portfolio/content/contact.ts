@@ -44,12 +44,12 @@ const channels = {
   },
   github: {
     type: "github" as const,
-    label: "github.com/ZakariaTikialine",
+    label: "ZakariaTikialine",
     href: "https://github.com/ZakariaTikialine",
   },
   linkedin: {
     type: "linkedin" as const,
-    label: "linkedin.com/in/zakaria-tikialine-68857025b",
+    label: "ZakariaTikialine",
     href: "https://linkedin.com/in/zakaria-tikialine-68857025b",
   },
 }
@@ -62,9 +62,9 @@ const contactContent: Record<Locale, ContactContent> = {
       "Have a project in mind? I'd love to hear about it. Share your vision, and let's turn ideas into reality.",
     form: {
       nameLabel: "Your name",
-      namePlaceholder: "John Doe",
+      namePlaceholder: "Zakaria Tikialine",
       emailLabel: "Email address",
-      emailPlaceholder: "john@company.com",
+      emailPlaceholder: "zakaria@example.com",
       subjectLabel: "Subject",
       subjectPlaceholder: "Project inquiry / Collaboration / Other",
       messageLabel: "Your message",
@@ -97,9 +97,9 @@ const contactContent: Record<Locale, ContactContent> = {
       "Vous avez un projet en tête ? J'aimerais en savoir plus. Partagez votre vision et transformons vos idées en réalité.",
     form: {
       nameLabel: "Votre nom",
-      namePlaceholder: "Jean Dupont",
+      namePlaceholder: "Zakaria Tikialine",
       emailLabel: "Adresse email",
-      emailPlaceholder: "jean@entreprise.com",
+      emailPlaceholder: "zakaria@exemple.com",
       subjectLabel: "Sujet",
       subjectPlaceholder: "Demande de projet / Collaboration / Autre",
       messageLabel: "Votre message",
@@ -132,9 +132,9 @@ const contactContent: Record<Locale, ContactContent> = {
       "هل لديك مشروع في ذهنك؟ يسعدني سماع المزيد عنه. شارك رؤيتك ولنحول الأفكار إلى واقع.",
     form: {
       nameLabel: "اسمك",
-      namePlaceholder: "محمد أحمد",
+      namePlaceholder: "زكرياء تيكيالين",
       emailLabel: "البريد الإلكتروني",
-      emailPlaceholder: "mohamed@company.com",
+      emailPlaceholder: "zakaria@example.com",
       subjectLabel: "الموضوع",
       subjectPlaceholder: "استفسار عن مشروع / تعاون / آخر",
       messageLabel: "رسالتك",
@@ -146,8 +146,8 @@ const contactContent: Record<Locale, ContactContent> = {
       errorMessage: "حدث خطأ ما. حاول مرة أخرى أو راسلني مباشرة.",
     },
     direct: {
-      label: "تفضل التواصل المباشر؟",
-      response: "أرد عادة خلال 24 ساعة",
+      label: "تفضّل التواصل المباشر؟",
+      response: "أردّ عادةً خلال 24 ساعة",
       channels: [channels.mail, channels.github, channels.linkedin],
     },
     support: {

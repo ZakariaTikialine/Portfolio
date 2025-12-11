@@ -3,8 +3,15 @@
 import { motion } from "framer-motion"
 import { Download } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
-export default function CVDownload() {
+interface CVDownloadProps {
+  className?: string
+  iconOnly?: boolean
+}
+
+export default function CVDownload({ className, iconOnly = false }: CVDownloadProps) {
   const t = useTranslations("cta")
   const handleDownload = () => {
     const link = document.createElement("a")
@@ -14,14 +21,20 @@ export default function CVDownload() {
   }
 
   return (
-    <motion.button
-      onClick={handleDownload}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className="flex items-center cursor-pointer gap-2 rounded-lg border border-accent bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-shadow hover:shadow-lg hover:shadow-accent/50"
-    >
-      <Download size={16} />
-      {t("downloadCv")}
-    </motion.button>
+    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+      <Button
+        onClick={handleDownload}
+        size={iconOnly ? "icon" : "lg"}
+        variant="default"
+        className={cn(
+          "rounded-full border border-accent bg-accent text-accent-foreground hover:bg-accent/90",
+          !iconOnly && "px-4 sm:px-6 text-sm sm:text-base",
+          className,
+        )}
+      >
+        <Download size={16} />
+        {!iconOnly && <span className="hidden sm:inline">{t("downloadCv")}</span>}
+      </Button>
+    </motion.div>
   )
 }

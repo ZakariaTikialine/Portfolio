@@ -74,28 +74,28 @@ export default function SidebarNav() {
     <>
       {/* Mobile Top Bar */}
       <div
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between border-b border-border/50 bg-background/90 px-4 py-3 backdrop-blur-md lg:hidden ${
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between border-b border-border/50 bg-background/90 px-3 sm:px-4 py-2 sm:py-3 backdrop-blur-md lg:hidden ${
           isRTL ? "flex-row-reverse" : "flex-row"
         }`}
         dir={isRTL ? "rtl" : "ltr"}
       >
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="cursor-pointer rounded-md border border-border/40 p-2 hover:bg-muted"
+            className="cursor-pointer rounded-md border border-border/40 p-1.5 sm:p-2 hover:bg-muted"
             aria-label="Toggle navigation"
             type="button"
             {...expandedProps}
           >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
+            {isOpen ? <X size={18} className="sm:w-5 sm:h-5" /> : <Menu size={18} className="sm:w-5 sm:h-5" />}
           </button>
-          <h1 className="font-mono text-base font-semibold text-accent">&lt;Zakaria /&gt;</h1>
+          <h1 className="font-mono text-sm sm:text-base font-semibold text-accent">&lt;Zakaria /&gt;</h1>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3">
           <LanguageSwitcher onSelect={() => setIsOpen(false)} />
-          <CVDownload />
-          <ThemeToggle className="p-2" />
+          <CVDownload iconOnly className="h-8 w-8 sm:h-10 sm:w-10 justify-center" />
+          <ThemeToggle className="h-8 w-8 sm:h-10 sm:w-10 rounded-full border border-border/50 bg-background/80 hover:bg-muted" />
         </div>
       </div>
 
@@ -200,10 +200,10 @@ export default function SidebarNav() {
                 {labels.quick}
               </p>
               <div className="flex flex-col gap-3">
-                <CVDownload />
-                <div className="flex items-center justify-between gap-3">
+                <CVDownload className="w-full justify-center rounded-full border border-accent bg-accent text-accent-foreground hover:bg-accent/90" />
+                <div className="flex items-center justify-center gap-3">
                   <LanguageSwitcher />
-                  <ThemeToggle />
+                  <ThemeToggle className="h-10 w-10 rounded-full border border-border/50 bg-background/80 hover:bg-muted" />
                 </div>
               </div>
               <div className="flex justify-center pt-2">

@@ -2,6 +2,7 @@
 
 import { Download } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { Button } from "@/components/ui/button"
 
 export default function CVDownloadSimple() {
     const t = useTranslations("cta")
@@ -13,12 +14,14 @@ export default function CVDownloadSimple() {
     }
 
     return (
-        <button
-        onClick={handleDownload}
-        className="flex items-center gap-2 rounded-full border border-accent bg-accent px-8 text-sm font-medium cursor-pointer text-accent-foreground transition-all hover:bg-accent/90"
+        <Button
+            onClick={handleDownload}
+            size="lg"
+            variant="default"
+            className="rounded-full border border-accent bg-accent px-4 sm:px-6 text-sm sm:text-base text-accent-foreground hover:bg-accent/90"
         >
-        <Download size={16} />
-        {t("downloadCv")}
-        </button>
+            <Download size={16} />
+            <span className="hidden sm:inline">{t("downloadCv")}</span>
+        </Button>
     )
 }

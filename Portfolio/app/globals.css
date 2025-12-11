@@ -131,12 +131,17 @@ html[dir="rtl"] {
     @apply bg-background text-foreground;
     font-family: var(--font-base);
   }
+  /* Make all interactive/hoverable elements show pointer */
+  a,
   button,
-  [role="button"] {
-    cursor: pointer;
-  }
-  button:hover,
-  [role="button"]:hover {
+  summary,
+  [role="button"],
+  [role="link"],
+  [aria-haspopup],
+  [aria-expanded],
+  [aria-pressed],
+  [aria-selected],
+  [data-hoverable] {
     cursor: pointer;
   }
   button:disabled,

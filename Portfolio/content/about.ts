@@ -25,9 +25,9 @@ const aboutContent: Record<Locale, AboutContent> = {
     ],
     exploringLabel: "Currently exploring",
     exploringItems: [
-      "Go-powered backend pipelines",
-      "Responsible AI and ML fundamentals",
-      "Design systems for data-heavy apps",
+      "Deep learning with TensorFlow & PyTorch",
+      "Machine learning model deployment",
+      "Neural networks and computer vision",
     ],
     principlesLabel: "Principles",
     principles: [
@@ -47,15 +47,15 @@ const aboutContent: Record<Locale, AboutContent> = {
     heading: "Concevoir des systèmes réfléchis de bout en bout",
     description: "Je conçois des expériences où backends performants, interfaces soignées et automatisation intelligente se rencontrent.",
     story: [
-      "Je suis un développeur passionné et étudiant spécialisé en IA qui s'épanouit à l'intersection de plusieurs disciplines. Mon parcours combine une ingénierie backend rigoureuse avec un design frontend réfléchi, amplifié par les insights data et l'innovation ML.",
+      "Je suis un développeur passionné et étudiant spécialisé en IA qui s'épanouit à l'intersection de plusieurs disciplines. Mon parcours combine une ingénierie backend rigoureuse avec un design frontend réfléchi, amplifié par les analyses de données et l'innovation en apprentissage automatique.",
       "J'aime démêler les défis complexes. Qu'il s'agisse d'architecturer des systèmes résilients, d'affiner des algorithmes ou de prototyper des fonctionnalités IA, je vise des solutions simples sans perdre la profondeur.",
       "Je suis fasciné par le design système, la satisfaction de contraintes et la façon dont l'IA augmente la décision humaine. Un bon logiciel naît de l'empathie pour le problème, puis marie précision, esthétique et impact mesurable.",
     ],
     exploringLabel: "Explorations du moment",
     exploringItems: [
-      "Pipelines backend propulsés par Go",
-      "Fondamentaux IA responsable et ML",
-      "Design systems pour applications data-heavy",
+      "Deep learning avec TensorFlow & PyTorch",
+      "Déploiement de modèles machine learning",
+      "Réseaux de neurones et vision par ordinateur",
     ],
     principlesLabel: "Principes",
     principles: [
@@ -71,7 +71,7 @@ const aboutContent: Record<Locale, AboutContent> = {
     ],
   },
   ar: {
-    badge: "نبذة",
+    badge: "عنّي",
     heading: "أبني أنظمة مدروسة من البداية إلى النهاية",
     description: "أصمّم تجارب تلتقي فيها الخلفيات عالية الأداء مع الواجهات المصقولة والأتمتة الذكية.",
     story: [
@@ -81,9 +81,9 @@ const aboutContent: Record<Locale, AboutContent> = {
     ],
     exploringLabel: "أستكشف الآن",
     exploringItems: [
-      "خطوط Backend تعمل بـ Go",
-      "أساسيات الذكاء الاصطناعي المسؤول والتعلم الآلي",
-      "أنظمة تصميم لتطبيقات مليئة بالبيانات",
+      "التعلم العميق باستخدام TensorFlow و PyTorch",
+      "نشر نماذج التعلم الآلي",
+      "الشبكات العصبية والرؤية الحاسوبية",
     ],
     principlesLabel: "مبادئ",
     principles: [

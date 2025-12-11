@@ -21,45 +21,45 @@ const Skills = () => {
   const copy = getSkillsContent(locale)
 
   return (
-    <section id="skills" className="relative overflow-hidden border-t border-border/40 py-20 px-6 md:py-28 md:px-10 lg:px-12">
+    <section id="skills" className="relative overflow-hidden border-t border-border/40 py-12 px-6 md:py-20 md:px-10 lg:px-12">
       <div className="pointer-events-none absolute inset-0 opacity-50">
         <div className="mx-auto h-72 max-w-4xl bg-linear-to-r from-accent/15 via-transparent to-secondary/20 blur-3xl" aria-hidden />
       </div>
 
-      <div className="relative mx-auto max-w-6xl space-y-10">
+      <div className="relative mx-auto max-w-6xl space-y-6 sm:space-y-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="space-y-3 text-center md:text-left">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-4 py-1 text-[11px] uppercase tracking-[0.35em] text-muted-foreground">
+          <div className="space-y-2 sm:space-y-3 text-center md:text-left">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 sm:px-4 py-1 text-[10px] sm:text-[11px] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-muted-foreground">
               {copy.badge}
-              <span className="h-1 w-6 bg-accent" />
+              <span className="h-1 w-4 sm:w-6 bg-accent" />
             </span>
-            <div className="text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</div>
-            <p className="text-sm text-muted-foreground md:text-base">{copy.description}</p>
+            <div className="text-3xl sm:text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</div>
+            <p className="text-xs sm:text-sm text-muted-foreground md:text-base">{copy.description}</p>
           </div>
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+          <div className="mt-4 sm:mt-6 grid gap-2 sm:gap-3 grid-cols-3">
             {copy.stats.map((stat) => (
-              <div key={stat.label} className="rounded-2xl border border-border/60 bg-background/80 p-4 text-center shadow-inner shadow-black/5">
-                <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">{stat.label}</p>
-                <p className="mt-2 text-2xl font-semibold text-foreground">{stat.value}</p>
+              <div key={stat.label} className="rounded-xl sm:rounded-2xl border border-border/60 bg-background/80 p-2 sm:p-4 text-center shadow-inner shadow-black/5">
+                <p className="text-[9px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.35em] text-muted-foreground">{stat.label}</p>
+                <p className="mt-1 sm:mt-2 text-lg sm:text-2xl font-semibold text-foreground">{stat.value}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-4 grid gap-4 lg:grid-cols-3">
+          <div className="mt-3 sm:mt-4 grid gap-3 sm:gap-4 lg:grid-cols-3">
             {copy.focusTracks.map((track) => (
-              <div key={track.title} className="rounded-2xl border border-border/60 bg-background/85 p-4 text-left shadow-lg shadow-black/5">
-                <div className="flex items-center gap-2 text-xs uppercase tracking-[0.35em] text-muted-foreground">
+              <div key={track.title} className="rounded-xl sm:rounded-2xl border border-border/60 bg-background/85 p-3 sm:p-4 text-left shadow-lg shadow-black/5">
+                <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.35em] text-muted-foreground">
                   {copy.focusLabel}
-                  <ArrowUpRight size={12} />
+                  <ArrowUpRight size={10} className="sm:w-3 sm:h-3" />
                 </div>
-                <h3 className="mt-2 text-xl font-semibold">{track.title}</h3>
-                <p className="text-sm text-muted-foreground">{track.detail}</p>
-                <p className="mt-3 text-xs uppercase tracking-[0.25em] text-accent">{track.stack}</p>
+                <h3 className="mt-1.5 sm:mt-2 text-base sm:text-xl font-semibold">{track.title}</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground">{track.detail}</p>
+                <p className="mt-2 sm:mt-3 text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] text-accent">{track.stack}</p>
               </div>
             ))}
           </div>
@@ -101,7 +101,9 @@ const Skills = () => {
                         <Icon size={20} />
                       </span>
                       <div>
-                        <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">Bloc #{idx + 1}</p>
+                        <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">
+                          {copy.blockIndexLabel} #{idx + 1}
+                        </p>
                         <h3 className="text-lg font-semibold">{section.title}</h3>
                       </div>
                     </div>
@@ -161,7 +163,7 @@ const Skills = () => {
               {copy.certifications.map((cert) => (
                 <li key={cert} className="rounded-2xl border border-border/50 bg-muted/30 px-4 py-3">
                   <div className="text-sm font-medium">{cert}</div>
-                  <div className="text-xs text-muted-foreground">Session vérifiée et pratique guidée</div>
+                  <div className="text-xs text-muted-foreground">{copy.certificationsNote}</div>
                 </li>
               ))}
             </ul>

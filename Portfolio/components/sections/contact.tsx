@@ -78,30 +78,30 @@ const Contact = () => {
   const isDisabled = status === "loading" || status === "success"
 
   return (
-    <section id="contact" className="relative overflow-hidden border-t border-border/40 py-20 md:py-28">
+    <section id="contact" className="relative overflow-hidden border-t border-border/40 py-12 md:py-20">
       <div className="pointer-events-none absolute inset-0 opacity-60">
         <div className="mx-auto h-72 max-w-5xl bg-linear-to-r from-accent/15 via-transparent to-secondary/15 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 md:px-10 lg:px-12">
+      <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-5 sm:gap-6 px-6 md:px-10 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="space-y-4 text-center md:text-left"
+          className="space-y-3 sm:space-y-4 text-center md:text-left"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-4 py-1 text-[11px] uppercase tracking-[0.35em] text-muted-foreground">
+          <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 sm:px-4 py-1 text-[10px] sm:text-[11px] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-muted-foreground">
             {copy.badge}
-            <span className="h-1 w-6 bg-accent" />
+            <span className="h-1 w-4 sm:w-6 bg-accent" />
           </span>
           <div>
-            <h2 className="text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</h2>
-            <p className="mt-2 text-base text-muted-foreground">{copy.description}</p>
+            <h2 className="text-3xl sm:text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</h2>
+            <p className="mt-1.5 sm:mt-2 text-sm sm:text-base text-muted-foreground">{copy.description}</p>
           </div>
         </motion.div>
 
-        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid gap-5 sm:gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <motion.form
             onSubmit={handleSubmit}
             initial={{ opacity: 0, y: 20 }}
