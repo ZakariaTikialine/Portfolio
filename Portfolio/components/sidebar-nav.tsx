@@ -60,7 +60,7 @@ export default function SidebarNav() {
   const navAlignmentClass = isRTL ? "text-right" : "text-left"
   const navFlowClass = isRTL ? "flex-row-reverse" : "flex-row"
   const expandedProps = isOpen ? ({ "aria-expanded": "true" as const } as const) : undefined
-  const mobileTopOffset = "top-16 h-[calc(100vh-4rem)]"
+  const mobileTopOffset = "top-14 h-[calc(100vh-3.5rem)]"
   const closedTranslateClass = isRTL ? "translate-x-full" : "-translate-x-full"
 
   // Ensure hydration-safe mount
@@ -74,7 +74,7 @@ export default function SidebarNav() {
     <>
       {/* Mobile Top Bar */}
       <div
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between border-b border-border/50 bg-background/90 px-3 sm:px-4 py-2 sm:py-3 backdrop-blur-md lg:hidden ${
+        className={`fixed top-0 left-0 right-0 z-50 flex h-14 items-center justify-between border-b border-border/50 bg-background/90 px-3 sm:px-4 backdrop-blur-md lg:hidden ${
           isRTL ? "flex-row-reverse" : "flex-row"
         }`}
         dir={isRTL ? "rtl" : "ltr"}
@@ -104,7 +104,7 @@ export default function SidebarNav() {
         {isOpen && (
           <motion.div
             key="overlay"
-            className="fixed inset-x-0 top-16 bottom-0 z-30 bg-black/40 backdrop-blur-[1px] lg:hidden"
+            className="fixed inset-x-0 top-14 bottom-0 z-30 bg-black/40 backdrop-blur-[1px] lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -173,7 +173,7 @@ export default function SidebarNav() {
                         >
                           {isActive && (
                             <motion.div
-                              className={`absolute ${isRTL ? "right-2" : "left-2"} top-1 bottom-1 w-1 rounded-full bg-accent`}
+                              className={`absolute ${isRTL ? "right-2" : "left-2"} w-1 h-5 my-auto rounded-full bg-accent`}
                               layoutId="activeIndicator"
                               transition={{ type: "spring", stiffness: 300, damping: 30 }}
                             />

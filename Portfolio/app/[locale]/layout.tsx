@@ -83,14 +83,16 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
               </div>
 
               <main
-                className={`custom-scrollbar relative min-h-screen overflow-y-auto pb-24 pt-16 lg:pt-0 ${sidebarOffsetClass}`}
+                className={`custom-scrollbar relative min-h-screen overflow-y-auto pb-24 pt-14 lg:pt-0 ${sidebarOffsetClass}`}
                 dir={direction}
               >
                 {children}
               </main>
 
               <CommandPalette />
-              <AiTerminal />
+              <div className="hidden lg:block">
+                <AiTerminal />
+              </div>
             </div>
           </NextIntlClientProvider>
 
