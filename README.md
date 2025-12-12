@@ -12,7 +12,7 @@ I'm a passionate developer from Algeria specializing in building modern web appl
 
 ## What I Do
 
-- 🚀 **Web Development** — React, Next.js, TypeScript, Node.js
+- 🚀 **Web Development** — React, Next.js, TypeScript, Node.js, ExpressJs, Golang (Gin)...
 - 🤖 **AI & Data Science** — Python, Machine Learning, Deep Learning
 
 ## Portfolio Features
