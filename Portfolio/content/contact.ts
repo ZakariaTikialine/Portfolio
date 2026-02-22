@@ -39,8 +39,8 @@ export interface ContactContent {
 const channels = {
   mail: {
     type: "mail" as const,
-    label: "zakariatikia@gmail.com",
-    href: "mailto:zakariatikia@gmail.com",
+    label: "z_tikialine@estin.dz",
+    href: "mailto:z_tikialine@estin.dz",
   },
   github: {
     type: "github" as const,

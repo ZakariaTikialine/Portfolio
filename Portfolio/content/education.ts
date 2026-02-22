@@ -48,6 +48,20 @@ const educationContent: Record<Locale, EducationContent> = {
         tag: "Graduate program",
       },
       {
+        id: 4,
+        degree: "Associate Data Scientist",
+        institution: "DataCamp Professional Certification",
+        year: "2024",
+        details:
+          "Professional certification validating expertise in Python, statistical modeling, machine learning, and data analysis.",
+        highlights: [
+          "Python for Data Science (Pandas, NumPy, Matplotlib)",
+          "Machine Learning with Scikit-learn",
+          "Statistical analysis and model evaluation",
+        ],
+        tag: "Certification",
+      },
+      {
         id: 2,
         degree: "Preparatory classes in Computer Science",
         institution:
@@ -105,6 +119,20 @@ const educationContent: Record<Locale, EducationContent> = {
         tag: "Cycle ingénieur",
       },
       {
+        id: 4,
+        degree: "Associate Data Scientist",
+        institution: "DataCamp Certification Professionnelle",
+        year: "2024",
+        details:
+          "Certification professionnelle validant l'expertise en Python, modélisation statistique, machine learning et analyse de données.",
+        highlights: [
+          "Python pour la Data Science (Pandas, NumPy, Matplotlib)",
+          "Machine Learning avec Scikit-learn",
+          "Analyse statistique et évaluation de modèles",
+        ],
+        tag: "Certification",
+      },
+      {
         id: 2,
         degree: "Classes préparatoires en informatique",
         institution:
@@ -160,6 +188,20 @@ const educationContent: Record<Locale, EducationContent> = {
           "مبادرات مجتمعية حول الذكاء الاصطناعي المسؤول",
         ],
         tag: "دراسات عليا",
+      },
+      {
+        id: 4,
+        degree: "عالم بيانات مشارك معتمد",
+        institution: "شهادة DataCamp المهنية",
+        year: "2024",
+        details:
+          "شهادة مهنية تتحقق من الخبرة في Python والنمذجة الإحصائية والتعلم الآلي وتحليل البيانات.",
+        highlights: [
+          "Python لعلم البيانات (Pandas، NumPy، Matplotlib)",
+          "التعلم الآلي مع Scikit-learn",
+          "التحليل الإحصائي وتقييم النماذج",
+        ],
+        tag: "شهادة",
       },
       {
         id: 2,

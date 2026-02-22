@@ -43,6 +43,16 @@ const projectsEn: ProjectCard[] = [
     github: "https://github.com/ZakariaTikialine/Tahwisa-backend",
     demo: "https://github.com/ZakariaTikialine/Tahwisa-backend",
   },
+  {
+    id: 3,
+    title: "Student Performance Prediction Model",
+    description:
+      "End-to-end ML pipeline for predicting student performance using regression models with R² > 0.70. Includes data cleaning, feature engineering, and cross-validation.",
+    tech: ["Python", "Scikit-learn", "Pandas", "NumPy", "Matplotlib"],
+    deployment: "GitHub",
+    github: "https://github.com/ZakariaTikialine",
+    demo: "https://github.com/ZakariaTikialine",
+  },
 ]
 
 const projectsFr: ProjectCard[] = [
@@ -66,6 +76,16 @@ const projectsFr: ProjectCard[] = [
     github: "https://github.com/ZakariaTikialine/Tahwisa-backend",
     demo: "https://github.com/ZakariaTikialine/Tahwisa-backend",
   },
+  {
+    id: 3,
+    title: "Modèle de Prédiction de Performance Étudiante",
+    description:
+      "Pipeline ML complet pour prédire les performances des étudiants avec des modèles de régression (R² > 0,70). Inclut nettoyage des données, feature engineering et validation croisée.",
+    tech: ["Python", "Scikit-learn", "Pandas", "NumPy", "Matplotlib"],
+    deployment: "GitHub",
+    github: "https://github.com/ZakariaTikialine",
+    demo: "https://github.com/ZakariaTikialine",
+  },
 ]
 
 const projectsAr: ProjectCard[] = [
@@ -88,6 +108,16 @@ const projectsAr: ProjectCard[] = [
     deployment: "Railway",
     github: "https://github.com/ZakariaTikialine/Tahwisa-backend",
     demo: "https://github.com/ZakariaTikialine/Tahwisa-backend",
+  },
+  {
+    id: 3,
+    title: "نموذج التنبؤ بأداء الطلاب",
+    description:
+      "خط ML متكامل للتنبؤ بأداء الطلاب باستخدام نماذج الانحدار (R² > 0.70). يتضمن تنظيف البيانات، هندسة الميزات والتحقق المتقاطع.",
+    tech: ["Python", "Scikit-learn", "Pandas", "NumPy", "Matplotlib"],
+    deployment: "GitHub",
+    github: "https://github.com/ZakariaTikialine",
+    demo: "https://github.com/ZakariaTikialine",
   },
 ]
 

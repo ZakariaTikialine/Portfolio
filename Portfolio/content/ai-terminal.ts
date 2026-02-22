@@ -34,9 +34,9 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
     placeholder: "Ask about skills, projects…",
     errorMessage: "I couldn't reach the live model. Here's a quick recap instead:",
     suggestions: [
-      "What projects are you proud of?",
-      "Which stack do you use most?",
-      "Are you open for freelance work?",
+      "Tell me about your NAFTAL internship",
+      "What's your DataCamp certification?",
+      "Are you available for remote work?",
     ],
     defaultResponses: [
       "That's an interesting question! Could you be more specific about what you'd like to know?",
@@ -45,34 +45,74 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
     ],
     responses: [
       {
-        phrases: ["skills", "stack", "what are your skills"],
+        phrases: ["skills", "stack", "what are your skills", "technologies"],
         answer:
-          "I excel in frontend (React, Next.js, TypeScript), backend (Node.js, Express, Go), and data science (Python, ML). What interests you most?",
+          "I excel in Python, TypeScript, JavaScript, Golang, and SQL. Frontend: React.js, Next.js, Tailwind CSS. Backend: Node.js, Express.js, REST APIs with RBAC. Databases: PostgreSQL, MongoDB, Oracle. ML: Scikit-learn with regression, classification, and feature engineering. What interests you most?",
       },
       {
-        phrases: ["projects", "tell me about projects"],
+        phrases: ["projects", "tell me about projects", "portfolio"],
         answer:
-          "Recent highlights include Tahwisa NAFTAL (fullstack trip management), a CSP timetable scheduler, and a maze visualization—each shows different expertise.",
+          "Key projects: Tahwisa (NAFTAL employee travel management with Next.js, Express, PostgreSQL, RBAC authentication), Student Performance Prediction Model (end-to-end ML pipeline, R² > 0.70 using Scikit-learn), CSP timetable scheduler, and interactive maze visualizer. Each demonstrates different technical expertise.",
       },
       {
-        phrases: ["ai", "artificial intelligence"],
+        phrases: ["education", "university", "degree", "studying"],
         answer:
-          "I'm deeply interested in ML fundamentals, AI applications in business, and ethical considerations. I'm exploring TensorFlow and building practical projects.",
+          "I'm pursuing State Engineer in Computer Science at ESTIN, specializing in Artificial Intelligence & Data Science (2022-2027). I'm also a DataCamp Certified Associate Data Scientist with professional certification.",
       },
       {
-        phrases: ["go", "backend", "go backend"],
+        phrases: ["experience", "work", "internship", "job"],
         answer:
-          "Go is my current focus for building performant, scalable backend systems. I'm learning about goroutines, channels, and systems design patterns.",
+          "Currently Technical Assistant at School of AI Club (Jan 2026-Present) teaching ML/DL workshops. Previously Full Stack Web Developer Intern at NAFTAL (Jun-Jul 2025), where I built Tahwisa platform with secure REST APIs, optimized PostgreSQL schemas, and automated selection logic. Also served as Logistics Manager at Nexus Security Club.",
       },
       {
-        phrases: ["data", "data science"],
+        phrases: ["naftal", "tahwisa", "internship"],
         answer:
-          "I work with data analysis, statistical modeling, and ML pipelines. Pandas, NumPy, and Scikit-learn are my go-to tools.",
+          "At NAFTAL, I designed and deployed Tahwisa—a full-stack employee travel management system. Built secure RESTful APIs with RBAC, optimized PostgreSQL schemas, developed responsive Next.js frontend with TypeScript, and automated participant selection for production deployment.",
       },
       {
-        phrases: ["work with you", "collaborate", "available"],
+        phrases: ["ai", "artificial intelligence", "machine learning", "ml"],
         answer:
-          "I'd love to collaborate! I'm available for fullstack projects, data analysis, ML implementations, or technical consulting.",
+          "I'm deeply interested in ML fundamentals and practical AI applications. As a DataCamp Certified Associate Data Scientist, I work with Scikit-learn for regression, classification, and feature engineering. Built a Student Performance Prediction Model achieving R² > 0.70 with cross-validation and error metrics.",
+      },
+      {
+        phrases: ["data science", "data analysis", "pandas", "numpy"],
+        answer:
+          "I work extensively with data analysis, statistical modeling, and ML pipelines using Pandas, NumPy, and Matplotlib. I'm certified as an Associate Data Scientist and have built end-to-end ML projects with exploratory data analysis, feature engineering, and model evaluation.",
+      },
+      {
+        phrases: ["go", "golang", "backend"],
+        answer:
+          "Go is my focus for building performant, scalable backend systems. Combined with my Node.js and Express.js expertise (REST APIs, WebSockets, Authentication, RBAC), I architect secure and efficient server-side applications. I'm learning goroutines, channels, and systems design patterns.",
+      },
+      {
+        phrases: ["database", "postgresql", "mongodb", "sql"],
+        answer:
+          "I work with PostgreSQL, MongoDB, and Oracle. At NAFTAL, I modeled and optimized PostgreSQL relational schemas for efficient querying and data consistency. I design normalized schemas and write optimized queries for production systems.",
+      },
+      {
+        phrases: ["certification", "datacamp", "certified"],
+        answer:
+          "I'm a DataCamp Certified Associate Data Scientist with professional certification. This validates my expertise in Python, Pandas, NumPy, Scikit-learn, statistical modeling, and ML model evaluation.",
+      },
+      {
+        phrases: ["languages", "french", "english", "arabic"],
+        answer:
+          "I'm trilingual: Arabic (Native), French (B2 level – TCF certified), and English (Professional proficiency). This enables me to work effectively in international and multilingual environments.",
+      },
+      {
+        phrases: ["location", "remote", "where", "algeria"],
+        answer:
+          "I'm based in Blida, Algeria, and available for remote work worldwide. I have experience with distributed teams and modern remote collaboration tools (Git, Docker, Vercel, Railway).",
+      },
+      {
+        phrases: ["contact", "email", "hire", "reach"],
+        answer:
+          "Reach me at z_tikialine@estin.dz or +213 698 31 07 10. Find me on LinkedIn (linkedin.com/in/zakaria-tikialine) or GitHub (github.com/ZakariaTikialine). I'm open to fullstack development, data science projects, ML implementations, or technical consulting opportunities.",
+      },
+      {
+        phrases: ["work with you", "collaborate", "available", "freelance"],
+        answer:
+          "I'd love to collaborate! I'm available for fullstack projects (React, Next.js, Node.js, PostgreSQL), data analysis, ML implementations, or technical consulting. I can work remotely and deliver production-ready solutions.",
       },
     ],
   },
@@ -88,9 +128,9 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
     placeholder: "Demandez des infos sur les compétences, projets…",
     errorMessage: "Impossible de joindre le modèle en direct. Voici un rappel rapide :",
     suggestions: [
-      "Quels sont tes derniers projets ?",
-      "Quelles technologies maîtrises-tu ?",
-      "Es-tu disponible pour une mission ?",
+      "Parle-moi de ton stage chez NAFTAL",
+      "Quelle est ta certification DataCamp ?",
+      "Es-tu disponible pour le travail à distance ?",
     ],
     defaultResponses: [
       "Question intéressante ! Pouvez-vous préciser ce que vous cherchez ?",
@@ -99,34 +139,74 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
     ],
     responses: [
       {
-        phrases: ["competences", "compétences", "skills", "stack"],
+        phrases: ["competences", "compétences", "skills", "stack", "technologies"],
         answer:
-          "Il maîtrise le frontend (React, Next.js, TypeScript), le backend (Node.js, Express, Go) et la data science (Python, ML). Qu'est-ce qui vous intéresse ?",
+          "Il maîtrise Python, TypeScript, JavaScript, Golang et SQL. Frontend: React.js, Next.js, Tailwind CSS. Backend: Node.js, Express.js, REST APIs avec RBAC. Bases de données: PostgreSQL, MongoDB, Oracle. ML: Scikit-learn avec régression, classification et feature engineering. Qu'est-ce qui vous intéresse ?",
       },
       {
-        phrases: ["projets", "projects"],
+        phrases: ["projets", "projects", "portfolio"],
         answer:
-          "Parmi les récents : Tahwisa NAFTAL, un scheduler CSP et un visualiseur de labyrinthe. Chaque projet illustre une facette différente.",
+          "Projets clés : Tahwisa (gestion des déplacements NAFTAL avec Next.js, Express, PostgreSQL, authentification RBAC), Modèle de Prédiction de Performance Étudiante (pipeline ML complet, R² > 0.70 avec Scikit-learn), planificateur CSP et visualiseur de labyrinthe. Chaque projet démontre une expertise technique différente.",
       },
       {
-        phrases: ["ia", "intelligence artificielle", "ai"],
+        phrases: ["formation", "études", "université", "diplôme"],
         answer:
-          "Il se passionne pour les fondamentaux ML, les usages business et l'éthique. Il explore TensorFlow et construit des projets concrets.",
+          "Il poursuit un diplôme d'Ingénieur d'État en Informatique à l'ESTIN, spécialisé en Intelligence Artificielle & Data Science (2022-2027). Il est également certifié Associate Data Scientist par DataCamp.",
       },
       {
-        phrases: ["go", "backend"],
+        phrases: ["expérience", "travail", "stage", "emploi"],
         answer:
-          "Go est son focus actuel pour des backends performants. Il approfondit goroutines, channels et patterns d'architecture.",
+          "Actuellement Assistant Technique au School of AI Club (Jan 2026-Présent) animant des ateliers ML/DL. Précédemment Stagiaire Développeur Web Full Stack chez NAFTAL (Juin-Juil 2025), où il a construit la plateforme Tahwisa avec APIs REST sécurisées, schémas PostgreSQL optimisés et logique de sélection automatisée. Également Responsable Logistique au Nexus Security Club.",
       },
       {
-        phrases: ["data", "data science"],
+        phrases: ["naftal", "tahwisa", "stage"],
         answer:
-          "Analyse de données, modélisation statistique et pipelines ML avec Pandas, NumPy et Scikit-learn sont au menu.",
+          "Chez NAFTAL, il a conçu et déployé Tahwisa—un système de gestion des déplacements des employés. Construction d'APIs RESTful sécurisées avec RBAC, optimisation des schémas PostgreSQL, développement frontend responsive avec Next.js et TypeScript, et automatisation de la sélection pour le déploiement en production.",
       },
       {
-        phrases: ["travailler", "collaborer", "disponible"],
+        phrases: ["ia", "intelligence artificielle", "machine learning", "ml"],
         answer:
-          "Il est ouvert aux missions fullstack, à la data, au ML ou au conseil technique. Parlons-en !",
+          "Il se passionne pour les fondamentaux ML et les applications pratiques de l'IA. Certifié Associate Data Scientist par DataCamp, il travaille avec Scikit-learn pour la régression, classification et feature engineering. A construit un Modèle de Prédiction de Performance Étudiante atteignant R² > 0.70 avec validation croisée.",
+      },
+      {
+        phrases: ["data science", "analyse de données", "pandas", "numpy"],
+        answer:
+          "Il travaille extensivement avec l'analyse de données, la modélisation statistique et les pipelines ML utilisant Pandas, NumPy et Matplotlib. Certifié Associate Data Scientist, il a construit des projets ML de bout en bout avec analyse exploratoire, feature engineering et évaluation de modèles.",
+      },
+      {
+        phrases: ["go", "golang", "backend"],
+        answer:
+          "Go est son focus pour construire des systèmes backend performants et scalables. Combiné avec son expertise Node.js et Express.js (REST APIs, WebSockets, Authentication, RBAC), il architecture des applications serveur sécurisées et efficaces. Il approfondit goroutines, channels et patterns de conception système.",
+      },
+      {
+        phrases: ["base de données", "postgresql", "mongodb", "sql"],
+        answer:
+          "Il travaille avec PostgreSQL, MongoDB et Oracle. Chez NAFTAL, il a modélisé et optimisé des schémas PostgreSQL pour des requêtes efficaces et la cohérence des données. Il conçoit des schémas normalisés et écrit des requêtes optimisées pour des systèmes de production.",
+      },
+      {
+        phrases: ["certification", "datacamp", "certifié"],
+        answer:
+          "Il est certifié Associate Data Scientist par DataCamp avec certification professionnelle. Cela valide son expertise en Python, Pandas, NumPy, Scikit-learn, modélisation statistique et évaluation de modèles ML.",
+      },
+      {
+        phrases: ["langues", "français", "anglais", "arabe"],
+        answer:
+          "Il est trilingue : Arabe (Natif), Français (niveau B2 – certifié TCF) et Anglais (compétence professionnelle). Cela lui permet de travailler efficacement dans des environnements internationaux et multilingues.",
+      },
+      {
+        phrases: ["localisation", "remote", "où", "algérie"],
+        answer:
+          "Il est basé à Blida, Algérie, et disponible pour le travail à distance dans le monde entier. Il a de l'expérience avec les équipes distribuées et les outils de collaboration modernes (Git, Docker, Vercel, Railway).",
+      },
+      {
+        phrases: ["contact", "email", "embaucher", "joindre"],
+        answer:
+          "Contactez-le à z_tikialine@estin.dz ou au +213 698 31 07 10. Retrouvez-le sur LinkedIn (linkedin.com/in/zakaria-tikialine) ou GitHub (github.com/ZakariaTikialine). Il est ouvert aux opportunités de développement fullstack, projets data science, implémentations ML ou conseil technique.",
+      },
+      {
+        phrases: ["travailler", "collaborer", "disponible", "freelance"],
+        answer:
+          "Il serait ravi de collaborer ! Il est disponible pour des projets fullstack (React, Next.js, Node.js, PostgreSQL), analyse de données, implémentations ML ou conseil technique. Il peut travailler à distance et livrer des solutions prêtes pour la production.",
       },
     ],
   },
@@ -142,9 +222,9 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
     placeholder: "اسأل عن المهارات أو المشاريع…",
     errorMessage: "تعذّر الاتصال بالذكاء الاصطناعي الآن. إليك ملخص سريع بدلاً من ذلك:",
     suggestions: [
-      "ما هي أبرز مشاريعك؟",
-      "ما التقنيات التي تستخدمها يوميًا؟",
-      "هل أنت متاح للتعاون عن بعد؟",
+      "أخبرني عن تدريبك في نفطال",
+      "ما هي شهادة DataCamp الخاصة بك؟",
+      "هل أنت متاح للعمل عن بُعد؟",
     ],
     defaultResponses: [
       "سؤال جميل! هل يمكنك التحديد أكثر؟",
@@ -153,34 +233,74 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
     ],
     responses: [
       {
-        phrases: ["مهارات", "skills", "stack"],
+        phrases: ["مهارات", "skills", "stack", "تقنيات"],
         answer:
-          "يتقن الواجهات الأمامية (React، Next.js، TypeScript)، والخلفيات (Node.js، Express، Go)، وعلوم البيانات (Python، ML). ما الذي يهمك؟",
+          "يتقن Python و TypeScript و JavaScript و Golang و SQL. الواجهات الأمامية: React.js و Next.js و Tailwind CSS. الخلفية: Node.js و Express.js و REST APIs مع RBAC. قواعد البيانات: PostgreSQL و MongoDB و Oracle. ML: Scikit-learn مع الانحدار والتصنيف وهندسة الميزات. ما الذي يهمك؟",
       },
       {
-        phrases: ["مشاريع", "projects"],
+        phrases: ["مشاريع", "projects", "أعمال"],
         answer:
-          "من أبرز أعماله Tahwisa NAFTAL، وجدول زمني قائم على CSP، ومصور متاهة تفاعلي—كل مشروع يبرز مهارة مختلفة.",
+          "المشاريع الرئيسية: Tahwisa (إدارة تنقلات موظفي NAFTAL مع Next.js و Express و PostgreSQL ومصادقة RBAC)، نموذج التنبؤ بأداء الطلاب (خط ML متكامل، R² > 0.70 باستخدام Scikit-learn)، مخطط جداول CSP ومصور متاهة تفاعلي. كل مشروع يُظهر خبرة تقنية مختلفة.",
       },
       {
-        phrases: ["ذكاء اصطناعي", "ai"],
+        phrases: ["تعليم", "دراسة", "جامعة", "شهادة"],
         answer:
-          "مهتم بعمق بأساسيات التعلم الآلي، وتطبيقات الذكاء الاصطناعي العملية، والجوانب الأخلاقية. يستكشف TensorFlow ويبني حلولًا عملية.",
+          "يتابع شهادة مهندس دولة في علوم الحاسوب في ESTIN، متخصص في الذكاء الاصطناعي وعلوم البيانات (2022-2027). كما أنه حاصل على شهادة DataCamp المعتمدة كعالم بيانات مشارك.",
       },
       {
-        phrases: ["go", "خلفية", "backend"],
+        phrases: ["خبرة", "عمل", "تدريب", "وظيفة"],
         answer:
-          "يركز حاليًا على Go لبناء أنظمة خلفية عالية الأداء، مع الاهتمام بالـ goroutines والـ channels وأنماط التصميم.",
+          "حاليًا مساعد تقني في نادي School of AI (يناير 2026-الحالي) يقدم ورش عمل ML/DL. سابقًا متدرب مطور ويب Full Stack في NAFTAL (يونيو-يوليو 2025)، حيث بنى منصة Tahwisa مع APIs REST آمنة، مخططات PostgreSQL محسّنة ومنطق اختيار آلي. أيضًا مدير لوجستيات في نادي Nexus Security.",
       },
       {
-        phrases: ["بيانات", "data"],
+        phrases: ["نفطال", "naftal", "tahwisa", "تدريب"],
         answer:
-          "يعمل على تحليل البيانات، النمذجة الإحصائية، وخطوط ML باستخدام Pandas وNumPy وScikit-learn.",
+          "في NAFTAL، صمم ونشر Tahwisa—نظام إدارة تنقلات الموظفين. بناء APIs RESTful آمنة مع RBAC، تحسين مخططات PostgreSQL، تطوير واجهة أمامية متجاوبة مع Next.js و TypeScript، وأتمتة الاختيار للنشر الإنتاجي.",
       },
       {
-        phrases: ["عمل", "collaborate", "متاح"],
+        phrases: ["ذكاء اصطناعي", "ai", "تعلم آلي", "ml"],
         answer:
-          "مستعد للتعاون في مشاريع متكاملة، أو تحليلات بيانات، أو تنفيذ ML، أو استشارات تقنية.",
+          "مهتم بعمق بأساسيات ML والتطبيقات العملية للذكاء الاصطناعي. حاصل على شهادة DataCamp كعالم بيانات مشارك، يعمل مع Scikit-learn للانحدار والتصنيف وهندسة الميزات. بنى نموذج التنبؤ بأداء الطلاب محققًا R² > 0.70 مع التحقق المتقاطع ومقاييس الخطأ.",
+      },
+      {
+        phrases: ["علوم البيانات", "تحليل البيانات", "pandas", "numpy"],
+        answer:
+          "يعمل بشكل مكثف مع تحليل البيانات والنمذجة الإحصائية وخطوط ML باستخدام Pandas و NumPy و Matplotlib. معتمد كعالم بيانات مشارك وبنى مشاريع ML متكاملة مع تحليل استكشافي وهندسة ميزات وتقييم نماذج.",
+      },
+      {
+        phrases: ["go", "golang", "خلفية", "backend"],
+        answer:
+          "Go هو تركيزه لبناء أنظمة خلفية عالية الأداء وقابلة للتوسع. بالاقتران مع خبرته في Node.js و Express.js (REST APIs و WebSockets و Authentication و RBAC)، يبني تطبيقات خادم آمنة وفعالة. يتعلم goroutines و channels وأنماط تصميم الأنظمة.",
+      },
+      {
+        phrases: ["قاعدة بيانات", "postgresql", "mongodb", "sql"],
+        answer:
+          "يعمل مع PostgreSQL و MongoDB و Oracle. في NAFTAL، صمم وحسّن مخططات PostgreSQL العلائقية لاستعلامات فعالة واتساق البيانات. يصمم مخططات طبيعية ويكتب استعلامات محسّنة لأنظمة الإنتاج.",
+      },
+      {
+        phrases: ["شهادة", "datacamp", "معتمد"],
+        answer:
+          "حاصل على شهادة DataCamp المعتمدة كعالم بيانات مشارك مع شهادة مهنية. هذا يتحقق من خبرته في Python و Pandas و NumPy و Scikit-learn والنمذجة الإحصائية وتقييم نماذج ML.",
+      },
+      {
+        phrases: ["لغات", "فرنسية", "إنجليزية", "عربية"],
+        answer:
+          "متعدد اللغات: العربية (الأم)، الفرنسية (مستوى B2 – معتمد TCF)، والإنجليزية (كفاءة مهنية). هذا يمكّنه من العمل بفعالية في بيئات دولية ومتعددة اللغات.",
+      },
+      {
+        phrases: ["موقع", "remote", "أين", "الجزائر"],
+        answer:
+          "مقره في البليدة، الجزائر، ومتاح للعمل عن بُعد في جميع أنحاء العالم. لديه خبرة مع الفرق الموزعة وأدوات التعاون الحديثة (Git و Docker و Vercel و Railway).",
+      },
+      {
+        phrases: ["اتصال", "بريد", "توظيف", "التواصل"],
+        answer:
+          "تواصل معه على z_tikialine@estin.dz أو 0698310710+213. جده على LinkedIn (linkedin.com/in/zakaria-tikialine) أو GitHub (github.com/ZakariaTikialine). مفتوح لفرص التطوير fullstack ومشاريع علوم البيانات وتنفيذات ML أو الاستشارات التقنية.",
+      },
+      {
+        phrases: ["عمل", "تعاون", "collaborate", "متاح", "freelance"],
+        answer:
+          "يسعده التعاون! متاح لمشاريع fullstack (React و Next.js و Node.js و PostgreSQL)، تحليل البيانات، تنفيذات ML أو الاستشارات التقنية. يمكنه العمل عن بُعد وتقديم حلول جاهزة للإنتاج.",
       },
     ],
   },

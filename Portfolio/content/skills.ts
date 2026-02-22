@@ -123,7 +123,7 @@ const skillsContent: Record<Locale, SkillsContent> = {
         title: "Cloud & Deployment",
         icon: sharedTechnical.cloud.icon,
         description: "Iterative production releases",
-        skills: ["Vercel", "Heroku", "Railway"],
+        skills: ["Docker", "Linux", "Vercel", "Railway", "Git"],
       },
     ],
     transversal: [
@@ -134,9 +134,8 @@ const skillsContent: Record<Locale, SkillsContent> = {
       "Adaptability and autonomy",
     ],
     certifications: [
-      "CS50 Introduction to AI",
-      "Data Science in Python — DataCamp",
-      "Machine Learning & Deep Learning",
+      "Associate Data Scientist — DataCamp (Professional Certification)",
+      "Machine Learning & Deep Learning Specializations",
     ],
   },
   fr: {
@@ -216,20 +215,19 @@ const skillsContent: Record<Locale, SkillsContent> = {
         title: "Cloud & Déploiement",
         icon: sharedTechnical.cloud.icon,
         description: "Mise en production itérative",
-        skills: ["Vercel", "Heroku", "Railway"],
+        skills: ["Docker", "Linux", "Vercel", "Railway", "Git"],
       },
     ],
     transversal: [
-      "Gestion du temps et sens de l’organisation",
+      "Gestion du temps et sens de l'organisation",
       "Travail en équipe et communication efficace",
-      "Esprit d’analyse et résolution de problèmes",
+      "Esprit d'analyse et résolution de problèmes",
       "Curiosité intellectuelle et apprentissage continu",
       "Adaptabilité et autonomie",
     ],
     certifications: [
-      "Introduction à l’IA avec CS50 — Harvard / edX",
-      "Data Science en Python — DataCamp",
-      "Machine Learning & Deep Learning",
+      "Associate Data Scientist — DataCamp (Certification Professionnelle)",
+      "Machine Learning & Deep Learning Specializations",
     ],
   },
   ar: {
@@ -309,7 +307,7 @@ const skillsContent: Record<Locale, SkillsContent> = {
         title: "السحابة والنشر",
         icon: sharedTechnical.cloud.icon,
         description: "إطلاقات إنتاجية تدريجية",
-        skills: ["Vercel", "Heroku", "Railway"],
+        skills: ["Docker", "Linux", "Vercel", "Railway", "Git"],
       },
     ],
     transversal: [
@@ -320,9 +318,8 @@ const skillsContent: Record<Locale, SkillsContent> = {
       "قدرة على التكيّف والاستقلالية",
     ],
     certifications: [
-      "CS50 مقدمة في الذكاء الاصطناعي",
-      "علم البيانات بلغة Python — DataCamp",
-      "التعلم الآلي والتعلم العميق",
+      "عالم بيانات مشارك معتمد — DataCamp (شهادة مهنية)",
+      "تخصصات التعلم الآلي والتعلم العميق",
     ],
   },
 }

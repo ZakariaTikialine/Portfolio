@@ -17,9 +17,9 @@ const aboutContent: Record<Locale, AboutContent> = {
   en: {
     badge: "About",
     heading: "Building thoughtful systems end-to-end",
-    description: "I craft experiences where performant backends, polished interfaces, and intelligent automation meet.",
+    description: "I craft experiences where performant backends, polished interfaces, and intelligent automation meet. DataCamp Certified Associate Data Scientist.",
     story: [
-      "I'm a passionate developer and AI-focused student who thrives at the intersection of multiple disciplines. My journey combines rigorous backend engineering with thoughtful frontend design, enhanced by data-driven insights and machine learning innovation.",
+      "I'm a passionate Full Stack Developer and DataCamp Certified Associate Data Scientist who thrives at the intersection of multiple disciplines. My journey combines rigorous backend engineering with thoughtful frontend design, enhanced by data-driven insights and machine learning innovation.",
       "I enjoy untangling complex challenges. Whether architecting resilient systems, refining algorithms, or prototyping AI features, I aim for solutions that feel simple without sacrificing depth.",
       "I'm fascinated by systems design, constraint satisfaction, and how AI can augment human decision-making. Great software starts with empathy for the problem, then blends precision, aesthetics, and measurable impact.",
     ],
@@ -45,9 +45,9 @@ const aboutContent: Record<Locale, AboutContent> = {
   fr: {
     badge: "À propos",
     heading: "Concevoir des systèmes réfléchis de bout en bout",
-    description: "Je conçois des expériences où backends performants, interfaces soignées et automatisation intelligente se rencontrent.",
+    description: "Je conçois des expériences où backends performants, interfaces soignées et automatisation intelligente se rencontrent. Certifié Associate Data Scientist par DataCamp.",
     story: [
-      "Je suis un développeur passionné et étudiant spécialisé en IA qui s'épanouit à l'intersection de plusieurs disciplines. Mon parcours combine une ingénierie backend rigoureuse avec un design frontend réfléchi, amplifié par les analyses de données et l'innovation en apprentissage automatique.",
+      "Je suis un développeur Full Stack passionné et un Associate Data Scientist certifié par DataCamp qui s'épanouit à l'intersection de plusieurs disciplines. Mon parcours combine une ingénierie backend rigoureuse avec un design frontend réfléchi, amplifié par les analyses de données et l'innovation en apprentissage automatique.",
       "J'aime démêler les défis complexes. Qu'il s'agisse d'architecturer des systèmes résilients, d'affiner des algorithmes ou de prototyper des fonctionnalités IA, je vise des solutions simples sans perdre la profondeur.",
       "Je suis fasciné par le design système, la satisfaction de contraintes et la façon dont l'IA augmente la décision humaine. Un bon logiciel naît de l'empathie pour le problème, puis marie précision, esthétique et impact mesurable.",
     ],
@@ -73,9 +73,9 @@ const aboutContent: Record<Locale, AboutContent> = {
   ar: {
     badge: "عنّي",
     heading: "أبني أنظمة مدروسة من البداية إلى النهاية",
-    description: "أصمّم تجارب تلتقي فيها الخلفيات عالية الأداء مع الواجهات المصقولة والأتمتة الذكية.",
+    description: "أصمّم تجارب تلتقي فيها الخلفيات عالية الأداء مع الواجهات المصقولة والأتمتة الذكية. عالم بيانات مشارك معتمد من DataCamp.",
     story: [
-      "أنا مطوّر شغوف وطالب يركز على الذكاء الاصطناعي، أزدهر عند تقاطع التخصصات. رحلتي تجمع بين هندسة خلفية صارمة وتصميم واجهات مدروس، مدعومة بالبصائر المستندة إلى البيانات وابتكارات التعلم الآلي.",
+      "أنا مطوّر Full Stack شغوف وعالم بيانات مشارك معتمد من DataCamp، أزدهر عند تقاطع التخصصات. رحلتي تجمع بين هندسة خلفية صارمة وتصميم واجهات مدروس، مدعومة بالبصائر المستندة إلى البيانات وابتكارات التعلم الآلي.",
       "أستمتع بفك التعقيدات. سواء كنت أضع معمارية أنظمة مرنة، أو أحسّن الخوارزميات، أو أختبر ميزات ذكاء اصطناعي، أسعى إلى حلول تبدو بسيطة من دون فقدان العمق.",
       "أنا مفتون بتصميم الأنظمة، ومشكلات الإرضاء بالقيود، وكيف يمكن للذكاء الاصطناعي دعم قرارات البشر. يبدأ البرنامج الجيد بالتعاطف مع المشكلة ثم يمزج الدقة والجمال والأثر القابل للقياس.",
     ],

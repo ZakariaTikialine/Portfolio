@@ -40,6 +40,23 @@ const experienceContent: Record<Locale, ExperienceContent> = {
     entries: [
       {
         id: 1,
+        title: "Technical Assistant",
+        company: "School of AI Club - Bejaia",
+        period: "January 2026 - Present",
+        description: "Organizing and delivering workshops on Machine Learning, Deep Learning, and backend development to upskill community members.",
+        achievements: [
+          "Teaching ML/DL workshops with hands-on Python sessions.",
+          "Mentoring participants in data preprocessing and model training.",
+          "Developing practical exercises for real-world AI applications.",
+        ],
+        metrics: [
+          { label: "Workshops", value: "10+" },
+          { label: "Role", value: "Instructor" },
+        ],
+        tags: ["Teaching", "AI/ML", "Community"],
+      },
+      {
+        id: 2,
         title: "Logistics Manager",
         company: "Nexus Security Club",
         period: "2024 - 2025",
@@ -56,7 +73,7 @@ const experienceContent: Record<Locale, ExperienceContent> = {
         tags: ["Community", "Event"],
       },
       {
-        id: 2,
+        id: 3,
         title: "Logistics Manager",
         company: "NexZero.FTC CTF",
         period: "May 2025",
@@ -73,7 +90,7 @@ const experienceContent: Record<Locale, ExperienceContent> = {
         tags: ["Event", "Support"],
       },
       {
-        id: 3,
+        id: 4,
         title: "Web Development Intern",
         company: "Naftal (DCSI)",
         period: "July - August 2025",
@@ -107,6 +124,23 @@ const experienceContent: Record<Locale, ExperienceContent> = {
     entries: [
       {
         id: 1,
+        title: "Assistant Technique",
+        company: "School of AI Club - Bejaia",
+        period: "Janvier 2026 - Présent",
+        description: "Organisation et animation d'ateliers sur le Machine Learning, Deep Learning et le développement backend pour former les membres de la communauté.",
+        achievements: [
+          "Animation d'ateliers ML/DL avec sessions pratiques Python.",
+          "Mentorat des participants sur le prétraitement des données et l'entraînement de modèles.",
+          "Développement d'exercices pratiques pour des applications IA réelles.",
+        ],
+        metrics: [
+          { label: "Ateliers", value: "10+" },
+          { label: "Rôle", value: "Formateur" },
+        ],
+        tags: ["Enseignement", "IA/ML", "Communauté"],
+      },
+      {
+        id: 2,
         title: "Responsable Logistique",
         company: "Nexus Security Club",
         period: "2024 - 2025",
@@ -123,7 +157,7 @@ const experienceContent: Record<Locale, ExperienceContent> = {
         tags: ["Communauté", "Événement"],
       },
       {
-        id: 2,
+        id: 3,
         title: "Responsable Logistique",
         company: "NexZero.FTC CTF",
         period: "Mai 2025",
@@ -140,7 +174,7 @@ const experienceContent: Record<Locale, ExperienceContent> = {
         tags: ["Événement", "Support"],
       },
       {
-        id: 3,
+        id: 4,
         title: "Stagiaire Développeur Web",
         company: "Naftal (DCSI)",
         period: "Juillet - Août 2025",
@@ -174,6 +208,23 @@ const experienceContent: Record<Locale, ExperienceContent> = {
     entries: [
       {
         id: 1,
+        title: "مساعد تقني",
+        company: "School of AI Club - بجاية",
+        period: "يناير 2026 - الحالي",
+        description: "تنظيم وتقديم ورش عمل حول التعلم الآلي، التعلم العميق وتطوير الخلفية لتحسين مهارات أعضاء المجتمع.",
+        achievements: [
+          "تدريس ورش عمل ML/DL مع جلسات Python عملية.",
+          "إرشاد المشاركين في معالجة البيانات وتدريب النماذج.",
+          "تطوير تمارين عملية لتطبيقات الذكاء الاصطناعي الواقعية.",
+        ],
+        metrics: [
+          { label: "الورش", value: "10+" },
+          { label: "الدور", value: "مدرس" },
+        ],
+        tags: ["تدريس", "ذكاء اصطناعي", "مجتمع"],
+      },
+      {
+        id: 2,
         title: "مسؤول اللوجستيك",
         company: "Nexus Security Club",
         period: "2024 - 2025",
@@ -190,7 +241,7 @@ const experienceContent: Record<Locale, ExperienceContent> = {
         tags: ["مجتمع", "فعالية"],
       },
       {
-        id: 2,
+        id: 3,
         title: "مسؤول اللوجستيك",
         company: "NexZero.FTC CTF",
         period: "ماي 2025",
@@ -207,7 +258,7 @@ const experienceContent: Record<Locale, ExperienceContent> = {
         tags: ["فعالية", "دعم"],
       },
       {
-        id: 3,
+        id: 4,
         title: "متدرب مطوّر ويب",
         company: "Naftal (DCSI)",
         period: "جويلية - أوت 2025",
