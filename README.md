@@ -12,19 +12,15 @@ I'm a passionate developer from Algeria specializing in building modern web appl
 
 ## What I Do
 
-- 🚀 **Web Development** — React, Next.js, TypeScript, Node.js, ExpressJs, Golang (Gin)...
-- 🤖 **AI & Data Science** — Python, Machine Learning, Deep Learning
+- **Web Development** — React, Next.js, TypeScript|JavaScript, Node.js, ExpressJs, Golang (Gin)...
+- **AI & Data Science** — Data Analysis, Machine Learning, Deep Learning, AI agents ... with Python|R|Java
 
 ## Portfolio Features
 
-- 🌍 Available in **English**, **French**, and **Arabic**
-- 🌙 Dark/Light mode
-- 💬 AI-powered chat assistant
-- 📊 Live GitHub activity stats
-
-## Tech Stack
-
-Next.js 16 · React 19 · TypeScript · Tailwind CSS v4 · Framer Motion · Vercel
+- Available in **English**, **French**, and **Arabic**
+- Dark/Light mode
+- AI-powered chat assistant
+- Live GitHub activity stats
 
 ## Connect With Me
 
