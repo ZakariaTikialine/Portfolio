@@ -1,6 +1,6 @@
 # Zakaria Tikialine
 
-**Full-Stack Web Developer & AI/Data Science Student**
+**Front-End Developer · Fullstack & AI/Data Science**
 
 🌐 [zakaria-tikialine.tech](https://www.zakaria-tikialine.tech)
 
@@ -8,19 +8,22 @@
 
 ## About Me
 
-I'm a passionate developer from Algeria specializing in building modern web applications. Currently pursuing my studies in AI and Data Science while working on real-world projects.
+Front-End Developer at **Egor Gaming**, building web interfaces with React and Next.js. I work across the stack and pursue AI/Data Science studies on the side, turning education, civic, and product ideas into polished digital experiences.
 
 ## What I Do
 
-- **Web Development** — React, Next.js, TypeScript|JavaScript, Node.js, ExpressJs, Golang (Gin)...
-- **AI & Data Science** — Data Analysis, Machine Learning, Deep Learning, AI agents ... with Python|R|Java
+- **Front-End** — React, Next.js, TypeScript, Tailwind CSS
+- **Backend** — Node.js, Express.js, Go, REST APIs, PostgreSQL
+- **AI & Data Science** — Python, machine learning, deep learning, data analysis
 
 ## Portfolio Features
 
-- Available in **English**, **French**, and **Arabic**
-- Dark/Light mode
+- Trilingual — **English**, **French**, and **Arabic** (with RTL support)
+- Dark / light mode
 - AI-powered chat assistant
 - Live GitHub activity stats
+
+Built with Next.js 16, React 19, TypeScript, and Tailwind CSS 4.
 
 ## Connect With Me
 
@@ -29,4 +32,4 @@ I'm a passionate developer from Algeria specializing in building modern web appl
 
 ---
 
-📍 Algeria · Available for remote work
+📍 Algeria · Open to remote and front-end opportunities

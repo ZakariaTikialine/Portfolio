@@ -96,7 +96,7 @@ const Contact = () => {
             <span className="h-1 w-4 sm:w-6 bg-accent" />
           </span>
           <div>
-            <h2 className="text-3xl sm:text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</h2>
+            <h2 className="text-gradient text-3xl sm:text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</h2>
             <p className="mt-1.5 sm:mt-2 text-sm sm:text-base text-muted-foreground">{copy.description}</p>
           </div>
         </motion.div>

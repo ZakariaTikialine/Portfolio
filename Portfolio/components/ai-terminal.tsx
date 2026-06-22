@@ -176,11 +176,17 @@ const AiTerminal = () => {
         onKeyDown={(e) => e.key === "Enter" && setIsOpen(true)}
       >
         <div className="flex items-center gap-3">
-          <div className="relative flex h-9 w-9 items-center justify-center rounded-full border border-border/60 bg-accent/10 text-accent">
+          <div className="relative flex h-9 w-9 items-center justify-center rounded-full border border-accent/40 bg-linear-to-br from-accent/20 to-secondary/20 text-accent">
             <Bot size={16} />
             <span className="absolute -right-0.5 -bottom-0.5 h-2 w-2 rounded-full border-2 border-background bg-emerald-400" />
           </div>
-          <p className="text-sm font-semibold text-foreground">{copy.headerTitle}</p>
+          <div className="leading-tight">
+            <p className="text-sm font-semibold text-foreground">{copy.headerTitle}</p>
+            <p className="flex items-center gap-1 text-[11px] text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              {copy.statusLabel}
+            </p>
+          </div>
         </div>
       </div>
     )
@@ -191,7 +197,7 @@ const AiTerminal = () => {
     "fixed z-50 flex flex-col overflow-hidden border border-border/60 bg-background/98 shadow-2xl shadow-black/20 backdrop-blur-xl transition-all duration-300",
     isFullscreen
       ? "inset-4 sm:inset-8 md:inset-12 lg:inset-16 rounded-2xl"
-      : `bottom-5 ${horizontalAnchor} w-[380px] rounded-2xl ${isMinimized ? "h-auto" : "h-[520px]"}`,
+      : `bottom-5 ${horizontalAnchor} w-[calc(100vw-1.5rem)] max-w-[380px] rounded-2xl ${isMinimized ? "h-auto" : "h-[min(520px,75vh)]"}`,
   )
 
   const handleClose = () => {
@@ -221,11 +227,17 @@ const AiTerminal = () => {
       {/* Header */}
       <div className={`flex items-center justify-between bg-muted/30 px-4 py-2.5 ${isMinimized ? "" : "border-b border-border/40"}`}>
         <div className="flex items-center gap-3">
-          <div className="relative flex h-9 w-9 items-center justify-center rounded-full border border-border/60 bg-accent/10 text-accent">
+          <div className="relative flex h-9 w-9 items-center justify-center rounded-full border border-accent/40 bg-linear-to-br from-accent/20 to-secondary/20 text-accent">
             <Bot size={16} />
             <span className="absolute -right-0.5 -bottom-0.5 h-2 w-2 rounded-full border-2 border-background bg-emerald-400" />
           </div>
-          <p className="text-sm font-semibold text-foreground">{copy.headerTitle}</p>
+          <div className="leading-tight">
+            <p className="text-sm font-semibold text-foreground">{copy.headerTitle}</p>
+            <p className="flex items-center gap-1 text-[11px] text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              {copy.statusLabel}
+            </p>
+          </div>
         </div>
         <div className="flex gap-1.5">
           <button
@@ -267,7 +279,7 @@ const AiTerminal = () => {
                     <button
                       key={suggestion}
                       type="button"
-                      className="rounded-full border border-border/50 bg-muted/30 px-3 py-1.5 text-[11px] text-muted-foreground transition-all hover:border-border hover:bg-muted/50 hover:text-foreground"
+                      className="rounded-full border border-border/50 bg-muted/30 px-3 py-1.5 text-[11px] text-muted-foreground transition-all hover:border-accent/50 hover:bg-accent/10 hover:text-foreground"
                       onClick={() => {
                         setInputValue(suggestion)
                         inputRef.current?.focus()
@@ -316,7 +328,7 @@ const AiTerminal = () => {
                 type="submit"
                 size="icon"
                 disabled={isLoading || !inputValue.trim()}
-                className="h-10 w-10 rounded-xl bg-accent text-accent-foreground shadow-sm hover:bg-accent/90"
+                className="h-10 w-10 rounded-xl bg-linear-to-br from-accent to-secondary text-accent-foreground shadow-sm transition-shadow hover:shadow-[0_4px_18px_-4px] hover:shadow-accent/60"
               >
                 <Send size={15} />
               </Button>

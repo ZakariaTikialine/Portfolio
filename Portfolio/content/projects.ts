@@ -129,7 +129,7 @@ const projectsContent: Record<Locale, ProjectsContent> = {
       "Selected projects ranging from fullstack web apps to AI experiments, built with production deployment in mind.",
     tags: ["Fullstack", "AI", "Data", "Tools"],
     stats: [
-      { label: "Projects", value: "10+", detail: "Fullstack & AI" },
+      { label: "Featured", value: "3", detail: "Fullstack & AI" },
       { label: "Deployments", value: "5", detail: "Production" },
       { label: "In progress", value: "...", detail: "Research" },
     ],
@@ -145,7 +145,7 @@ const projectsContent: Record<Locale, ProjectsContent> = {
       "Projets sélectionnés allant des apps web fullstack aux expérimentations IA, pensés pour la mise en production.",
     tags: ["Fullstack", "IA", "Données", "Outils"],
     stats: [
-      { label: "Projets", value: "10+", detail: "Fullstack & IA" },
+      { label: "Sélection", value: "3", detail: "Fullstack & IA" },
       { label: "Déploiements", value: "5", detail: "Production" },
       { label: "En cours", value: "...", detail: "Recherche" },
     ],
@@ -161,7 +161,7 @@ const projectsContent: Record<Locale, ProjectsContent> = {
       "مشاريع مختارة تتراوح بين تطبيقات ويب متكاملة وتجارب ذكاء اصطناعي، جاهزة للإطلاق.",
     tags: ["متكامل", "ذكاء اصطناعي", "بيانات", "أدوات"],
     stats: [
-      { label: "المشاريع", value: "+10", detail: "متكامل وذكاء اصطناعي" },
+      { label: "مختارة", value: "3", detail: "متكامل وذكاء اصطناعي" },
       { label: "النشرات", value: "5", detail: "جاهز للإنتاج" },
       { label: "قيد العمل", value: "...", detail: "بحث" },
     ],

@@ -38,7 +38,7 @@ const Skills = () => {
               {copy.badge}
               <span className="h-1 w-4 sm:w-6 bg-accent" />
             </span>
-            <div className="text-3xl sm:text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</div>
+            <div className="text-gradient text-3xl sm:text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</div>
             <p className="text-xs sm:text-sm text-muted-foreground md:text-base">{copy.description}</p>
           </div>
           <div className="mt-4 sm:mt-6 grid gap-2 sm:gap-3 grid-cols-3">
@@ -52,7 +52,7 @@ const Skills = () => {
 
           <div className="mt-3 sm:mt-4 grid gap-3 sm:gap-4 lg:grid-cols-3">
             {copy.focusTracks.map((track) => (
-              <div key={track.title} className="rounded-xl sm:rounded-2xl border border-border/60 bg-background/85 p-3 sm:p-4 text-left shadow-lg shadow-black/5">
+              <div key={track.title} className="rounded-xl sm:rounded-2xl border border-border/60 bg-background/85 p-3 sm:p-4 text-left shadow-lg shadow-black/5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-accent/20">
                 <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.35em] text-muted-foreground">
                   {copy.focusLabel}
                   <ArrowUpRight size={10} className="sm:w-3 sm:h-3" />
@@ -136,7 +136,7 @@ const Skills = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="rounded-3xl border border-border/60 bg-background/90 p-5 shadow-lg shadow-black/5"
+            className="rounded-3xl border border-border/60 bg-background/90 p-5 shadow-lg shadow-black/5 transition-all duration-300 hover:border-accent/50 hover:shadow-accent/20"
           >
             <h3 className="text-xl font-semibold">{copy.transversalTitle}</h3>
             <p className="text-sm text-muted-foreground">{copy.transversalSubtitle}</p>
@@ -155,7 +155,7 @@ const Skills = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="rounded-3xl border border-border/60 bg-background/90 p-5 shadow-lg shadow-black/5"
+            className="rounded-3xl border border-border/60 bg-background/90 p-5 shadow-lg shadow-black/5 transition-all duration-300 hover:border-accent/50 hover:shadow-accent/20"
           >
             <h3 className="text-xl font-semibold">{copy.certificationsTitle}</h3>
             <p className="text-sm text-muted-foreground">{copy.certificationsSubtitle}</p>

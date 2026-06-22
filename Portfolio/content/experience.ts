@@ -23,6 +23,9 @@ export interface ExperienceContent {
   facts: ExperienceMetric[]
   entries: ExperienceEntry[]
   impactLabel: string
+  communityHeading: string
+  communitySubtitle: string
+  community: ExperienceEntry[]
 }
 
 const experienceContent: Record<Locale, ExperienceContent> = {
@@ -32,12 +35,52 @@ const experienceContent: Record<Locale, ExperienceContent> = {
     subheading: "Impact Track",
     description: "Each experience demonstrates fullstack development, AI exploration, and collaborative teamwork to deliver real-world impact.",
     impactLabel: "Impact",
+    communityHeading: "Community & Leadership",
+    communitySubtitle: "Volunteering, teaching, and event organization alongside my professional work.",
     facts: [
       { label: "Projects Delivered", value: "10+" },
       { label: "Club Members Impacted", value: "75+" },
       { label: "Years Active", value: "3" },
     ],
     entries: [
+      {
+        id: 5,
+        title: "Front-End Developer",
+        company: "Egor Gaming",
+        period: "May 2026 - Present",
+        description: "Building and shipping game-facing web interfaces with React, Next.js, and TypeScript as part of a product team.",
+        achievements: [
+          "Developing responsive, accessible UI components from design to production.",
+          "Collaborating with design and backend teams to ship features iteratively.",
+          "Improving performance and reusability across the frontend codebase.",
+        ],
+        metrics: [
+          { label: "Role", value: "Front-End" },
+          { label: "Stack", value: "React / Next.js" },
+          { label: "Status", value: "Current" },
+        ],
+        tags: ["Frontend", "React", "Next.js"],
+      },
+      {
+        id: 4,
+        title: "Web Development Intern",
+        company: "Naftal (DCSI)",
+        period: "July - August 2025",
+        description: "Designed and developed a full-stack web app for managing annual employee travel with automation and analytics.",
+        achievements: [
+          "Stack: Next.js, Node.js, PostgreSQL, Express.js.",
+          "Delivered incremental features using Agile methodology with weekly demos.",
+          "Digitized travel approvals and reporting dashboards.",
+        ],
+        metrics: [
+          { label: "Users", value: "2k+" },
+          { label: "Duration", value: "2 months" },
+          { label: "Methodology", value: "Agile" },
+        ],
+        tags: ["Fullstack"],
+      },
+    ],
+    community: [
       {
         id: 1,
         title: "Technical Assistant",
@@ -89,24 +132,6 @@ const experienceContent: Record<Locale, ExperienceContent> = {
         ],
         tags: ["Event", "Support"],
       },
-      {
-        id: 4,
-        title: "Web Development Intern",
-        company: "Naftal (DCSI)",
-        period: "July - August 2025",
-        description: "Designed and developed a full-stack web app for managing annual employee travel with automation and analytics.",
-        achievements: [
-          "Stack: Next.js, Node.js, PostgreSQL, Express.js.",
-          "Delivered incremental features using Agile methodology with weekly demos.",
-          "Digitized travel approvals and reporting dashboards.",
-        ],
-        metrics: [
-          { label: "Users", value: "2k+" },
-          { label: "Duration", value: "2 months" },
-          { label: "Methodology", value: "Agile" },
-        ],
-        tags: ["Fullstack"],
-      },
     ],
   },
 
@@ -116,12 +141,52 @@ const experienceContent: Record<Locale, ExperienceContent> = {
     subheading: "Parcours d'Impact",
     description: "Chaque expérience illustre le développement fullstack, l'exploration de l’IA et le travail collaboratif pour un impact concret.",
     impactLabel: "Impact",
+    communityHeading: "Communauté & Engagement",
+    communitySubtitle: "Bénévolat, enseignement et organisation d'événements en parallèle de mon activité professionnelle.",
     facts: [
       { label: "Projets livrés", value: "10+" },
       { label: "Membres impactés", value: "75+" },
       { label: "Années d'activité", value: "3" },
     ],
     entries: [
+      {
+        id: 5,
+        title: "Développeur Front-End",
+        company: "Egor Gaming",
+        period: "Mai 2026 - Présent",
+        description: "Conception et déploiement d'interfaces web orientées jeu avec React, Next.js et TypeScript au sein d'une équipe produit.",
+        achievements: [
+          "Développement de composants UI responsifs et accessibles, du design à la production.",
+          "Collaboration avec les équipes design et backend pour livrer des fonctionnalités de façon itérative.",
+          "Amélioration des performances et de la réutilisabilité du code frontend.",
+        ],
+        metrics: [
+          { label: "Rôle", value: "Front-End" },
+          { label: "Stack", value: "React / Next.js" },
+          { label: "Statut", value: "Actuel" },
+        ],
+        tags: ["Frontend", "React", "Next.js"],
+      },
+      {
+        id: 4,
+        title: "Stagiaire Développeur Web",
+        company: "Naftal (DCSI)",
+        period: "Juillet - Août 2025",
+        description: "Conception et développement d’une application fullstack pour gérer les voyages annuels des employés avec automatisation et tableaux de bord.",
+        achievements: [
+          "Stack : Next.js, Node.js, PostgreSQL, Express.js.",
+          "Livraison incrémentale des fonctionnalités via Agile avec démonstrations hebdomadaires.",
+          "Digitalisation des approbations de voyages et des rapports analytiques.",
+        ],
+        metrics: [
+          { label: "Utilisateurs", value: "2k+" },
+          { label: "Durée", value: "2 mois" },
+          { label: "Méthodologie", value: "Agile" },
+        ],
+        tags: ["Fullstack"],
+      },
+    ],
+    community: [
       {
         id: 1,
         title: "Assistant Technique",
@@ -173,24 +238,6 @@ const experienceContent: Record<Locale, ExperienceContent> = {
         ],
         tags: ["Événement", "Support"],
       },
-      {
-        id: 4,
-        title: "Stagiaire Développeur Web",
-        company: "Naftal (DCSI)",
-        period: "Juillet - Août 2025",
-        description: "Conception et développement d’une application fullstack pour gérer les voyages annuels des employés avec automatisation et tableaux de bord.",
-        achievements: [
-          "Stack : Next.js, Node.js, PostgreSQL, Express.js.",
-          "Livraison incrémentale des fonctionnalités via Agile avec démonstrations hebdomadaires.",
-          "Digitalisation des approbations de voyages et des rapports analytiques.",
-        ],
-        metrics: [
-          { label: "Utilisateurs", value: "2k+" },
-          { label: "Durée", value: "2 mois" },
-          { label: "Méthodologie", value: "Agile" },
-        ],
-        tags: ["Fullstack"],
-      },
     ],
   },
 
@@ -200,12 +247,52 @@ const experienceContent: Record<Locale, ExperienceContent> = {
     subheading: "مسار الأثر",
     description: "كل تجربة توضح تطوير الويب المتكامل، واستكشاف الذكاء الاصطناعي، والعمل الجماعي لإحداث تأثير فعلي.",
     impactLabel: "الأثر",
+    communityHeading: "المجتمع والقيادة",
+    communitySubtitle: "العمل التطوعي والتدريس وتنظيم الفعاليات إلى جانب عملي المهني.",
     facts: [
       { label: "المشاريع المنجزة", value: "10+" },
       { label: "الأعضاء المستفيدون", value: "75+" },
       { label: "سنوات النشاط", value: "3" },
     ],
     entries: [
+      {
+        id: 5,
+        title: "مطوّر واجهة أمامية",
+        company: "Egor Gaming",
+        period: "ماي 2026 - الحالي",
+        description: "بناء وإطلاق واجهات ويب موجهة للألعاب باستخدام React وNext.js وTypeScript ضمن فريق منتج.",
+        achievements: [
+          "تطوير مكونات واجهة مستخدم متجاوبة وسهلة الوصول، من التصميم إلى الإنتاج.",
+          "التعاون مع فرق التصميم والواجهة الخلفية لتسليم الميزات بشكل تدريجي.",
+          "تحسين الأداء وقابلية إعادة استخدام كود الواجهة الأمامية.",
+        ],
+        metrics: [
+          { label: "الدور", value: "واجهة أمامية" },
+          { label: "التقنيات", value: "React / Next.js" },
+          { label: "الحالة", value: "حالي" },
+        ],
+        tags: ["Frontend", "React", "Next.js"],
+      },
+      {
+        id: 4,
+        title: "متدرب مطوّر ويب",
+        company: "Naftal (DCSI)",
+        period: "جويلية - أوت 2025",
+        description: "تصميم وتطوير تطبيق ويب متكامل لإدارة الرحلات السنوية للموظفين مع الأتمتة ولوحات تحكم تحليلية.",
+        achievements: [
+          "المكدس: Next.js، Node.js، PostgreSQL، Express.js.",
+          "تسليم تدريجي للميزات وفق منهجية Agile مع عروض أسبوعية.",
+          "رقمنة الموافقات على الرحلات ولوحات التقارير التحليلية.",
+        ],
+        metrics: [
+          { label: "المستخدمون", value: "2k+" },
+          { label: "المدة", value: "شهران" },
+          { label: "المنهجية", value: "Agile" },
+        ],
+        tags: ["Fullstack"],
+      },
+    ],
+    community: [
       {
         id: 1,
         title: "مساعد تقني",
@@ -256,24 +343,6 @@ const experienceContent: Record<Locale, ExperienceContent> = {
           { label: "الدور", value: "دعم" },
         ],
         tags: ["فعالية", "دعم"],
-      },
-      {
-        id: 4,
-        title: "متدرب مطوّر ويب",
-        company: "Naftal (DCSI)",
-        period: "جويلية - أوت 2025",
-        description: "تصميم وتطوير تطبيق ويب متكامل لإدارة الرحلات السنوية للموظفين مع الأتمتة ولوحات تحكم تحليلية.",
-        achievements: [
-          "المكدس: Next.js، Node.js، PostgreSQL، Express.js.",
-          "تسليم تدريجي للميزات وفق منهجية Agile مع عروض أسبوعية.",
-          "رقمنة الموافقات على الرحلات ولوحات التقارير التحليلية.",
-        ],
-        metrics: [
-          { label: "المستخدمون", value: "2k+" },
-          { label: "المدة", value: "شهران" },
-          { label: "المنهجية", value: "Agile" },
-        ],
-        tags: ["Fullstack"],
       },
     ],
   },

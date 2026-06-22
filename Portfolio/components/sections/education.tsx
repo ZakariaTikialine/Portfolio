@@ -28,15 +28,15 @@ export default function Education() {
                 <span className="h-1 w-4 sm:w-6 bg-accent" />
               </span>
               <div className="space-y-2 sm:space-y-3">
-                <h2 className="text-3xl sm:text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</h2>
+                <h2 className="text-gradient text-3xl sm:text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</h2>
                 <p className="text-sm sm:text-base text-muted-foreground md:text-lg">{copy.description}</p>
               </div>
             </div>
 
             <div className="grid gap-2 sm:gap-4 grid-cols-2">
               {copy.facts.map((fact) => (
-                <div key={fact.label} className="rounded-xl sm:rounded-2xl border border-border/60 bg-background/70 p-2 sm:p-4 shadow-inner shadow-black/5">
-                  <p className="text-[9px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.35em] text-muted-foreground">{fact.label}</p>
+                <div key={fact.label} className="rounded-xl sm:rounded-2xl border border-border/60 bg-background/70 p-3 sm:p-4 shadow-inner shadow-black/5 transition-colors hover:border-accent/50">
+                  <p className="text-[11px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.35em] text-muted-foreground">{fact.label}</p>
                   <p className="mt-1 sm:mt-2 text-base sm:text-xl font-semibold text-foreground">{fact.value}</p>
                 </div>
               ))}
@@ -55,7 +55,7 @@ export default function Education() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                className="relative rounded-xl sm:rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5 shadow-lg shadow-black/5 backdrop-blur-sm md:grid md:grid-cols-[auto_1fr] md:gap-6 md:p-8"
+                className="relative rounded-xl sm:rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5 shadow-lg shadow-black/5 backdrop-blur-sm transition-all duration-300 hover:border-accent/50 hover:shadow-accent/20 md:grid md:grid-cols-[auto_1fr] md:gap-6 md:p-8"
               >
                 <div className="mb-3 sm:mb-4 flex items-center gap-2 sm:gap-3 md:mb-0 md:flex-col">
                   <span className="hidden h-4 w-4 rounded-full border-4 border-background bg-accent md:block" />

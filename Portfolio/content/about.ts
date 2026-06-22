@@ -37,9 +37,9 @@ const aboutContent: Record<Locale, AboutContent> = {
     ],
     highlightsLabel: "Highlights",
     highlights: [
-      { value: "20+", detail: "Projects shipped" },
-      { value: "5+", detail: "Tech stacks used" },
-      { value: "∞", detail: "Always learning" },
+      { value: "10+", detail: "Projects shipped" },
+      { value: "6+", detail: "Tech stacks used" },
+      { value: "2026", detail: "Front-End @ Egor Gaming" },
     ],
   },
   fr: {
@@ -65,9 +65,9 @@ const aboutContent: Record<Locale, AboutContent> = {
     ],
     highlightsLabel: "Faits marquants",
     highlights: [
-      { value: "20+", detail: "Projets livrés" },
-      { value: "5+", detail: "Stacks techniques utilisées" },
-      { value: "∞", detail: "Toujours en apprentissage" },
+      { value: "10+", detail: "Projets livrés" },
+      { value: "6+", detail: "Stacks techniques utilisées" },
+      { value: "2026", detail: "Front-End @ Egor Gaming" },
     ],
   },
   ar: {
@@ -93,9 +93,9 @@ const aboutContent: Record<Locale, AboutContent> = {
     ],
     highlightsLabel: "أبرز الأرقام",
     highlights: [
-      { value: "20+", detail: "مشاريع منفذة" },
-      { value: "5+", detail: "أطر تقنية مستخدمة" },
-      { value: "∞", detail: "أتعلم باستمرار" },
+      { value: "10+", detail: "مشاريع منفذة" },
+      { value: "6+", detail: "أطر تقنية مستخدمة" },
+      { value: "2026", detail: "Front-End @ Egor Gaming" },
     ],
   },
 }

@@ -10,6 +10,7 @@ import ThemeToggle from "@/components/theme-toggle"
 import DynamicTheme from "@/components/dynamic-theme"
 import { ThemeProvider } from "@/components/theme-provider"
 import { AiTerminal, CommandPalette, NeuralBackground } from "@/components/client-components"
+import AuroraBackground from "@/components/aurora-background"
 import { locales, type Locale } from "@/i18n"
 import "@/app/globals.css"
 
@@ -75,6 +76,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
 
             <div className="relative min-h-screen text-foreground" data-locale={locale}>
               <div className="fixed inset-0 -z-10 bg-linear-to-br from-accent/5 via-transparent to-secondary/5" />
+              <AuroraBackground />
 
               <SidebarNav />
 
@@ -90,9 +92,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
               </main>
 
               <CommandPalette />
-              <div className="hidden lg:block">
-                <AiTerminal />
-              </div>
+              <AiTerminal />
             </div>
           </NextIntlClientProvider>
 

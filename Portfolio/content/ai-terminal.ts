@@ -8,6 +8,7 @@ export interface AiResponse {
 export interface AiTerminalContent {
   introMessage: string
   headerTitle: string
+  statusLabel: string
   openLabel: string
   closeLabel: string
   minimizeLabel: string
@@ -23,8 +24,9 @@ export interface AiTerminalContent {
 
 const aiTerminalContent: Record<Locale, AiTerminalContent> = {
   en: {
-    introMessage: "Hey! I'm Zakaria's AI assistant. Ask me about skills, projects, or how I can help with your next build!",
+    introMessage: "Hey! I'm Zakaria's AI assistant. He's a Front-End Developer at Egor Gaming. Ask me about his skills, projects, or experience!",
     headerTitle: "Ask Zakaria's AI",
+    statusLabel: "Online",
     openLabel: "Open AI assistant",
     closeLabel: "Close AI assistant",
     minimizeLabel: "Minimize chat",
@@ -34,7 +36,7 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
     placeholder: "Ask about skills, projects…",
     errorMessage: "I couldn't reach the live model. Here's a quick recap instead:",
     suggestions: [
-      "Tell me about your NAFTAL internship",
+      "Tell me about your role at Egor Gaming",
       "What's your DataCamp certification?",
       "Are you available for remote work?",
     ],
@@ -44,6 +46,11 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
       "I'm happy to help! Try asking about my projects, tech stack, or availability.",
     ],
     responses: [
+      {
+        phrases: ["egor", "egor gaming", "current job", "current role", "front-end", "frontend"],
+        answer:
+          "Zakaria is currently a Front-End Developer at Egor Gaming (since May 2026), building and shipping game-facing web interfaces with React, Next.js, and TypeScript as part of a product team — developing responsive, accessible UI components and collaborating with design and backend teams.",
+      },
       {
         phrases: ["skills", "stack", "what are your skills", "technologies"],
         answer:
@@ -62,7 +69,7 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
       {
         phrases: ["experience", "work", "internship", "job"],
         answer:
-          "Currently Technical Assistant at School of AI Club (Jan 2026-Present) teaching ML/DL workshops. Previously Full Stack Web Developer Intern at NAFTAL (Jun-Jul 2025), where I built Tahwisa platform with secure REST APIs, optimized PostgreSQL schemas, and automated selection logic. Also served as Logistics Manager at Nexus Security Club.",
+          "Currently a Front-End Developer at Egor Gaming (May 2026-Present), building web interfaces with React, Next.js & TypeScript. Previously a Full Stack Web Developer Intern at NAFTAL (Jun-Jul 2025), where I built the Tahwisa platform with secure REST APIs, optimized PostgreSQL schemas, and automated selection logic. On the community side, I'm a Technical Assistant at the School of AI Club (teaching ML/DL workshops) and was Logistics Manager at Nexus Security Club.",
       },
       {
         phrases: ["naftal", "tahwisa", "internship"],
@@ -117,8 +124,9 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
     ],
   },
   fr: {
-    introMessage: "Salut ! Je suis l'assistant IA de Zakaria. Posez-moi des questions sur ses compétences, projets ou la manière dont il peut vous aider.",
+    introMessage: "Salut ! Je suis l'assistant IA de Zakaria. Il est Développeur Front-End chez Egor Gaming. Posez-moi des questions sur ses compétences, projets ou son expérience !",
     headerTitle: "Parlez à l'IA de Zakaria",
+    statusLabel: "En ligne",
     openLabel: "Ouvrir l'assistant IA",
     closeLabel: "Fermer l'assistant IA",
     minimizeLabel: "Réduire la fenêtre",
@@ -128,7 +136,7 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
     placeholder: "Demandez des infos sur les compétences, projets…",
     errorMessage: "Impossible de joindre le modèle en direct. Voici un rappel rapide :",
     suggestions: [
-      "Parle-moi de ton stage chez NAFTAL",
+      "Parle-moi de ton rôle chez Egor Gaming",
       "Quelle est ta certification DataCamp ?",
       "Es-tu disponible pour le travail à distance ?",
     ],
@@ -138,6 +146,11 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
       "Ravi d'aider ! Parlez projets, stack ou disponibilité.",
     ],
     responses: [
+      {
+        phrases: ["egor", "egor gaming", "poste actuel", "rôle actuel", "front-end", "frontend"],
+        answer:
+          "Zakaria est actuellement Développeur Front-End chez Egor Gaming (depuis mai 2026), où il conçoit et déploie des interfaces web orientées jeu avec React, Next.js et TypeScript au sein d'une équipe produit — développement de composants UI responsifs et accessibles, et collaboration avec les équipes design et backend.",
+      },
       {
         phrases: ["competences", "compétences", "skills", "stack", "technologies"],
         answer:
@@ -156,7 +169,7 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
       {
         phrases: ["expérience", "travail", "stage", "emploi"],
         answer:
-          "Actuellement Assistant Technique au School of AI Club (Jan 2026-Présent) animant des ateliers ML/DL. Précédemment Stagiaire Développeur Web Full Stack chez NAFTAL (Juin-Juil 2025), où il a construit la plateforme Tahwisa avec APIs REST sécurisées, schémas PostgreSQL optimisés et logique de sélection automatisée. Également Responsable Logistique au Nexus Security Club.",
+          "Actuellement Développeur Front-End chez Egor Gaming (Mai 2026-Présent), il livre des interfaces web avec React, Next.js et TypeScript. Précédemment Stagiaire Développeur Web Full Stack chez NAFTAL (Juin-Juil 2025), où il a construit la plateforme Tahwisa avec APIs REST sécurisées, schémas PostgreSQL optimisés et logique de sélection automatisée. Côté communauté, il est Assistant Technique au School of AI Club (ateliers ML/DL) et a été Responsable Logistique au Nexus Security Club.",
       },
       {
         phrases: ["naftal", "tahwisa", "stage"],
@@ -211,8 +224,9 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
     ],
   },
   ar: {
-    introMessage: "مرحبًا! أنا مساعد زكرياء الذكي. اسألني عن مهاراته، مشاريعه، أو كيف يمكنه دعم فكرتك القادمة.",
+    introMessage: "مرحبًا! أنا مساعد زكرياء الذكي. إنه مطوّر واجهة أمامية في Egor Gaming. اسألني عن مهاراته، مشاريعه أو خبرته!",
     headerTitle: "تحدث مع مساعد زكرياء",
+    statusLabel: "متصل",
     openLabel: "افتح المساعد الذكي",
     closeLabel: "أغلق المساعد",
     minimizeLabel: "تصغير النافذة",
@@ -222,7 +236,7 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
     placeholder: "اسأل عن المهارات أو المشاريع…",
     errorMessage: "تعذّر الاتصال بالذكاء الاصطناعي الآن. إليك ملخص سريع بدلاً من ذلك:",
     suggestions: [
-      "أخبرني عن تدريبك في نفطال",
+      "أخبرني عن دورك في Egor Gaming",
       "ما هي شهادة DataCamp الخاصة بك؟",
       "هل أنت متاح للعمل عن بُعد؟",
     ],
@@ -232,6 +246,11 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
       "يسعدني مساعدتك! جرّب السؤال عن المشاريع أو التقنيات أو التوفّر.",
     ],
     responses: [
+      {
+        phrases: ["egor", "egor gaming", "الوظيفة الحالية", "الدور الحالي", "واجهة أمامية", "front-end"],
+        answer:
+          "زكرياء حاليًا مطوّر واجهة أمامية في Egor Gaming (منذ ماي 2026)، حيث يبني ويطلق واجهات ويب موجهة للألعاب باستخدام React و Next.js و TypeScript ضمن فريق منتج — تطوير مكونات واجهة متجاوبة وسهلة الوصول والتعاون مع فرق التصميم والواجهة الخلفية.",
+      },
       {
         phrases: ["مهارات", "skills", "stack", "تقنيات"],
         answer:
@@ -250,7 +269,7 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
       {
         phrases: ["خبرة", "عمل", "تدريب", "وظيفة"],
         answer:
-          "حاليًا مساعد تقني في نادي School of AI (يناير 2026-الحالي) يقدم ورش عمل ML/DL. سابقًا متدرب مطور ويب Full Stack في NAFTAL (يونيو-يوليو 2025)، حيث بنى منصة Tahwisa مع APIs REST آمنة، مخططات PostgreSQL محسّنة ومنطق اختيار آلي. أيضًا مدير لوجستيات في نادي Nexus Security.",
+          "حاليًا مطوّر واجهة أمامية في Egor Gaming (ماي 2026-الحالي)، يبني واجهات ويب باستخدام React و Next.js و TypeScript. سابقًا متدرب مطور ويب Full Stack في NAFTAL (يونيو-يوليو 2025)، حيث بنى منصة Tahwisa مع APIs REST آمنة ومخططات PostgreSQL محسّنة ومنطق اختيار آلي. على صعيد المجتمع، هو مساعد تقني في نادي School of AI (ورش عمل ML/DL) وكان مدير لوجستيات في نادي Nexus Security.",
       },
       {
         phrases: ["نفطال", "naftal", "tahwisa", "تدريب"],

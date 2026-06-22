@@ -41,7 +41,7 @@ const Projects = () => {
             <span className="h-1 w-4 sm:w-6 bg-accent" />
           </span>
           <div>
-            <h2 className="text-3xl sm:text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</h2>
+            <h2 className="text-gradient text-3xl sm:text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</h2>
             <p className="mt-2 sm:mt-3 text-sm sm:text-base text-muted-foreground md:max-w-3xl">{copy.description}</p>
           </div>
           <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 md:justify-start">
@@ -70,7 +70,7 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="group relative overflow-hidden rounded-xl sm:rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5 shadow-xl shadow-black/10 backdrop-blur"
+              className="group relative overflow-hidden rounded-xl sm:rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5 shadow-xl shadow-black/10 backdrop-blur transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/50 hover:shadow-accent/20"
             >
               <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                 <div className="h-full w-full bg-linear-to-br from-accent/15 via-transparent to-secondary/20" />
@@ -119,16 +119,18 @@ const Projects = () => {
                       {copy.codeLabel}
                     </a>
                   </Button>
-                  <Button
-                    size="sm"
-                    className="flex-1 rounded-full bg-accent text-xs text-accent-foreground hover:bg-accent/90"
-                    asChild
-                  >
-                    <a href={project.demo} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2">
-                      <ExternalLink size={14} />
-                      {copy.demoLabel}
-                    </a>
-                  </Button>
+                  {project.demo && project.demo !== project.github ? (
+                    <Button
+                      size="sm"
+                      className="flex-1 rounded-full bg-accent text-xs text-accent-foreground hover:bg-accent/90"
+                      asChild
+                    >
+                      <a href={project.demo} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2">
+                        <ExternalLink size={14} />
+                        {copy.demoLabel}
+                      </a>
+                    </Button>
+                  ) : null}
                 </div>
               </div>
             </motion.article>

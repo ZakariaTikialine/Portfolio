@@ -171,6 +171,33 @@ html[dir="rtl"] {
   .contain-strict {
     contain: strict;
   }
+  /* Neon gradient text (cyan -> violet) */
+  .text-gradient {
+    background-image: linear-gradient(110deg, var(--accent), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Animated aurora blobs */
+  .aurora-blob {
+    will-change: transform;
+  }
+  .aurora-blob-1 {
+    animation: aurora1 20s ease-in-out infinite;
+  }
+  .aurora-blob-2 {
+    animation: aurora2 24s ease-in-out infinite;
+  }
+}
+
+@keyframes aurora1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(8%, 10%) scale(1.18); }
+}
+
+@keyframes aurora2 {
+  0%, 100% { transform: translate(0, 0) scale(1.12); }
+  50% { transform: translate(-10%, -6%) scale(1); }
 }
 
 /* Reduce motion for accessibility */
@@ -285,6 +312,19 @@ html[dir="rtl"] {
 /* RTL layout adjustments */
 [dir="rtl"] {
   direction: rtl;
+}
+
+/* Arabic: letter-spacing breaks Arabic letter-joining — neutralize it on
+   spaced (tracking-*) labels without touching the LTR locales. */
+html[dir="rtl"] [class*="tracking-"] {
+  letter-spacing: 0;
+}
+
+/* Arabic: keep Latin code tokens monospaced, but render Arabic glyphs in the
+   Arabic UI font instead of an inconsistent system fallback. */
+html[dir="rtl"] .font-mono,
+html[dir="rtl"] [class*="font-mono"] {
+  font-family: var(--font-mono), var(--font-arabic, "Noto Sans Arabic", "Segoe UI", system-ui, sans-serif);
 }
 
 [dir="rtl"] :is(.text-left, .sm\:text-left, .md\:text-left, .lg\:text-left, .xl\:text-left, .\32 xl\:text-left) {

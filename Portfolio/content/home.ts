@@ -12,6 +12,7 @@ export interface HeroContent {
   taglineLead: string
   typingLines: string[]
   description: string
+  terminalComment: string
   primaryCta: string
   stats: HeroStat[]
   focusAreas: string[]
@@ -23,11 +24,12 @@ export interface HeroContent {
 const heroContent: Record<Locale, HeroContent> = {
   en: {
     badge: "Crafting with Zakaria Tikialine",
-    name: "",
+    name: "Zakaria Tikialine",
     taglineLead: "I build and help you ship",
     typingLines: ["Smart Systems.", "Clean Code.", "Real Impact."],
     description:
       "Fullstack developer and AI/Data Science student who builds and ships education, civic, and product ideas into digital experiences with measurable impact.",
+    terminalComment: "Front-End Developer @ Egor Gaming",
     primaryCta: "View my work",
     stats: [
       { label: "Projects", value: "10+", detail: "Shipped across AI & web" },
@@ -39,18 +41,19 @@ const heroContent: Record<Locale, HeroContent> = {
       "Machine learning",
       "Deep learning & AI",
     ],
-    nowShippingTitle: "Now learning",
+    nowShippingTitle: "Currently",
     nowShippingDescription:
-      "Exploring machine learning, deep learning, and AI while shipping fullstack web apps with modern frameworks.",
+      "Front-End Developer at Egor Gaming — shipping web interfaces with React & Next.js, while exploring machine learning and AI on the side.",
     focusTitle: "Focus areas",
   },
   fr: {
     badge: "En création avec Zakaria Tikialine",
-    name: "",
+    name: "Zakaria Tikialine",
     taglineLead: "Je construis et vous aide à livrer",
     typingLines: ["Systèmes intelligents.", "Code propre.", "Impact réel."],
     description:
       "Développeur fullstack et étudiant en IA/Data Science qui conçoit et livre des idées éducatives, civiques et produits en expériences numériques à impact mesurable.",
+    terminalComment: "Développeur Front-End @ Egor Gaming",
     primaryCta: "Voir mes projets",
     stats: [
       { label: "Projets", value: "10+", detail: "Déployés en IA & web" },
@@ -62,18 +65,19 @@ const heroContent: Record<Locale, HeroContent> = {
       "Machine learning",
       "Deep learning & IA",
     ],
-    nowShippingTitle: "En apprentissage",
+    nowShippingTitle: "Actuellement",
     nowShippingDescription:
-      "Exploration du machine learning, deep learning et IA tout en livrant des apps web fullstack avec des frameworks modernes.",
+      "Développeur Front-End chez Egor Gaming — je livre des interfaces web avec React & Next.js, tout en explorant le machine learning et l'IA en parallèle.",
     focusTitle: "Axes de focus",
   },
   ar: {
     badge: "أبني مع زكرياء تيكيالين",
-    name: "",
+    name: "زكرياء تيكيالين",
     taglineLead: "أبني وأساعدك على إطلاق",
     typingLines: ["أنظمة ذكية.", "كودًا نظيفًا.", "أثرًا حقيقيًا."],
     description:
       "مطوّر ويب وطالب في الذكاء الاصطناعي وعلوم البيانات يبني ويطلق أفكار تعليمية وخدمات مدنية ومنتجات كتجارب رقمية ذات أثر ملموس.",
+    terminalComment: "مطوّر واجهة أمامية @ Egor Gaming",
     primaryCta: "استكشف أعمالي",
     stats: [
       { label: "المشاريع", value: "10+", detail: "منتجات في مجالي الويب والذكاء الاصطناعي" },
@@ -85,9 +89,9 @@ const heroContent: Record<Locale, HeroContent> = {
       "التعلم الآلي",
       "التعلم العميق والذكاء الاصطناعي",
     ],
-    nowShippingTitle: "أتعلم حالياً",
+    nowShippingTitle: "حالياً",
     nowShippingDescription:
-      "أستكشف التعلم الآلي والتعلم العميق والذكاء الاصطناعي مع بناء تطبيقات ويب متكاملة بأطر حديثة.",
+      "مطوّر واجهة أمامية في Egor Gaming — أبني واجهات ويب باستخدام React وNext.js، مع استكشاف التعلم الآلي والذكاء الاصطناعي بالتوازي.",
     focusTitle: "مسارات التركيز",
   },
 }

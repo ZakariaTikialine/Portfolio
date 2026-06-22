@@ -22,12 +22,12 @@ const Blog = () => {
             <span className="h-1 w-4 sm:w-6 bg-accent" />
           </span>
           <div>
-            <h2 className="text-3xl sm:text-4xl font-semibold">{copy.heading}</h2>
+            <h2 className="text-gradient text-3xl sm:text-4xl font-semibold">{copy.heading}</h2>
             <p className="mt-1.5 sm:mt-2 text-sm sm:text-base text-muted-foreground">{copy.description}</p>
           </div>
         </div>
 
-        <div className="rounded-xl sm:rounded-2xl border border-accent/40 bg-background/80 p-4 sm:p-5 shadow-lg shadow-black/10 backdrop-blur">
+        <div className="rounded-xl sm:rounded-2xl border border-accent/40 bg-background/80 p-4 sm:p-5 shadow-lg shadow-black/10 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-accent/20">
           <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.35em] text-accent">
             <div className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-accent animate-pulse" />
             {copy.exploringLabel}

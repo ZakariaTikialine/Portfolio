@@ -40,9 +40,9 @@ const navItems: NavItem[] = [
 ]
 
 const SECTION_LABELS = {
-  en: { nav: "Navigation", quick: "Quick actions", status: "Available for freelance" },
-  fr: { nav: "Navigation", quick: "Actions rapides", status: "Disponible en freelance" },
-  ar: { nav: "التنقل", quick: "إجراءات سريعة", status: "متاح للعمل الحر" },
+  en: { nav: "Navigation", quick: "Quick actions", status: "Open to opportunities" },
+  fr: { nav: "Navigation", quick: "Actions rapides", status: "Ouvert aux opportunités" },
+  ar: { nav: "التنقل", quick: "إجراءات سريعة", status: "منفتح على الفرص" },
 } as const
 
 export default function SidebarNav() {
@@ -127,7 +127,7 @@ export default function SidebarNav() {
             dir={isRTL ? "rtl" : "ltr"}
           >
             {/* Profile */}
-            <div className="hidden border-b border-border/40 px-6 py-7 lg:block">
+            <div className="border-b border-border/40 px-6 py-7">
               <div className="flex flex-col items-center gap-3 text-center">
                 <div className="h-16 w-16 overflow-hidden rounded-full border border-border/60 ring-2 ring-accent/50">
                   <Image 
@@ -141,8 +141,8 @@ export default function SidebarNav() {
                 </div>
                 <div className="space-y-1">
                   <p className="font-mono text-base font-semibold text-accent">&lt;Zakaria /&gt;</p>
-                  <p className="text-sm text-muted-foreground">Full-stack engineer</p>
-                  <p className="text-xs text-muted-foreground/70">Algeria · Remote</p>
+                  <p className="text-sm text-muted-foreground">Front-End Developer</p>
+                  <p className="text-xs text-muted-foreground/70">Egor Gaming · Algeria</p>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-emerald-400">
                   <span className="inline-flex h-2 w-2 rounded-full bg-emerald-400" aria-hidden />
@@ -173,7 +173,7 @@ export default function SidebarNav() {
                         >
                           {isActive && (
                             <motion.div
-                              className={`absolute ${isRTL ? "right-2" : "left-2"} w-1 h-5 my-auto rounded-full bg-accent`}
+                              className={`absolute ${isRTL ? "right-2" : "left-2"} w-1 h-5 my-auto rounded-full bg-linear-to-b from-accent to-secondary`}
                               layoutId="activeIndicator"
                               transition={{ type: "spring", stiffness: 300, damping: 30 }}
                             />
@@ -195,7 +195,7 @@ export default function SidebarNav() {
             </nav>
 
             {/* Footer */}
-            <div className="hidden space-y-4 border-t border-border/40 px-5 py-5 lg:block">
+            <div className="space-y-4 border-t border-border/40 px-5 py-5">
               <p className={`text-xs uppercase tracking-[0.25em] text-muted-foreground/70 ${navAlignmentClass}`}>
                 {labels.quick}
               </p>
@@ -209,7 +209,7 @@ export default function SidebarNav() {
               <div className="flex justify-center pt-2">
                 <SocialLinks />
               </div>
-              <p className="text-center text-xs font-mono text-muted-foreground">© 2025 ZakariaTikialine</p>
+              <p className="text-center text-xs font-mono text-muted-foreground">© {new Date().getFullYear()} ZakariaTikialine</p>
             </div>
           </motion.aside>
         )}

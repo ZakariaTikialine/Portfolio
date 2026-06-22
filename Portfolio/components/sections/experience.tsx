@@ -26,7 +26,7 @@ export default function Experience() {
               {copy.subheading}
               <span className="h-1 w-4 sm:w-6 bg-accent" />
             </span>
-            <div className="text-3xl sm:text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</div>
+            <div className="text-gradient text-3xl sm:text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</div>
             <p className="text-xs sm:text-sm text-muted-foreground md:text-base">{copy.description}</p>
           </div>
 
@@ -51,7 +51,7 @@ export default function Experience() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5 shadow-lg shadow-black/5 backdrop-blur-sm md:grid md:grid-cols-[auto_1fr] md:gap-6 md:p-8"
+                className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5 shadow-lg shadow-black/5 backdrop-blur-sm transition-all duration-300 hover:border-accent/50 hover:shadow-accent/20 md:grid md:grid-cols-[auto_1fr] md:gap-6 md:p-8"
               >
                 <div className="mb-6 flex items-center gap-4 md:mb-0 md:flex-col">
                   <span className="hidden h-4 w-4 rounded-full border-4 border-background bg-accent md:block" />
@@ -106,6 +106,51 @@ export default function Experience() {
             ))}
           </div>
         </div>
+
+        {copy.community?.length ? (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="space-y-4 sm:space-y-6"
+          >
+            <div className="space-y-2 sm:space-y-3 text-center md:text-left">
+              <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 sm:px-4 py-1 text-[10px] sm:text-[11px] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-muted-foreground">
+                {copy.communityHeading}
+                <span className="h-1 w-4 sm:w-6 bg-accent" />
+              </span>
+              <p className="text-xs sm:text-sm text-muted-foreground md:text-base">{copy.communitySubtitle}</p>
+            </div>
+
+            <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
+              {copy.community.map((item, idx) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  viewport={{ once: true }}
+                  className="flex flex-col gap-3 rounded-xl sm:rounded-2xl border border-border/60 bg-background/70 p-4 sm:p-5 shadow-sm shadow-black/5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-accent/20"
+                >
+                  <p className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-accent">{item.period}</p>
+                  <div>
+                    <h3 className="text-lg font-semibold leading-tight">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground">{item.company}</p>
+                  </div>
+                  <p className="text-sm text-foreground/80">{item.description}</p>
+                  <div className="mt-auto flex flex-wrap gap-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-accent">
+                    {item.tags.map((tag) => (
+                      <span key={tag} className="rounded-full border border-accent/40 px-2.5 py-1">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        ) : null}
       </div>
     </section>
   )

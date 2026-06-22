@@ -20,13 +20,13 @@ const About = () => {
             <span className="h-1 w-4 sm:w-6 bg-accent" />
           </span>
           <div>
-            <h2 className="text-3xl sm:text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</h2>
+            <h2 className="text-gradient text-3xl sm:text-4xl font-semibold leading-tight md:text-5xl">{copy.heading}</h2>
             <p className="mt-2 sm:mt-3 text-sm sm:text-base text-muted-foreground md:text-lg">{copy.description}</p>
           </div>
         </div>
 
         <div className="grid gap-4 sm:gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5 shadow-lg shadow-black/5 backdrop-blur-sm md:p-6">
+          <div className="rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5 shadow-lg shadow-black/5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-accent/20 md:p-6">
             <div className="space-y-4 sm:space-y-5 text-sm sm:text-base text-foreground/80 leading-relaxed">
               {copy.story.map((paragraph, idx) => (
                 <p key={idx}>{paragraph}</p>
@@ -45,7 +45,7 @@ const About = () => {
           </div>
 
           <div className="flex flex-col gap-4 sm:gap-5">
-            <div className="rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5 shadow-lg shadow-black/5 backdrop-blur-sm">
+            <div className="rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5 shadow-lg shadow-black/5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-accent/20">
               <p className="text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.25em] text-muted-foreground">{copy.principlesLabel}</p>
               <ul className="mt-3 sm:mt-4 space-y-2 sm:space-y-3 text-sm sm:text-base text-foreground/80">
                 {copy.principles.map((principle, idx) => (
@@ -59,7 +59,7 @@ const About = () => {
               </ul>
             </div>
 
-            <div className="rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5 shadow-lg shadow-black/5 backdrop-blur-sm">
+            <div className="rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5 shadow-lg shadow-black/5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-accent/20">
               <p className="text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.25em] text-muted-foreground">{copy.highlightsLabel}</p>
               <div className="mt-3 sm:mt-4 grid gap-2 sm:gap-3 grid-cols-3">
                 {copy.highlights.map((highlight) => (

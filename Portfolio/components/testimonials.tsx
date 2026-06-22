@@ -17,7 +17,7 @@ function Testimonials() {
         {copy.heading}
       </h2>
 
-      <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
+      <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
         {copy.testimonials.map((test, i) => (
           <motion.div
             key={`${test.name}-${i}`}
@@ -33,7 +33,7 @@ function Testimonials() {
               scale: 1.03,
               boxShadow: "0 8px 25px rgba(6, 182, 212, 0.25)",
             }}
-            className="relative p-4 sm:p-6 rounded-xl border border-border/20 bg-linear-to-tr from-accent/5 to-secondary/5 hover:from-accent/10 hover:to-secondary/10 transition-all duration-300 backdrop-blur-sm"
+            className="relative w-full max-w-md p-4 sm:p-6 rounded-xl border border-border/20 bg-linear-to-tr from-accent/5 to-secondary/5 hover:from-accent/10 hover:to-secondary/10 transition-all duration-300 backdrop-blur-sm"
           >
             <motion.div
               className="absolute inset-0 rounded-xl bg-accent/10 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300"
