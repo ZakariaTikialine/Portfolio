@@ -8,8 +8,8 @@ export default function CVDownloadSimple() {
     const t = useTranslations("cta")
     const handleDownload = () => {
         const link = document.createElement("a")
-        link.href = "/Zakaria_CV.pdf" // place your CV file inside /public
-        link.download = "Zakaria_CV.pdf"
+        link.href = "/ZakariaTikialineCV.pdf" // place your CV file inside /public
+        link.download = "ZakariaTikialineCV.pdf"
         link.click()
     }
 

@@ -10,7 +10,7 @@ const SYSTEM_PROMPTS: Record<Locale, string> = {
 PROFESSIONAL PROFILE:
 - Front-End Developer at Egor Gaming | Full Stack & Associate Data Scientist
 - Location: Blida, Algeria | Available for remote work
-- Contact: z_tikialine@estin.dz | +213 698 31 07 10
+- Contact: z_tikialine@estin.dz | +213 540 53 76 50
 - LinkedIn: linkedin.com/in/zakaria-tikialine | GitHub: github.com/ZakariaTikialine
 
 EDUCATION:
@@ -29,9 +29,9 @@ TECHNICAL SKILLS:
 
 PROFESSIONAL EXPERIENCE:
 1. Egor Gaming (May 2026 – Present) | Front-End Developer
-   - Building and shipping game-facing web interfaces with React, Next.js, and TypeScript as part of a product team
-   - Developing responsive, accessible UI components from design to production
-   - Collaborating with design and backend teams to ship features iteratively
+   - Builds and maintains the frontend of a live Next.js gaming platform, writing typed React components in TypeScript
+   - Reorganized the frontend from a flat components/ folder into a feature-based features/ structure for easier navigation and scaling
+   - Migrated most domains to the new structure and documented the approach for the team
 
 2. NAFTAL – Direction Centrale des Systèmes d'Information (Jun 2025 – Jul 2025) | Full Stack Web Developer Intern
    - Designed and deployed full-stack employee travel management system (Tahwisa) supporting multiple organizational centers
@@ -62,7 +62,7 @@ Guidelines: Keep answers under 4 sentences, highlight relevant experience with p
 PROFIL PROFESSIONNEL:
 - Développeur Front-End chez Egor Gaming | Full Stack & Data Scientist Associé
 - Localisation: Blida, Algérie | Disponible pour travail à distance
-- Contact: z_tikialine@estin.dz | +213 698 31 07 10
+- Contact: z_tikialine@estin.dz | +213 540 53 76 50
 - LinkedIn: linkedin.com/in/zakaria-tikialine | GitHub: github.com/ZakariaTikialine
 
 FORMATION:
@@ -81,9 +81,9 @@ COMPÉTENCES TECHNIQUES:
 
 EXPÉRIENCE PROFESSIONNELLE:
 1. Egor Gaming (Mai 2026 – Présent) | Développeur Front-End
-   - Conception et déploiement d'interfaces web orientées jeu avec React, Next.js et TypeScript au sein d'une équipe produit
-   - Développement de composants UI responsifs et accessibles, du design à la production
-   - Collaboration avec les équipes design et backend pour livrer des fonctionnalités de façon itérative
+   - Développe et maintient le frontend d'une plateforme de jeu Next.js en production, avec des composants React typés en TypeScript
+   - A réorganisé le frontend d'un dossier components/ plat vers une structure features/ par fonctionnalité, plus simple à parcourir et faire évoluer
+   - A migré la plupart des domaines vers la nouvelle structure et documenté l'approche pour l'équipe
 
 2. NAFTAL – Direction Centrale des Systèmes d'Information (Juin 2025 – Juil 2025) | Stagiaire Développeur Web Full Stack
    - Conception et déploiement du système de gestion des déplacements (Tahwisa) pour plusieurs centres organisationnels
@@ -114,7 +114,7 @@ Consignes: Maximum 4 phrases, relie les réponses à ses compétences avec exemp
 الملف المهني:
 - مطوّر واجهة أمامية في Egor Gaming | Full Stack وعالم بيانات معتمد
 - الموقع: البليدة، الجزائر | متاح للعمل عن بُعد
-- الاتصال: z_tikialine@estin.dz | 0698310710+213
+- الاتصال: z_tikialine@estin.dz | 0540537650+213
 - LinkedIn: linkedin.com/in/zakaria-tikialine | GitHub: github.com/ZakariaTikialine
 
 التعليم:
@@ -133,9 +133,9 @@ Consignes: Maximum 4 phrases, relie les réponses à ses compétences avec exemp
 
 الخبرة المهنية:
 1. Egor Gaming (ماي 2026 – الحالي) | مطوّر واجهة أمامية
-   - بناء وإطلاق واجهات ويب موجهة للألعاب باستخدام React و Next.js و TypeScript ضمن فريق منتج
-   - تطوير مكونات واجهة مستخدم متجاوبة وسهلة الوصول، من التصميم إلى الإنتاج
-   - التعاون مع فرق التصميم والواجهة الخلفية لتسليم الميزات بشكل تدريجي
+   - تطوير وصيانة واجهة منصة ألعاب مبنية على Next.js قيد التشغيل، بمكونات React مكتوبة بـ TypeScript
+   - إعادة هيكلة الواجهة الأمامية من مجلد components/ مسطّح إلى بنية features/ قائمة على الميزات
+   - نقل معظم المجالات إلى البنية الجديدة وتوثيق المنهجية للفريق
 
 2. NAFTAL – المديرية المركزية لأنظمة المعلومات (يونيو 2025 – يوليو 2025) | متدرب مطور ويب Full Stack
    - تصميم ونشر نظام إدارة تنقلات الموظفين (Tahwisa) لعدة مراكز تنظيمية

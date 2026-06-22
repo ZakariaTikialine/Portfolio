@@ -50,9 +50,9 @@ const experienceContent: Record<Locale, ExperienceContent> = {
         period: "May 2026 - Present",
         description: "Building and shipping game-facing web interfaces with React, Next.js, and TypeScript as part of a product team.",
         achievements: [
-          "Developing responsive, accessible UI components from design to production.",
-          "Collaborating with design and backend teams to ship features iteratively.",
-          "Improving performance and reusability across the frontend codebase.",
+          "Building and maintaining the frontend of a live Next.js gaming platform with typed React components in TypeScript.",
+          "Reorganized the frontend from a flat components/ folder into a feature-based features/ structure for easier navigation and scaling.",
+          "Migrated most domains to the new structure and documented the approach for the team.",
         ],
         metrics: [
           { label: "Role", value: "Front-End" },
@@ -156,9 +156,9 @@ const experienceContent: Record<Locale, ExperienceContent> = {
         period: "Mai 2026 - Présent",
         description: "Conception et déploiement d'interfaces web orientées jeu avec React, Next.js et TypeScript au sein d'une équipe produit.",
         achievements: [
-          "Développement de composants UI responsifs et accessibles, du design à la production.",
-          "Collaboration avec les équipes design et backend pour livrer des fonctionnalités de façon itérative.",
-          "Amélioration des performances et de la réutilisabilité du code frontend.",
+          "Développement et maintenance du frontend d'une plateforme de jeu Next.js en production, avec des composants React typés en TypeScript.",
+          "Réorganisation du frontend d'un dossier components/ plat vers une structure features/ par fonctionnalité, plus simple à parcourir et à faire évoluer.",
+          "Migration de la plupart des domaines vers la nouvelle structure et documentation de l'approche pour l'équipe.",
         ],
         metrics: [
           { label: "Rôle", value: "Front-End" },
@@ -262,9 +262,9 @@ const experienceContent: Record<Locale, ExperienceContent> = {
         period: "ماي 2026 - الحالي",
         description: "بناء وإطلاق واجهات ويب موجهة للألعاب باستخدام React وNext.js وTypeScript ضمن فريق منتج.",
         achievements: [
-          "تطوير مكونات واجهة مستخدم متجاوبة وسهلة الوصول، من التصميم إلى الإنتاج.",
-          "التعاون مع فرق التصميم والواجهة الخلفية لتسليم الميزات بشكل تدريجي.",
-          "تحسين الأداء وقابلية إعادة استخدام كود الواجهة الأمامية.",
+          "تطوير وصيانة واجهة منصة ألعاب مبنية على Next.js قيد التشغيل، باستخدام مكونات React مكتوبة بـ TypeScript.",
+          "إعادة هيكلة الواجهة الأمامية من مجلد components/ مسطّح إلى بنية features/ قائمة على الميزات، أسهل للتصفح والتوسّع.",
+          "نقل معظم المجالات إلى البنية الجديدة وتوثيق المنهجية للفريق.",
         ],
         metrics: [
           { label: "الدور", value: "واجهة أمامية" },

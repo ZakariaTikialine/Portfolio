@@ -49,7 +49,7 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
       {
         phrases: ["egor", "egor gaming", "current job", "current role", "front-end", "frontend"],
         answer:
-          "Zakaria is currently a Front-End Developer at Egor Gaming (since May 2026), building and shipping game-facing web interfaces with React, Next.js, and TypeScript as part of a product team — developing responsive, accessible UI components and collaborating with design and backend teams.",
+          "Zakaria is currently a Front-End Developer at Egor Gaming (since May 2026), building and maintaining the frontend of a live Next.js gaming platform with typed React components in TypeScript. He reorganized the frontend into a feature-based structure and documented the approach for the team.",
       },
       {
         phrases: ["skills", "stack", "what are your skills", "technologies"],
@@ -114,7 +114,7 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
       {
         phrases: ["contact", "email", "hire", "reach"],
         answer:
-          "Reach me at z_tikialine@estin.dz or +213 698 31 07 10. Find me on LinkedIn (linkedin.com/in/zakaria-tikialine) or GitHub (github.com/ZakariaTikialine). I'm open to fullstack development, data science projects, ML implementations, or technical consulting opportunities.",
+          "Reach me at z_tikialine@estin.dz or +213 540 53 76 50. Find me on LinkedIn (linkedin.com/in/zakaria-tikialine) or GitHub (github.com/ZakariaTikialine). I'm open to fullstack development, data science projects, ML implementations, or technical consulting opportunities.",
       },
       {
         phrases: ["work with you", "collaborate", "available", "freelance"],
@@ -149,7 +149,7 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
       {
         phrases: ["egor", "egor gaming", "poste actuel", "rôle actuel", "front-end", "frontend"],
         answer:
-          "Zakaria est actuellement Développeur Front-End chez Egor Gaming (depuis mai 2026), où il conçoit et déploie des interfaces web orientées jeu avec React, Next.js et TypeScript au sein d'une équipe produit — développement de composants UI responsifs et accessibles, et collaboration avec les équipes design et backend.",
+          "Zakaria est actuellement Développeur Front-End chez Egor Gaming (depuis mai 2026), où il développe et maintient le frontend d'une plateforme de jeu Next.js en production avec des composants React typés en TypeScript. Il a réorganisé le frontend en une structure par fonctionnalité et documenté l'approche pour l'équipe.",
       },
       {
         phrases: ["competences", "compétences", "skills", "stack", "technologies"],
@@ -214,7 +214,7 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
       {
         phrases: ["contact", "email", "embaucher", "joindre"],
         answer:
-          "Contactez-le à z_tikialine@estin.dz ou au +213 698 31 07 10. Retrouvez-le sur LinkedIn (linkedin.com/in/zakaria-tikialine) ou GitHub (github.com/ZakariaTikialine). Il est ouvert aux opportunités de développement fullstack, projets data science, implémentations ML ou conseil technique.",
+          "Contactez-le à z_tikialine@estin.dz ou au +213 540 53 76 50. Retrouvez-le sur LinkedIn (linkedin.com/in/zakaria-tikialine) ou GitHub (github.com/ZakariaTikialine). Il est ouvert aux opportunités de développement fullstack, projets data science, implémentations ML ou conseil technique.",
       },
       {
         phrases: ["travailler", "collaborer", "disponible", "freelance"],
@@ -249,7 +249,7 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
       {
         phrases: ["egor", "egor gaming", "الوظيفة الحالية", "الدور الحالي", "واجهة أمامية", "front-end"],
         answer:
-          "زكرياء حاليًا مطوّر واجهة أمامية في Egor Gaming (منذ ماي 2026)، حيث يبني ويطلق واجهات ويب موجهة للألعاب باستخدام React و Next.js و TypeScript ضمن فريق منتج — تطوير مكونات واجهة متجاوبة وسهلة الوصول والتعاون مع فرق التصميم والواجهة الخلفية.",
+          "زكرياء حاليًا مطوّر واجهة أمامية في Egor Gaming (منذ ماي 2026)، حيث يطوّر ويصون واجهة منصة ألعاب مبنية على Next.js قيد التشغيل بمكونات React مكتوبة بـ TypeScript. أعاد هيكلة الواجهة الأمامية إلى بنية قائمة على الميزات ووثّق المنهجية للفريق.",
       },
       {
         phrases: ["مهارات", "skills", "stack", "تقنيات"],
@@ -314,7 +314,7 @@ const aiTerminalContent: Record<Locale, AiTerminalContent> = {
       {
         phrases: ["اتصال", "بريد", "توظيف", "التواصل"],
         answer:
-          "تواصل معه على z_tikialine@estin.dz أو 0698310710+213. جده على LinkedIn (linkedin.com/in/zakaria-tikialine) أو GitHub (github.com/ZakariaTikialine). مفتوح لفرص التطوير fullstack ومشاريع علوم البيانات وتنفيذات ML أو الاستشارات التقنية.",
+          "تواصل معه على z_tikialine@estin.dz أو 0540537650+213. جده على LinkedIn (linkedin.com/in/zakaria-tikialine) أو GitHub (github.com/ZakariaTikialine). مفتوح لفرص التطوير fullstack ومشاريع علوم البيانات وتنفيذات ML أو الاستشارات التقنية.",
       },
       {
         phrases: ["عمل", "تعاون", "collaborate", "متاح", "freelance"],

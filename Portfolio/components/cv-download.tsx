@@ -15,8 +15,8 @@ export default function CVDownload({ className, iconOnly = false }: CVDownloadPr
   const t = useTranslations("cta")
   const handleDownload = () => {
     const link = document.createElement("a")
-    link.href = "/Zakaria_CV.pdf"
-    link.download = "Zakaria_CV.pdf"
+    link.href = "/ZakariaTikialineCV.pdf"
+    link.download = "ZakariaTikialineCV.pdf"
     link.click()
   }
 
