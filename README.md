@@ -32,4 +32,4 @@ Built with Next.js 16, React 19, TypeScript, and Tailwind CSS 4.
 
 ---
 
-📍 Algeria · Open to remote and front-end opportunities
+📍 Algeria · Open to remote and dev opportunities
