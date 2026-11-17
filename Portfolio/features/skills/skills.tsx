@@ -32,7 +32,7 @@ export function Skills({ dict }: { dict: Dictionary }) {
                 />
                 <span className="band-name flex items-baseline gap-2 text-ink">
                   <span className="font-mono font-normal text-muted tabular-nums">
-                    0{index + 1}
+                    {String(index + 1).padStart(2, "0")}
                   </span>
                   {layerNames[layer]}
                 </span>

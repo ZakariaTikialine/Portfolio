@@ -186,6 +186,27 @@ export function SuccessIcon(props: IconProps) {
   )
 }
 
+/** The assistant: a speech bubble whose lines are strata, with the trace node as the "typing" dot. */
+export function ChatIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M4.5 6.5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H11l-4.5 3.5V16.5h0a2 2 0 0 1-2-2z" />
+      <path d="M8.5 9h7M8.5 12h4" />
+      <Node x={14} y={10.5} />
+    </Icon>
+  )
+}
+
+/** Start over: a circular trace returning to its node. */
+export function ResetIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M19 12a7 7 0 1 1-2.05-4.95" />
+      <path d="M17.5 3.5v4h-4" />
+    </Icon>
+  )
+}
+
 /* Brand marks (paths from Simple Icons, CC0). */
 
 export function GitHubIcon(props: IconProps) {

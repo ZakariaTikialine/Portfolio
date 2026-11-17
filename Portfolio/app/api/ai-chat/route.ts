@@ -1,249 +1,227 @@
-import { NextResponse } from "next/server"
-import { locales, type Locale } from "@/i18n/routing"
+import { hasLocale } from "next-intl"
+import { getDictionary } from "@/content"
+import { routing, type Locale } from "@/i18n/routing"
+import { offlineAnswer } from "@/lib/assistant/fallback"
+import { screenForInjection } from "@/lib/assistant/guard"
+import { buildSystemPrompt, CLOSING_REMINDER } from "@/lib/assistant/prompt"
+import { isRateLimited } from "@/lib/assistant/rate-limit"
 
-const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
-const GROQ_MODEL = "llama-3.1-8b-instant"
+/*
+ * Security layers, outermost first:
+ *  1. Cross-site browser requests are refused (other sites can't spend this quota).
+ *  2. Body size, message count and message length are capped; text is normalized and stripped
+ *     of invisible and bidirectional-override characters that can hide instructions.
+ *  3. Per-client rate limit, keyed on the IP set by the hosting platform.
+ *  4. A prompt-injection classifier screens the conversation in parallel with the answer.
+ *  5. The system prompt holds only public facts and strict rules, repeated after the history.
+ *  6. The client renders answers without HTML and only links to allowlisted destinations.
+ */
 
-const SYSTEM_PROMPTS: Record<Locale, string> = {
-  en: `You are Zakaria Tikialine's AI assistant inside his portfolio. You speak concise, friendly English.
+const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 
-PROFESSIONAL PROFILE:
-- Front-End Developer at Egor Gaming | Full Stack & Associate Data Scientist
-- Location: Blida, Algeria | Available for remote work
-- Contact: z_tikialine@estin.dz | +213 540 53 76 50
-- LinkedIn: linkedin.com/in/zakaria-tikialine | GitHub: github.com/ZakariaTikialine
+/**
+ * Tried in order. The best free model first, then a different model family, so a model being
+ * retired upstream (which is what broke the previous assistant) never takes the feature down.
+ */
+const MODELS = [
+  { id: "openai/gpt-oss-120b", options: { reasoning_effort: "low", include_reasoning: false } },
+  { id: "qwen/qwen3.8-27b", options: { reasoning_format: "hidden" } },
+  { id: "openai/gpt-oss-20b", options: { reasoning_effort: "low", include_reasoning: false } },
+] as const
 
-EDUCATION:
-- ESTIN (École Supérieure en Sciences et Technologies de l'Informatique) - State Engineer in Computer Science, specializing in Artificial Intelligence & Data Science (Sep 2022 – 2027)
-- DataCamp Certified Associate Data Scientist (Professional Certification)
-
-TECHNICAL SKILLS:
-- Programming: Python, TypeScript, JavaScript, Golang, SQL
-- Frontend: React.js, Next.js, Tailwind CSS, HTML5, CSS3
-- Backend: Node.js, Express.js, REST APIs, WebSockets, Authentication, RBAC
-- Databases: PostgreSQL, MongoDB, Oracle
-- Machine Learning: Scikit-learn, Regression, Classification, Feature Engineering, Model Evaluation
-- Data Analysis: Pandas, NumPy, Matplotlib
-- DevOps & Tools: Git, Docker, Linux, Vercel, Railway
-- Languages: Arabic (Native), French (B2 – TCF), English (Professional)
-
-PROFESSIONAL EXPERIENCE:
-1. Egor Gaming (May 2026 – Present) | Front-End Developer
-   - Builds and maintains the frontend of a live Next.js gaming platform, writing typed React components in TypeScript
-   - Reorganized the frontend from a flat components/ folder into a feature-based features/ structure for easier navigation and scaling
-   - Migrated most domains to the new structure and documented the approach for the team
-
-2. NAFTAL – Direction Centrale des Systèmes d'Information (Jun 2025 – Jul 2025) | Full Stack Web Developer Intern
-   - Designed and deployed full-stack employee travel management system (Tahwisa) supporting multiple organizational centers
-   - Architected secure RESTful APIs with role-based access control and structured authentication
-   - Optimized PostgreSQL relational schemas for efficient querying and data consistency
-   - Developed responsive frontend using Next.js and TypeScript with clean state management
-   - Automated participant selection logic and contributed to production deployment
-
-COMMUNITY & LEADERSHIP (volunteering, not professional roles):
-- School of AI Club – Bejaia (Jan 2026 – Present) | Technical Assistant: organizing and delivering ML/Deep Learning/backend workshops and mentoring participants in hands-on Python sessions
-- Nexus Security Club – ESTIN (Aug 2024 – Aug 2025) | Logistics Manager: coordinated logistics and technical resources for cybersecurity competitions (75+ participants)
-
-KEY PROJECTS:
-1. Student Performance Prediction Model (Python, Scikit-learn)
-   - End-to-end ML pipeline with data cleaning, feature engineering, model training, and validation
-   - Exploratory data analysis using Pandas and NumPy to identify predictive factors
-   - Implemented and compared regression models (Linear Regression, Lasso) achieving R² > 0.70
-   - Applied cross-validation and error metrics (MSE) for robust performance evaluation
-
-2. Tahwisa – Employee Registration Platform (Next.js, Express.js, PostgreSQL)
-   - Secure authentication system with role-based access control
-   - Normalized relational schemas and optimized database queries
-   - Automated selection algorithms in production-ready environment
-
-Guidelines: Keep answers under 4 sentences, highlight relevant experience with practical impact, provide specific examples from projects and work experience. If users ask unrelated topics, gently redirect to Zakaria's skills, projects, or availability. Emphasize remote work capability and DataCamp certification when discussing data science topics.`,
-  fr: `Tu es l'assistant IA du portfolio de Zakaria Tikialine. Tu réponds en français clair et concis.
-
-PROFIL PROFESSIONNEL:
-- Développeur Front-End chez Egor Gaming | Full Stack & Data Scientist Associé
-- Localisation: Blida, Algérie | Disponible pour travail à distance
-- Contact: z_tikialine@estin.dz | +213 540 53 76 50
-- LinkedIn: linkedin.com/in/zakaria-tikialine | GitHub: github.com/ZakariaTikialine
-
-FORMATION:
-- ESTIN (École Supérieure en Sciences et Technologies de l'Informatique) - Ingénieur d'État en Informatique, spécialisé en Intelligence Artificielle & Data Science (Sep 2022 – 2027)
-- Certifié Associate Data Scientist par DataCamp (Certification Professionnelle)
-
-COMPÉTENCES TECHNIQUES:
-- Programmation: Python, TypeScript, JavaScript, Golang, SQL
-- Frontend: React.js, Next.js, Tailwind CSS, HTML5, CSS3
-- Backend: Node.js, Express.js, REST APIs, WebSockets, Authentication, RBAC
-- Bases de données: PostgreSQL, MongoDB, Oracle
-- Machine Learning: Scikit-learn, Régression, Classification, Feature Engineering, Évaluation de modèles
-- Analyse de données: Pandas, NumPy, Matplotlib
-- DevOps & Outils: Git, Docker, Linux, Vercel, Railway
-- Langues: Arabe (Natif), Français (B2 – TCF), Anglais (Professionnel)
-
-EXPÉRIENCE PROFESSIONNELLE:
-1. Egor Gaming (Mai 2026 – Présent) | Développeur Front-End
-   - Développe et maintient le frontend d'une plateforme de jeu Next.js en production, avec des composants React typés en TypeScript
-   - A réorganisé le frontend d'un dossier components/ plat vers une structure features/ par fonctionnalité, plus simple à parcourir et faire évoluer
-   - A migré la plupart des domaines vers la nouvelle structure et documenté l'approche pour l'équipe
-
-2. NAFTAL – Direction Centrale des Systèmes d'Information (Juin 2025 – Juil 2025) | Stagiaire Développeur Web Full Stack
-   - Conception et déploiement du système de gestion des déplacements (Tahwisa) pour plusieurs centres organisationnels
-   - Architecture d'APIs REST sécurisées avec contrôle d'accès basé sur les rôles
-   - Optimisation des schémas PostgreSQL pour requêtes efficaces et cohérence des données
-   - Développement frontend responsive avec Next.js et TypeScript
-   - Automatisation de la logique de sélection et contribution au déploiement en production
-
-COMMUNAUTÉ & ENGAGEMENT (bénévolat, pas des postes professionnels):
-- School of AI Club – Bejaia (Jan 2026 – Présent) | Assistant Technique : organisation et animation d'ateliers ML/Deep Learning/backend et mentorat lors de sessions pratiques Python
-- Nexus Security Club – ESTIN (Août 2024 – Août 2025) | Responsable Logistique : coordination logistique et ressources techniques pour compétitions cybersécurité (75+ participants)
-
-PROJETS PRINCIPAUX:
-1. Modèle de Prédiction de Performance Étudiante (Python, Scikit-learn)
-   - Pipeline ML complet avec nettoyage, feature engineering, entraînement et validation
-   - Analyse exploratoire avec Pandas et NumPy pour identifier facteurs prédictifs
-   - Implémentation de modèles de régression (Linear Regression, Lasso) atteignant R² > 0.70
-   - Application de validation croisée et métriques d'erreur (MSE) pour évaluation robuste
-
-2. Tahwisa – Plateforme d'Inscription des Employés (Next.js, Express.js, PostgreSQL)
-   - Système d'authentification sécurisé avec contrôle d'accès basé sur les rôles
-   - Schémas relationnels normalisés et requêtes optimisées
-   - Algorithmes de sélection automatisés en environnement de production
-
-Consignes: Maximum 4 phrases, relie les réponses à ses compétences avec exemples concrets de projets et expériences. Si la demande sort du cadre professionnel, ramène la conversation vers ses projets ou expertise. Souligne sa disponibilité pour le travail à distance et sa certification DataCamp.`,
-  ar: `أنت المساعد الذكي في موقع زكرياء تيكيالين. أجب بالعربية الفصحى القصيرة والواضحة.
-
-الملف المهني:
-- مطوّر واجهة أمامية في Egor Gaming | Full Stack وعالم بيانات معتمد
-- الموقع: البليدة، الجزائر | متاح للعمل عن بُعد
-- الاتصال: z_tikialine@estin.dz | 0540537650+213
-- LinkedIn: linkedin.com/in/zakaria-tikialine | GitHub: github.com/ZakariaTikialine
-
-التعليم:
-- ESTIN (المدرسة العليا لعلوم وتكنولوجيا المعلوماتية) - مهندس دولة في علوم الحاسوب، تخصص الذكاء الاصطناعي وعلوم البيانات (سبتمبر 2022 – 2027)
-- شهادة DataCamp المعتمدة كعالم بيانات مشارك (شهادة مهنية)
-
-المهارات التقنية:
-- البرمجة: Python و TypeScript و JavaScript و Golang و SQL
-- الواجهات الأمامية: React.js و Next.js و Tailwind CSS و HTML5 و CSS3
-- الخلفية: Node.js و Express.js و REST APIs و WebSockets و Authentication و RBAC
-- قواعد البيانات: PostgreSQL و MongoDB و Oracle
-- التعلم الآلي: Scikit-learn والانحدار والتصنيف وهندسة الميزات وتقييم النماذج
-- تحليل البيانات: Pandas و NumPy و Matplotlib
-- DevOps والأدوات: Git و Docker و Linux و Vercel و Railway
-- اللغات: العربية (الأم)، الفرنسية (B2 – TCF)، الإنجليزية (احترافي)
-
-الخبرة المهنية:
-1. Egor Gaming (ماي 2026 – الحالي) | مطوّر واجهة أمامية
-   - تطوير وصيانة واجهة منصة ألعاب مبنية على Next.js قيد التشغيل، بمكونات React مكتوبة بـ TypeScript
-   - إعادة هيكلة الواجهة الأمامية من مجلد components/ مسطّح إلى بنية features/ قائمة على الميزات
-   - نقل معظم المجالات إلى البنية الجديدة وتوثيق المنهجية للفريق
-
-2. NAFTAL – المديرية المركزية لأنظمة المعلومات (يونيو 2025 – يوليو 2025) | متدرب مطور ويب Full Stack
-   - تصميم ونشر نظام إدارة تنقلات الموظفين (Tahwisa) لعدة مراكز تنظيمية
-   - بناء APIs REST آمنة مع التحكم في الوصول القائم على الأدوار
-   - تحسين مخططات PostgreSQL لاستعلامات فعالة واتساق البيانات
-   - تطوير واجهة أمامية متجاوبة باستخدام Next.js و TypeScript
-   - أتمتة منطق الاختيار والمساهمة في النشر الإنتاجي
-
-المجتمع والقيادة (عمل تطوعي، وليست مناصب مهنية):
-- نادي School of AI – بجاية (يناير 2026 – الحالي) | مساعد تقني: تنظيم وتقديم ورش عمل حول التعلم الآلي والتعلم العميق وتطوير الخلفية وإرشاد المشاركين في جلسات Python عملية
-- نادي Nexus Security – ESTIN (أغسطس 2024 – أغسطس 2025) | مدير اللوجستيات: تنسيق اللوجستيات والموارد التقنية لمسابقات الأمن السيبراني (75+ مشارك)
-
-المشاريع الرئيسية:
-1. نموذج التنبؤ بأداء الطلاب (Python، Scikit-learn)
-   - خط ML متكامل مع تنظيف البيانات وهندسة الميزات والتدريب والتحقق
-   - تحليل استكشافي باستخدام Pandas و NumPy لتحديد العوامل التنبؤية
-   - تنفيذ ومقارنة نماذج الانحدار (Linear Regression، Lasso) مع تحقيق R² > 0.70
-   - تطبيق التحقق المتقاطع ومقاييس الخطأ (MSE) للتقييم القوي
-
-2. Tahwisa – منصة تسجيل الموظفين (Next.js، Express.js، PostgreSQL)
-   - نظام مصادقة آمن مع التحكم في الوصول القائم على الأدوار
-   - مخططات علائقية طبيعية واستعلامات قاعدة بيانات محسّنة
-   - خوارزميات اختيار آلية في بيئة إنتاجية جاهزة
-
-التوجيهات: اجعل الإجابة لا تتجاوز أربع جمل، اربطها بمهاراته مع أمثلة محددة من المشاريع والخبرات. إذا خرج السؤال عن السياق المهني فقم بإعادته بلطف إلى مشاريعه أو خبراته. أكد على توفره للعمل عن بُعد وشهادة DataCamp.`,
+const LIMITS = {
+  bodyBytes: 32_000,
+  messages: 10,
+  userChars: 600,
+  assistantChars: 2_000,
+  answerTokens: 450,
+  timeoutMs: 15_000,
 }
 
-const FALLBACK_LOCALE: Locale = "en"
-
-type ChatHistoryItem = {
+interface ChatMessage {
   role: "user" | "assistant"
   content: string
 }
 
-function resolveLocale(locale?: string): Locale {
-  if (!locale) return FALLBACK_LOCALE
-  return locales.includes(locale as Locale) ? (locale as Locale) : FALLBACK_LOCALE
+interface ChatRequest {
+  locale: Locale
+  messages: ChatMessage[]
 }
 
-function sanitizeHistory(history: unknown): ChatHistoryItem[] {
-  if (!Array.isArray(history)) return []
-  return history
-    .filter((item): item is ChatHistoryItem => {
-      if (typeof item !== "object" || item === null) return false
-      const candidate = item as Partial<ChatHistoryItem>
-      const validRole = candidate.role === "user" || candidate.role === "assistant"
-      return validRole && typeof candidate.content === "string"
-    })
-    .slice(-6)
+/** Zero-width, bidi-override and control characters (newline and tab are kept). */
+const HIDDEN_CHARACTERS = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F​-‏‪-‮⁠-⁤⁦-⁩﻿]/g
+
+function sanitize(text: string): string {
+  return text.normalize("NFKC").replace(HIDDEN_CHARACTERS, "").trim()
 }
 
-export async function POST(req: Request) {
-  if (!process.env.GROQ_API_KEY) {
-    return NextResponse.json({ error: "GROQ_API_KEY_NOT_CONFIGURED" }, { status: 500 })
+function parseRequest(body: unknown): ChatRequest | null {
+  if (typeof body !== "object" || body === null) return null
+  const { locale, messages } = body as Record<string, unknown>
+  if (typeof locale !== "string" || !hasLocale(routing.locales, locale)) return null
+  if (!Array.isArray(messages) || messages.length === 0 || messages.length > LIMITS.messages) {
+    return null
   }
 
-  let body: { message?: string; locale?: string; history?: ChatHistoryItem[] }
-  try {
-    body = await req.json()
-  } catch {
-    return NextResponse.json({ error: "INVALID_JSON" }, { status: 400 })
+  const parsed: ChatMessage[] = []
+  for (const message of messages) {
+    if (typeof message !== "object" || message === null) return null
+    const { role, content } = message as Record<string, unknown>
+    if ((role !== "user" && role !== "assistant") || typeof content !== "string") return null
+    const clean = sanitize(content)
+    const max = role === "user" ? LIMITS.userChars : LIMITS.assistantChars
+    if (!clean || clean.length > max) return null
+    parsed.push({ role, content: clean })
   }
+  if (parsed[parsed.length - 1]?.role !== "user") return null
+  return { locale, messages: parsed }
+}
 
-  if (!body.message || typeof body.message !== "string") {
-    return NextResponse.json({ error: "MESSAGE_REQUIRED" }, { status: 400 })
-  }
+/** The platform's own client-IP headers first: they can't be set by the visitor on Vercel. */
+function clientKey(request: Request): string {
+  return (
+    request.headers.get("x-real-ip") ||
+    request.headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() ||
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    "anonymous"
+  )
+}
 
-  const locale = resolveLocale(body.locale)
-  const history = sanitizeHistory(body.history)
+function json(status: number, error: string) {
+  return Response.json({ error }, { status, headers: { "Cache-Control": "no-store" } })
+}
 
-  try {
-    const groqResponse = await fetch(GROQ_API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+function textResponse(body: ReadableStream<Uint8Array> | string, source: string) {
+  return new Response(body, {
+    headers: {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "X-Assistant-Source": source,
+    },
+  })
+}
+
+/**
+ * Turns Groq's server-sent events into a plain text stream of answer tokens. If the model sends
+ * no text at all, the offline answer is streamed instead, so the visitor never gets a blank reply.
+ */
+function toTextStream(upstream: ReadableStream<Uint8Array>, fallbackText: string) {
+  const decoder = new TextDecoder()
+  const encoder = new TextEncoder()
+  let buffer = ""
+  let sentText = false
+
+  return upstream.pipeThrough(
+    new TransformStream<Uint8Array, Uint8Array>({
+      transform(chunk, controller) {
+        buffer += decoder.decode(chunk, { stream: true })
+        const lines = buffer.split("\n")
+        buffer = lines.pop() ?? ""
+        for (const line of lines) {
+          const data = line.startsWith("data:") ? line.slice(5).trim() : ""
+          if (!data || data === "[DONE]") continue
+          try {
+            const payload = JSON.parse(data) as {
+              choices?: { delta?: { content?: string } }[]
+            }
+            const text = payload.choices?.[0]?.delta?.content
+            if (text) {
+              sentText = true
+              controller.enqueue(encoder.encode(text))
+            }
+          } catch {
+            // Ignore keep-alive comments or partial frames; the next chunk completes them.
+          }
+        }
       },
-      body: JSON.stringify({
-        model: GROQ_MODEL,
-        temperature: 0.5,
-        max_tokens: 400,
-        messages: [
-          { role: "system", content: SYSTEM_PROMPTS[locale] ?? SYSTEM_PROMPTS[FALLBACK_LOCALE] },
-          ...history.map((item) => ({ role: item.role, content: item.content })),
-          { role: "user", content: body.message.trim() },
-        ],
-      }),
-    })
+      flush(controller) {
+        if (!sentText) controller.enqueue(encoder.encode(fallbackText))
+      },
+    }),
+  )
+}
 
-    if (!groqResponse.ok) {
-      const errorBody = await groqResponse.text()
-      console.error("Groq API error", groqResponse.status, errorBody)
-      return NextResponse.json({ error: "GROQ_COMPLETION_FAILED" }, { status: 502 })
+/** Asks each model in turn; returns the first streaming response, or null if all fail. */
+async function requestAnswer(
+  messages: { role: string; content: string }[],
+  apiKey: string,
+  signal: AbortSignal,
+): Promise<{ body: ReadableStream<Uint8Array>; model: string } | null> {
+  for (const model of MODELS) {
+    if (signal.aborted) return null
+    try {
+      const upstream = await fetch(GROQ_URL, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: model.id,
+          messages,
+          stream: true,
+          temperature: 0.3,
+          max_completion_tokens: LIMITS.answerTokens,
+          ...model.options,
+        }),
+        signal: AbortSignal.any([signal, AbortSignal.timeout(LIMITS.timeoutMs)]),
+      })
+      if (upstream.ok && upstream.body) return { body: upstream.body, model: model.id }
+      console.error(`[assistant] ${model.id} responded ${upstream.status}`)
+    } catch (error) {
+      if (signal.aborted) return null
+      console.error(`[assistant] ${model.id} failed:`, error instanceof Error ? error.name : error)
     }
-
-    const completion = (await groqResponse.json()) as {
-      choices?: Array<{ message?: { content?: string } }>
-    }
-
-    const answer = completion.choices?.[0]?.message?.content?.trim()
-
-    if (!answer) {
-      return NextResponse.json({ error: "NO_ANSWER" }, { status: 502 })
-    }
-
-    return NextResponse.json({ answer })
-  } catch (error) {
-    console.error("AI chat route error", error)
-    return NextResponse.json({ error: "AI_COMPLETION_FAILED" }, { status: 500 })
   }
+  return null
+}
+
+export async function POST(request: Request) {
+  const fetchSite = request.headers.get("sec-fetch-site")
+  if (fetchSite && fetchSite !== "same-origin") return json(403, "FORBIDDEN")
+
+  const declaredLength = Number(request.headers.get("content-length") ?? 0)
+  if (declaredLength > LIMITS.bodyBytes) return json(413, "TOO_LARGE")
+
+  let body: unknown
+  try {
+    const raw = await request.text()
+    if (raw.length > LIMITS.bodyBytes) return json(413, "TOO_LARGE")
+    body = JSON.parse(raw)
+  } catch {
+    return json(400, "INVALID_REQUEST")
+  }
+  const chat = parseRequest(body)
+  if (!chat) return json(400, "INVALID_REQUEST")
+  if (isRateLimited(clientKey(request))) return json(429, "RATE_LIMITED")
+
+  const question = chat.messages[chat.messages.length - 1]?.content ?? ""
+  const fallbackText = offlineAnswer(chat.locale, question)
+  const apiKey = process.env.GROQ_API_KEY
+  if (!apiKey || process.env.ASSISTANT_OFFLINE === "1") return textResponse(fallbackText, "offline")
+
+  const messages = [
+    { role: "system", content: buildSystemPrompt(chat.locale) },
+    ...chat.messages,
+    { role: "system", content: CLOSING_REMINDER },
+  ]
+
+  // Screen the whole client-supplied conversation (history can be forged) while the answer starts.
+  const controller = new AbortController()
+  const verdictPromise = screenForInjection(
+    chat.messages.map((message) => message.content),
+    apiKey,
+    controller.signal,
+  )
+  const answerPromise = requestAnswer(messages, apiKey, controller.signal)
+
+  const verdict = await verdictPromise
+  if (verdict === "injection") {
+    controller.abort()
+    void answerPromise.then((answer) => answer?.body.cancel()).catch(() => undefined)
+    return textResponse(getDictionary(chat.locale).assistant.refusal, "guard")
+  }
+  if (verdict === "unavailable") console.error("[assistant] injection screening unavailable")
+
+  const answer = await answerPromise
+  if (!answer) return textResponse(fallbackText, "offline")
+  return textResponse(toTextStream(answer.body, fallbackText), answer.model)
 }

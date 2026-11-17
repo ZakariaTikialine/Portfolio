@@ -204,6 +204,47 @@ export const fr: Dictionary = {
       error: "Le message n'a pas pu être envoyé. Écrivez-moi directement par e-mail.",
     },
   },
+  assistant: {
+    launcher: "Demander à mon assistant",
+    title: "Questions sur Zakaria",
+    subtitle: "Assistant IA · répond à partir de son CV et de ses projets",
+    intro:
+      "Bonjour ! Je peux répondre à vos questions sur l'expérience, les projets, les compétences et la disponibilité de Zakaria.",
+    suggestions: [
+      "Que fait-il chez Egor Gaming ?",
+      "Quel projet montre le mieux ses compétences full-stack ?",
+      "Quels travaux en IA et data science a-t-il réalisés ?",
+      "Est-il disponible, et comment le contacter ?",
+    ],
+    placeholder: "Posez une question…",
+    send: "Envoyer",
+    close: "Fermer l'assistant",
+    reset: "Nouvelle conversation",
+    thinking: "Réflexion…",
+    error: "Je n'ai pas pu répondre pour le moment. Vous pouvez écrire directement à Zakaria :",
+    rateLimited: "Beaucoup de questions en peu de temps. Réessayez dans une minute.",
+    offlineNote:
+      "Réponse courte tirée du contenu du site. Le modèle d'IA est indisponible pour le moment.",
+    disclaimer: "L'IA peut se tromper. Le CV fait référence.",
+    limitReached:
+      "Cette conversation a atteint sa limite. Commencez-en une nouvelle ou écrivez à Zakaria.",
+    refusal:
+      "Je peux seulement répondre aux questions sur l'expérience, les projets, les compétences et la disponibilité de Zakaria. Que souhaitez-vous savoir ?",
+    offline: {
+      experience:
+        "Zakaria est {egorTitle} chez Egor Gaming depuis {egorStart}, sur la plateforme Next.js en production. Auparavant, il était {naftalTitle} chez NAFTAL, où il a développé Tahwisa de bout en bout.",
+      projects:
+        "Ses principaux projets : Egor Gaming (plateforme d'esport en production, frontend), Tahwisa (application full-stack pour NAFTAL), Guardly (backend Go pour des alertes d'anomalies par IA) et une étude de machine learning sur graphe. Voir la section Projets.",
+      skills: "Interface : {interface}. API : {api}. Modèle : {model}. Données : {data}.",
+      education:
+        "Il est élève ingénieur d'État en dernière année d'IA & Data Science à l'ESTIN, diplômé en juin 2027, et certifié Associate Data Scientist par DataCamp.",
+      ai: "Côté IA : une étude de graph ML avec Node2Vec (prédiction de liens, AUC 0,74), le backend Guardly pour un système de détection d'anomalies par IA, des ateliers de ML au club School of AI et la certification DataCamp Associate Data Scientist.",
+      contact:
+        "Il est ouvert aux postes à temps plein, aux stages et aux missions freelance. Basé à Blida, en Algérie, disponible à distance. E-mail : {email}.",
+      fallback:
+        "Je peux répondre aux questions sur l'expérience, les projets, les compétences, la formation et la disponibilité de Zakaria. Pour le reste, écrivez à {email}.",
+    },
+  },
   notFound: {
     title: "Cette page n'existe pas",
     body: "Le lien est peut-être obsolète, ou la page a été déplacée.",

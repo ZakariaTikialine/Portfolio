@@ -4,6 +4,7 @@ import { useEffect, useState, type FocusEvent, type PointerEvent } from "react"
 import { LAYERS, type Layer } from "@/content/types"
 import { LayerSignature } from "@/components/ui/layer-signature"
 import { cn } from "@/lib/cn"
+import { AssistantTrigger } from "@/features/assistant/assistant"
 import type { StackProjectView, StackView } from "./build-stack"
 
 const bandTone: Record<Layer, string> = {
@@ -27,7 +28,12 @@ const isMouse = (event: PointerEvent) => event.pointerType === "mouse"
 const isKeyboardFocus = (event: FocusEvent<HTMLElement>) =>
   event.currentTarget.matches(":focus-visible")
 
-export function LayerStack({ layers, projects, labels }: StackView) {
+export function LayerStack({
+  layers,
+  projects,
+  labels,
+  assistantLabel,
+}: StackView & { assistantLabel: string }) {
   const [hoverLayer, setHoverLayer] = useState<Layer | null>(null)
   const [pinnedLayer, setPinnedLayer] = useState<Layer | null>(null)
   const [hoverProject, setHoverProject] = useState<string | null>(null)
@@ -96,7 +102,9 @@ export function LayerStack({ layers, projects, labels }: StackView) {
                 )}
               >
                 <span className="band-name flex items-baseline gap-2">
-                  <span className="font-mono font-normal tabular-nums">0{index + 1}</span>
+                  <span className="font-mono font-normal tabular-nums">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   {layer.name}
                 </span>
                 <span className="text-xs whitespace-nowrap sm:order-last">{layer.count}</span>
@@ -158,6 +166,12 @@ export function LayerStack({ layers, projects, labels }: StackView) {
             </li>
           ))}
         </ul>
+        <div className="mt-3.5 flex justify-end border-t border-rule pt-3">
+          <AssistantTrigger
+            label={assistantLabel}
+            className="group inline-flex items-center gap-2 rounded-md px-1 text-sm font-medium text-accent transition-opacity hover:opacity-80"
+          />
+        </div>
       </div>
     </div>
   )

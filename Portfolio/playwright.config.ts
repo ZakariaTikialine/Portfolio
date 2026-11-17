@@ -22,5 +22,7 @@ export default defineConfig({
     url: `http://localhost:${PORT}/en`,
     reuseExistingServer: !isCI,
     timeout: 60_000,
+    // Deterministic assistant answers from site content; the live model is checked separately.
+    env: { ASSISTANT_OFFLINE: "1" },
   },
 })

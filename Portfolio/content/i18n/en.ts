@@ -204,6 +204,45 @@ export const en: Dictionary = {
       error: "The message couldn't be sent. Please email me directly instead.",
     },
   },
+  assistant: {
+    launcher: "Ask my assistant",
+    title: "Ask about Zakaria",
+    subtitle: "AI assistant · answers from his CV and projects",
+    intro:
+      "Hi! I can answer questions about Zakaria's experience, projects, skills and availability.",
+    suggestions: [
+      "What does he do at Egor Gaming?",
+      "Which project best shows his full-stack skills?",
+      "What AI and data science work has he done?",
+      "Is he available, and how can I reach him?",
+    ],
+    placeholder: "Ask a question…",
+    send: "Send",
+    close: "Close assistant",
+    reset: "New conversation",
+    thinking: "Thinking…",
+    error: "I couldn't answer just now. You can email Zakaria directly at",
+    rateLimited: "That's a lot of questions in a short time. Please try again in a minute.",
+    offlineNote: "Short answer from the site content. The AI model is unavailable right now.",
+    disclaimer: "AI can make mistakes. The CV is the reference.",
+    limitReached: "This conversation has reached its limit. Start a new one or email Zakaria.",
+    refusal:
+      "I can only help with questions about Zakaria's experience, projects, skills and availability. What would you like to know?",
+    offline: {
+      experience:
+        "Zakaria is a {egorTitle} at Egor Gaming since {egorStart}, working on the live Next.js platform. Before that he was a {naftalTitle} at NAFTAL, where he built Tahwisa end to end.",
+      projects:
+        "His main projects are Egor Gaming (live esports platform, frontend), Tahwisa (full-stack app for NAFTAL), Guardly (Go backend for AI anomaly alerts) and a graph machine-learning study. See the Work section.",
+      skills: "Interface: {interface}. API: {api}. Model: {model}. Data: {data}.",
+      education:
+        "He is a final-year State Engineer student in AI & Data Science at ESTIN, graduating in June 2027, and a DataCamp-certified Associate Data Scientist.",
+      ai: "On the AI side: a graph ML study with Node2Vec (link prediction AUC 0.74), the Guardly backend for an AI anomaly-detection system, ML workshops at the School of AI club, and the DataCamp Associate Data Scientist certification.",
+      contact:
+        "He is open to full-time roles, internships and freelance work, based in Blida, Algeria and available remotely. Email: {email}.",
+      fallback:
+        "I can answer questions about Zakaria's experience, projects, skills, education and availability. For anything else, email {email}.",
+    },
+  },
   notFound: {
     title: "This page doesn't exist",
     body: "The link may be outdated, or the page has moved.",

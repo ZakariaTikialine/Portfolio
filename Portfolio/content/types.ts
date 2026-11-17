@@ -165,6 +165,35 @@ export interface Dictionary {
       error: string
     }
   }
+  assistant: {
+    launcher: string
+    title: string
+    subtitle: string
+    intro: string
+    suggestions: string[]
+    placeholder: string
+    send: string
+    close: string
+    reset: string
+    thinking: string
+    error: string
+    rateLimited: string
+    offlineNote: string
+    disclaimer: string
+    limitReached: string
+    /** Reply when a message looks like an attempt to override the assistant's instructions. */
+    refusal: string
+    /** Answers used when the AI model is unreachable. `{name}` placeholders are filled from content. */
+    offline: {
+      experience: string
+      projects: string
+      skills: string
+      education: string
+      ai: string
+      contact: string
+      fallback: string
+    }
+  }
   notFound: {
     title: string
     body: string

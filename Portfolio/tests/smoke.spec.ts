@@ -120,6 +120,18 @@ test.describe("routing", () => {
   })
 })
 
+test.describe("security", () => {
+  test("pages send security headers", async ({ request }) => {
+    const response = await request.get("/en")
+    const headers = response.headers()
+    expect(headers["content-security-policy"]).toContain("frame-ancestors 'none'")
+    expect(headers["content-security-policy"]).toContain("object-src 'none'")
+    expect(headers["x-content-type-options"]).toBe("nosniff")
+    expect(headers["x-frame-options"]).toBe("DENY")
+    expect(headers["referrer-policy"]).toBe("strict-origin-when-cross-origin")
+  })
+})
+
 test.describe("seo", () => {
   test("sitemap, robots and preview image are served", async ({ request }) => {
     const sitemap = await request.get("/sitemap.xml")
@@ -140,5 +152,58 @@ test.describe("seo", () => {
     const jsonLd = await page.locator('script[type="application/ld+json"]').textContent()
     expect(JSON.parse(jsonLd ?? "{}")["@type"]).toBe("Person")
     await expect(page.locator('link[rel="alternate"][hreflang="ar"]')).toHaveCount(1)
+  })
+})
+
+test.describe("assistant", () => {
+  const ask = (content: string, headers: Record<string, string> = {}) => ({
+    headers: { "Content-Type": "application/json", ...headers },
+    data: { locale: "en", messages: [{ role: "user", content }] },
+  })
+
+  test("the API answers from site content", async ({ request }) => {
+    const response = await request.post("/api/ai-chat", ask("Where does he work now?"))
+    expect(response.status()).toBe(200)
+    expect(response.headers()["x-assistant-source"]).toBe("offline")
+    expect(await response.text()).toContain("Egor Gaming")
+  })
+
+  test("the API rejects malformed, oversized and cross-site requests", async ({ request }) => {
+    expect(
+      (await request.post("/api/ai-chat", { data: { locale: "en", messages: [] } })).status(),
+    ).toBe(400)
+    expect((await request.post("/api/ai-chat", ask("x".repeat(601)))).status()).toBe(400)
+    expect(
+      (
+        await request.post("/api/ai-chat", {
+          data: { locale: "de", messages: [{ role: "user", content: "hi" }] },
+        })
+      ).status(),
+    ).toBe(400)
+    expect(
+      (await request.post("/api/ai-chat", ask("hi", { "Sec-Fetch-Site": "cross-site" }))).status(),
+    ).toBe(403)
+  })
+
+  test("the API strips hidden characters and rejects oversized bodies", async ({ request }) => {
+    // Only zero-width and bidi-override characters: empty once sanitized.
+    const hidden = await request.post("/api/ai-chat", ask("​‮⁦﻿"))
+    expect(hidden.status()).toBe(400)
+    const huge = await request.post("/api/ai-chat", {
+      headers: { "Content-Type": "application/json" },
+      data: "x".repeat(40_000),
+    })
+    expect(huge.status()).toBe(413)
+  })
+
+  test("a suggested question opens a streamed answer", async ({ page }) => {
+    await page.goto("/en")
+    await page.getByRole("button", { name: "Ask my assistant" }).first().click()
+    const dialog = page.getByRole("dialog", { name: "Ask about Zakaria" })
+    await expect(dialog).toBeVisible()
+    await dialog.getByRole("button", { name: "What does he do at Egor Gaming?" }).click()
+    await expect(dialog.getByRole("log")).toContainText("Front-End Developer at Egor Gaming")
+    await page.keyboard.press("Escape")
+    await expect(dialog).toBeHidden()
   })
 })

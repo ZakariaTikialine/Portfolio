@@ -110,7 +110,7 @@ export function Hero({ locale, dict }: HeroProps) {
         </div>
 
         <div className="motion-safe:animate-rise motion-safe:[animation-delay:150ms]">
-          <LayerStack {...buildStackView(locale, dict)} />
+          <LayerStack {...buildStackView(locale, dict)} assistantLabel={dict.assistant.launcher} />
         </div>
       </div>
     </section>

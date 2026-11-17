@@ -11,6 +11,7 @@ import { siteUrl } from "@/lib/site"
 import { Footer } from "@/components/layout/footer"
 import { Header } from "@/components/layout/header"
 import { ThemeProvider } from "@/components/layout/theme-provider"
+import { Assistant } from "@/features/assistant/assistant"
 
 interface LayoutProps {
   children: ReactNode
@@ -87,6 +88,12 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
               {children}
             </main>
             <Footer locale={locale} dict={dict} />
+            <Assistant
+              locale={locale}
+              labels={dict.assistant}
+              sectionLabels={dict.nav}
+              email={profile.email}
+            />
           </NextIntlClientProvider>
         </ThemeProvider>
         {process.env.VERCEL === "1" && <Analytics />}
