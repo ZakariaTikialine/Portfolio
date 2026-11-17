@@ -4,7 +4,7 @@ import { getDictionary } from "@/content"
 import type { Locale } from "@/i18n/routing"
 import { formatMonth } from "@/lib/format"
 
-type Topic = "experience" | "projects" | "skills" | "education" | "ai" | "contact"
+type Topic = "pitch" | "experience" | "projects" | "skills" | "education" | "ai" | "contact"
 
 /**
  * Keywords per topic in the three site languages. Order matters: the first topic with a match
@@ -12,24 +12,42 @@ type Topic = "experience" | "projects" | "skills" | "education" | "ai" | "contac
  */
 const TOPIC_KEYWORDS: [Topic, string[]][] = [
   [
+    "pitch",
+    [
+      "why",
+      "hire",
+      "recommend",
+      "suggest",
+      "worth",
+      "good fit",
+      "should we",
+      "pourquoi",
+      "recruter",
+      "embaucher",
+      "recommand",
+      "conseill",
+      "لماذا",
+      "توظيف",
+      "أنصح",
+      "تنصح",
+    ],
+  ],
+  [
     "contact",
     [
       "contact",
       "email",
       "mail",
-      "hire",
       "reach",
       "available",
       "availability",
       "remote",
       "joindre",
-      "embaucher",
       "disponible",
       "disponibilité",
       "distance",
       "تواصل",
       "بريد",
-      "توظيف",
       "متاح",
       "توفر",
     ],

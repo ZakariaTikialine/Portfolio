@@ -258,7 +258,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: 4rem; /* the sticky header height */
     -webkit-text-size-adjust: 100%;
     background-color: var(--color-paper);
   }

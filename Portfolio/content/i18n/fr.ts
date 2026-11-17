@@ -211,8 +211,8 @@ export const fr: Dictionary = {
     intro:
       "Bonjour ! Je peux répondre à vos questions sur l'expérience, les projets, les compétences et la disponibilité de Zakaria.",
     suggestions: [
+      "Pourquoi le recruter ?",
       "Que fait-il chez Egor Gaming ?",
-      "Quel projet montre le mieux ses compétences full-stack ?",
       "Quels travaux en IA et data science a-t-il réalisés ?",
       "Est-il disponible, et comment le contacter ?",
     ],
@@ -231,6 +231,8 @@ export const fr: Dictionary = {
     refusal:
       "Je peux seulement répondre aux questions sur l'expérience, les projets, les compétences et la disponibilité de Zakaria. Que souhaitez-vous savoir ?",
     offline: {
+      pitch:
+        "Il livre de vrais produits de bout en bout : la plateforme Egor Gaming en production aujourd'hui, et Tahwisa, qu'il a développée et déployée dans plusieurs centres NAFTAL. Il couvre React/Next.js, les API Node.js et Go, PostgreSQL et le machine learning en Python, et termine un diplôme d'ingénieur en IA & Data Science. Le mieux est de lui écrire à {email}.",
       experience:
         "Zakaria est {egorTitle} chez Egor Gaming depuis {egorStart}, sur la plateforme Next.js en production. Auparavant, il était {naftalTitle} chez NAFTAL, où il a développé Tahwisa de bout en bout.",
       projects:

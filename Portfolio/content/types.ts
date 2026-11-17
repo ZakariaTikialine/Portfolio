@@ -185,6 +185,7 @@ export interface Dictionary {
     refusal: string
     /** Answers used when the AI model is unreachable. `{name}` placeholders are filled from content. */
     offline: {
+      pitch: string
       experience: string
       projects: string
       skills: string

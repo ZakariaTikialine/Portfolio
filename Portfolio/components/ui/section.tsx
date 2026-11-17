@@ -18,7 +18,7 @@ export function Section({ id, heading, children, className, aside }: SectionProp
     <section
       id={id}
       aria-labelledby={titleId}
-      className={cn("scroll-mt-20 py-20 md:py-28", className)}
+      className={cn("-scroll-mt-10 py-20 md:-scroll-mt-18 md:py-28", className)}
     >
       <div className="container-page">
         <div className="mb-12 flex flex-wrap items-end justify-between gap-x-10 gap-y-5 md:mb-16">

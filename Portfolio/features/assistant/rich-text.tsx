@@ -11,17 +11,21 @@ import { profile } from "@/content/profile"
 const EMAIL = profile.email.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
 
 /**
- * Bold, Markdown links (an empty target is tolerated), "[/en#work]", bare "/en#work" paths and
- * the owner's plain-text email. Paths are recovered as proper links, since models occasionally
- * slip on the format; the email becomes a mailto link.
+ * Bold, Markdown links (an empty target is tolerated), "[/en#work]", bare "/en#work" paths, bare
+ * https URLs (ending before trailing punctuation) and the owner's plain-text email. Paths and
+ * allowlisted URLs are recovered as proper links, since models occasionally slip on the format.
  */
 const INLINE = new RegExp(
-  String.raw`(\*\*[^*]+\*\*|\[[^\]]+\]\([^)\s]*\)|\[\/(?:en|fr|ar)#[a-z]+\]|(?<![\w/])\/(?:en|fr|ar)#[a-z]+|` +
+  String.raw`(\*\*[^*]+\*\*|\[[^\]]+\]\([^)\s]*\)|\[\/(?:en|fr|ar)#[a-z]+\]|(?<![\w/])\/(?:en|fr|ar)#[a-z]+|https:\/\/[^\s<>()\[\]]*[^\s<>()\[\].,;:!?'"]|` +
     EMAIL +
     ")",
   "g",
 )
 const SITE_PATH = /^\/(?:en|fr|ar)#([a-z]+)$/
+const BARE_URL = /^https:\/\/\S+$/
+
+/** "https://github.com/user/" → "github.com/user" for display. */
+const displayUrl = (href: string) => href.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "")
 
 const linkClass =
   "font-medium text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent"
@@ -89,6 +93,22 @@ function renderInline(text: string, options: InlineOptions): ReactNode[] {
       return (
         <a key={index} href={`mailto:${part}`} dir="ltr" className={linkClass}>
           {part}
+        </a>
+      )
+    }
+    if (BARE_URL.test(part)) {
+      // Only allowlisted destinations become links; anything else stays inert text.
+      if (!isSafeHref(part)) return <Fragment key={index}>{part}</Fragment>
+      return (
+        <a
+          key={index}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          dir="ltr"
+          className={linkClass}
+        >
+          {displayUrl(part)}
         </a>
       )
     }

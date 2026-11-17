@@ -211,8 +211,8 @@ export const en: Dictionary = {
     intro:
       "Hi! I can answer questions about Zakaria's experience, projects, skills and availability.",
     suggestions: [
+      "Why should we hire him?",
       "What does he do at Egor Gaming?",
-      "Which project best shows his full-stack skills?",
       "What AI and data science work has he done?",
       "Is he available, and how can I reach him?",
     ],
@@ -229,6 +229,8 @@ export const en: Dictionary = {
     refusal:
       "I can only help with questions about Zakaria's experience, projects, skills and availability. What would you like to know?",
     offline: {
+      pitch:
+        "He ships real products end to end: the live Egor Gaming platform today, and Tahwisa, which he built and deployed across NAFTAL centers. He covers React/Next.js, Node.js and Go APIs, PostgreSQL and Python machine learning, and he is finishing an AI & Data Science engineering degree. The next step is a quick email to {email}.",
       experience:
         "Zakaria is a {egorTitle} at Egor Gaming since {egorStart}, working on the live Next.js platform. Before that he was a {naftalTitle} at NAFTAL, where he built Tahwisa end to end.",
       projects:

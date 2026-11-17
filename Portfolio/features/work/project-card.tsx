@@ -21,7 +21,7 @@ export function ProjectCard({ facts, text, dict, variant = "default" }: ProjectC
     <article
       id={`project-${facts.slug}`}
       className={cn(
-        "surface group reveal scroll-mt-28 overflow-hidden rounded-2xl transition-[translate,border-color] duration-300 ease-[cubic-bezier(0.2,0.7,0.2,1)] hover:-translate-y-1 hover:border-rule-strong",
+        "surface group reveal scroll-mt-6 overflow-hidden rounded-2xl transition-[translate,border-color] duration-300 ease-[cubic-bezier(0.2,0.7,0.2,1)] hover:-translate-y-1 hover:border-rule-strong",
         hasImage && "grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]",
       )}
     >

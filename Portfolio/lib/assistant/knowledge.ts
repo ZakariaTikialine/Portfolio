@@ -1,7 +1,10 @@
 import "server-only"
-import { LAYERS, profile } from "@/content"
-import { getDictionary } from "@/content"
+import { getDictionary, LAYERS, profile } from "@/content"
+import { assistantContext } from "@/content/assistant-context"
 import { formatPeriod } from "@/lib/format"
+
+/** Non-breaking spaces keep "June 2027" together on the page; the model needs plain spaces. */
+const plainSpaces = (text: string) => text.replaceAll(" ", " ")
 
 /**
  * Everything the assistant knows, generated from the same content files the page renders.
@@ -17,7 +20,7 @@ export function buildKnowledge(): string {
     `Name: ${profile.name.latin} (Arabic: ${profile.name.arabic})`,
     `Title: ${en.hero.role}`,
     `Summary: ${en.hero.summary}`,
-    `Status: ${en.hero.status.replace(" ", " ")}. ${en.hero.availability}.`,
+    `Status: ${plainSpaces(en.hero.status)}. ${en.hero.availability}.`,
     `Location: ${en.hero.location}`,
     `Email: ${profile.email}`,
     `LinkedIn: ${profile.links.linkedin}`,
@@ -61,7 +64,7 @@ export function buildKnowledge(): string {
   lines.push(
     "",
     "EDUCATION",
-    `- ${en.education.degree}, ${en.education.field}, ${en.education.institution}, ${formatPeriod("en", profile.education.period, present)}. ${en.education.note.replace(" ", " ")}.`,
+    `- ${en.education.degree}, ${en.education.field}, ${en.education.institution}, ${formatPeriod("en", profile.education.period, present)}. ${plainSpaces(en.education.note)}.`,
     `- Certification: ${en.education.certification}, ${profile.certifications[0]?.issuer}. ${en.education.certificationNote}.`,
     "",
     "COMMUNITY",
@@ -72,6 +75,18 @@ export function buildKnowledge(): string {
       `- ${text.title}, ${item.organization}, ${formatPeriod("en", item.period, present)}: ${text.summary}`,
     )
   }
+
+  lines.push(
+    "",
+    "HOW TO PRESENT HIM",
+    `Pitch: ${assistantContext.pitch}`,
+    "Strengths:",
+    ...assistantContext.strengths.map((strength) => `  • ${strength}`),
+    `Best fit: ${assistantContext.bestFit.join("; ")}.`,
+    `Looking for: ${assistantContext.lookingFor}`,
+    "FAQ:",
+    ...assistantContext.faq.map((item) => `  • ${item.question}: ${item.answer}`),
+  )
 
   return lines.join("\n")
 }

@@ -158,7 +158,7 @@ async function requestAnswer(
           model: model.id,
           messages,
           stream: true,
-          temperature: 0.3,
+          temperature: 0.5,
           max_completion_tokens: LIMITS.answerTokens,
           ...model.options,
         }),
