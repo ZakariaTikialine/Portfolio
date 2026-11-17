@@ -166,10 +166,10 @@ export function LayerStack({
             </li>
           ))}
         </ul>
-        <div className="mt-3.5 flex justify-end border-t border-rule pt-3">
+        <div className="mt-3 flex justify-end border-t border-rule pt-1">
           <AssistantTrigger
             label={assistantLabel}
-            className="group inline-flex items-center gap-2 rounded-md px-1 text-sm font-medium text-accent transition-opacity hover:opacity-80"
+            className="group inline-flex min-h-10 items-center gap-2 rounded-md px-1 text-sm font-medium text-accent transition-opacity hover:opacity-80"
           />
         </div>
       </div>

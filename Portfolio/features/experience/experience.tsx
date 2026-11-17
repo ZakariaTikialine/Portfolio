@@ -66,10 +66,10 @@ export function Experience({ locale, dict }: ExperienceProps) {
                       <ExternalLink
                         href={url}
                         newTabLabel={a11y.opensInNewTab}
-                        className="inline-flex items-center gap-1 font-medium text-ink underline-offset-4 hover:underline"
+                        className="font-medium text-ink underline-offset-4 hover:underline"
                       >
                         {role.organization}
-                        <ArrowOutIcon className="size-3.5 rtl:-scale-x-100" aria-hidden="true" />
+                        <ArrowOutIcon className="ms-1 inline-block size-3.5 align-[-0.125em] rtl:-scale-x-100" />
                       </ExternalLink>
                     ) : (
                       <span className="font-medium text-ink">{role.organization}</span>

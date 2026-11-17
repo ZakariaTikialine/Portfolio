@@ -18,7 +18,7 @@ export function Work({ dict }: { dict: Dictionary }) {
         <ExternalLink
           href={profile.links.github}
           newTabLabel={dict.a11y.opensInNewTab}
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-colors hover:text-ink"
+          className="inline-flex min-h-10 items-center gap-1.5 text-sm font-medium text-muted transition-colors hover:text-ink"
         >
           {dict.work.moreOnGitHub}
           <ArrowOutIcon className="size-4 rtl:-scale-x-100" aria-hidden="true" />

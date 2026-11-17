@@ -86,26 +86,28 @@ export function Hero({ locale, dict }: HeroProps) {
                 aria-hidden="true"
               />
             </ButtonLink>
-            <ButtonLink
-              variant="ghost"
-              href={profile.links.github}
-              target="_blank"
-              rel="noopener"
-              aria-label={`GitHub (${a11y.opensInNewTab})`}
-              className="px-2.5"
-            >
-              <GitHubIcon className="size-[1.125rem]" />
-            </ButtonLink>
-            <ButtonLink
-              variant="ghost"
-              href={profile.links.linkedin}
-              target="_blank"
-              rel="noopener"
-              aria-label={`LinkedIn (${a11y.opensInNewTab})`}
-              className="px-2.5"
-            >
-              <LinkedInIcon className="size-[1.125rem]" />
-            </ButtonLink>
+            <div className="flex items-center">
+              <ButtonLink
+                variant="ghost"
+                href={profile.links.github}
+                target="_blank"
+                rel="noopener"
+                aria-label={`GitHub (${a11y.opensInNewTab})`}
+                className="px-2.5"
+              >
+                <GitHubIcon className="size-[1.125rem]" />
+              </ButtonLink>
+              <ButtonLink
+                variant="ghost"
+                href={profile.links.linkedin}
+                target="_blank"
+                rel="noopener"
+                aria-label={`LinkedIn (${a11y.opensInNewTab})`}
+                className="px-2.5"
+              >
+                <LinkedInIcon className="size-[1.125rem]" />
+              </ButtonLink>
+            </div>
           </div>
         </div>
 

@@ -37,10 +37,10 @@ export function Education({ locale, dict }: EducationProps) {
             <ExternalLink
               href={education.url}
               newTabLabel={a11y.opensInNewTab}
-              className="inline-flex w-fit items-center gap-1 font-medium text-ink underline-offset-4 hover:underline"
+              className="font-medium text-ink underline-offset-4 hover:underline"
             >
               {copy.institution}
-              <ArrowOutIcon className="size-3.5 shrink-0 rtl:-scale-x-100" aria-hidden="true" />
+              <ArrowOutIcon className="ms-1 inline-block size-3.5 align-[-0.125em] rtl:-scale-x-100" />
             </ExternalLink>
             <p className="text-sm">{copy.note}</p>
           </div>
@@ -63,7 +63,7 @@ export function Education({ locale, dict }: EducationProps) {
               <ExternalLink
                 href={certification.evidence}
                 newTabLabel={a11y.opensInNewTab}
-                className="inline-flex w-fit items-center gap-1.5 text-sm font-medium text-accent transition-opacity hover:opacity-80"
+                className="inline-flex min-h-10 w-fit items-center gap-1.5 text-sm font-medium text-accent transition-opacity hover:opacity-80"
               >
                 {copy.evidence}
                 <ArrowOutIcon className="size-4 rtl:-scale-x-100" aria-hidden="true" />

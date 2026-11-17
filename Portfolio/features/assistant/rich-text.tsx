@@ -7,12 +7,20 @@ import { profile } from "@/content/profile"
  * HTML. Links are limited to site paths and https URLs.
  */
 
+/** The owner's email, escaped for use inside a regular expression. */
+const EMAIL = profile.email.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+
 /**
- * Bold, Markdown links (an empty target is tolerated), "[/en#work]" and bare "/en#work" paths.
- * The last two are recovered as proper links, since models occasionally slip on the format.
+ * Bold, Markdown links (an empty target is tolerated), "[/en#work]", bare "/en#work" paths and
+ * the owner's plain-text email. Paths are recovered as proper links, since models occasionally
+ * slip on the format; the email becomes a mailto link.
  */
-const INLINE =
-  /(\*\*[^*]+\*\*|\[[^\]]+\]\([^)\s]*\)|\[\/(?:en|fr|ar)#[a-z]+\]|(?<![\w/])\/(?:en|fr|ar)#[a-z]+)/g
+const INLINE = new RegExp(
+  String.raw`(\*\*[^*]+\*\*|\[[^\]]+\]\([^)\s]*\)|\[\/(?:en|fr|ar)#[a-z]+\]|(?<![\w/])\/(?:en|fr|ar)#[a-z]+|` +
+    EMAIL +
+    ")",
+  "g",
+)
 const SITE_PATH = /^\/(?:en|fr|ar)#([a-z]+)$/
 
 const linkClass =
@@ -77,6 +85,13 @@ function renderInline(text: string, options: InlineOptions): ReactNode[] {
       )
     }
     if (SITE_PATH.test(part)) return siteLink(part, index, undefined, options)
+    if (part === profile.email) {
+      return (
+        <a key={index} href={`mailto:${part}`} dir="ltr" className={linkClass}>
+          {part}
+        </a>
+      )
+    }
 
     const link = /^\[([^\]]+)\](?:\(([^)\s]*)\))?$/.exec(part)
     if (link) {

@@ -25,12 +25,12 @@ export function Footer({ locale, dict }: FooterProps) {
           </div>
 
           <nav>
-            <ul className="grid grid-cols-2 gap-x-10 gap-y-2 text-sm sm:grid-cols-3">
+            <ul className="grid grid-cols-2 gap-x-10 text-sm sm:grid-cols-3">
               {SECTIONS.map((id) => (
                 <li key={id}>
                   <a
                     href={`/${locale}#${id}`}
-                    className="text-muted transition-colors hover:text-ink"
+                    className="inline-flex min-h-10 items-center text-muted transition-colors hover:text-ink"
                   >
                     {dict.nav[id]}
                   </a>
@@ -65,7 +65,7 @@ export function Footer({ locale, dict }: FooterProps) {
             <ExternalLink
               href={profile.links.source}
               newTabLabel={dict.a11y.opensInNewTab}
-              className="mx-2 text-sm text-muted underline-offset-4 transition-colors hover:text-ink hover:underline"
+              className="mx-2 inline-flex min-h-10 items-center text-sm text-muted underline-offset-4 transition-colors hover:text-ink hover:underline"
             >
               {dict.footer.source}
             </ExternalLink>

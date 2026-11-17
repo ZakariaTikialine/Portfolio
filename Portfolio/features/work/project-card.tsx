@@ -64,12 +64,12 @@ export function ProjectCard({ facts, text, dict, variant = "default" }: ProjectC
           ))}
         </ul>
 
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-1 text-sm font-medium">
+        <div className="flex flex-wrap items-center gap-x-5 text-sm font-medium">
           {facts.live && (
             <ExternalLink
               href={facts.live.url}
               newTabLabel={a11y.opensInNewTab}
-              className="inline-flex items-center gap-1.5 text-accent transition-opacity hover:opacity-80"
+              className="inline-flex min-h-10 items-center gap-1.5 text-accent transition-opacity hover:opacity-80"
             >
               {work.live[facts.live.kind]}
               <ArrowOutIcon className="size-4 rtl:-scale-x-100" aria-hidden="true" />
@@ -80,7 +80,7 @@ export function ProjectCard({ facts, text, dict, variant = "default" }: ProjectC
               key={repo.url}
               href={repo.url}
               newTabLabel={a11y.opensInNewTab}
-              className="inline-flex items-center gap-1.5 text-muted transition-colors hover:text-ink"
+              className="inline-flex min-h-10 items-center gap-1.5 text-muted transition-colors hover:text-ink"
             >
               <GitHubIcon className="size-3.5" />
               {work.repoKinds[repo.kind]}
