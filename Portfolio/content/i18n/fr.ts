@@ -33,6 +33,38 @@ export const fr: Dictionary = {
     ctaCv: "Télécharger le CV",
     ctaContact: "Me contacter",
   },
+  layers: {
+    interface: "Interface",
+    api: "API",
+    model: "Modèle",
+    data: "Données",
+  },
+  stack: {
+    title: "Les couches sur lesquelles je travaille",
+    hint: "Survolez ou touchez une couche pour voir où je l'ai utilisée.",
+    projectCount: { one: "# projet", other: "# projets" },
+  },
+  projects: {
+    tahwisa: {
+      title: "Tahwisa",
+      summary:
+        "Plateforme de gestion des déplacements des employés, utilisée dans plusieurs centres NAFTAL. API REST avec contrôle d'accès par rôles, schéma PostgreSQL et frontend Next.js.",
+    },
+    guardly: {
+      title: "Guardly",
+      summary:
+        "Backend Go d'un système de détection d'anomalies par IA. Il reçoit les événements du modèle, les stocke dans PostgreSQL et alerte les utilisateurs par notification push et par e-mail.",
+    },
+    "graph-ml": {
+      title: "Graph ML sur un réseau d'e-mails",
+      summary:
+        "Embeddings Node2Vec sur le réseau Email-EU-Core pour la classification des départements et la prédiction de liens (AUC 0,74).",
+    },
+    "maze-solver": {
+      title: "Maze Solver",
+      summary: "Visualiseur interactif qui compare pas à pas les algorithmes BFS, DFS et A*.",
+    },
+  },
   footer: {
     rights: "Tous droits réservés.",
     source: "Code source sur GitHub",

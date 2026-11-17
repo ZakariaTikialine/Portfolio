@@ -1,35 +1,51 @@
 # Zakaria Tikialine
 
-**Front-End Developer · Fullstack & AI/Data Science**
+**Full-Stack Developer · AI & Data Science**
 
-🌐 [zakaria-tikialine.tech](https://www.zakaria-tikialine.tech)
+Final-year State Engineering student in AI & Data Science at ESTIN, and Front-End Developer at
+[Egor Gaming](https://egorgaming.com). I build production web apps with Next.js and Node.js, and
+machine-learning pipelines in Python.
 
----
+🌐 [zakaria-tikialine.tech](https://www.zakaria-tikialine.tech) ·
+[LinkedIn](https://www.linkedin.com/in/zakaria-tikialine) ·
+[CV](Portfolio/public/ZakariaTikialineCV.pdf)
 
-## About Me
+## About this site
 
-Front-End Developer at **Egor Gaming**, building web interfaces with React and Next.js. I work across the stack and pursue AI/Data Science studies on the side, turning education, civic, and product ideas into polished digital experiences.
+The portfolio draws my skills as a cross-section of a real system: **Interface**, **API**,
+**Model** and **Data**. Each project shows which layers it touches.
 
-## What I Do
+- English, French and Arabic, with full right-to-left support
+- Light and dark themes that follow the system setting
+- Every page pre-rendered as static HTML
+- WCAG 2.2 AA checked automatically in all three languages and both themes
 
-- **Front-End** — React, Next.js, TypeScript, Tailwind CSS
-- **Backend** — Node.js, Express.js, Go, REST APIs, PostgreSQL
-- **AI & Data Science** — Python, machine learning, deep learning, data analysis
+## Stack
 
-## Portfolio Features
+Next.js 16 (App Router) · React 19 · TypeScript (strict) · Tailwind CSS 4 · next-intl ·
+Playwright with axe-core · GitHub Actions · Vercel
 
-- Trilingual — **English**, **French**, and **Arabic** (with RTL support)
-- Dark / light mode
-- AI-powered chat assistant
-- Live GitHub activity stats
+## Project structure
 
-Built with Next.js 16, React 19, TypeScript, and Tailwind CSS 4.
+```
+Portfolio/
+├─ app/[locale]/     Pages, layout and metadata per language
+├─ content/          Single source of truth
+│  ├─ profile.ts     Facts that don't change with language: dates, links, tools, layers
+│  └─ i18n/          All visitor-facing text in en, fr and ar (type-checked for parity)
+├─ features/         Page sections (hero, stack, …)
+├─ components/       Layout (header, footer, theme, language) and UI primitives
+├─ i18n/             Routing and locale configuration
+└─ tests/            Playwright smoke and accessibility tests
+```
 
-## Connect With Me
+## Development
 
-[![GitHub](https://img.shields.io/badge/GitHub-ZakariaTikialine-181717?logo=github)](https://github.com/ZakariaTikialine)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-ZakariaTikialine-0A66C2?logo=linkedin)](https://linkedin.com/in/ZakariaTikialine)
+Requires Node.js 22.12+ and pnpm 10.
 
----
-
-📍 Algeria · Open to remote and front-end opportunities
+```bash
+cd Portfolio
+pnpm install
+pnpm dev          # http://localhost:3000
+pnpm verify       # typecheck, lint, format check, build, end-to-end tests
+```

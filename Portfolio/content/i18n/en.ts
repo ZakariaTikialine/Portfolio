@@ -33,6 +33,38 @@ export const en: Dictionary = {
     ctaCv: "Download CV",
     ctaContact: "Contact me",
   },
+  layers: {
+    interface: "Interface",
+    api: "API",
+    model: "Model",
+    data: "Data",
+  },
+  stack: {
+    title: "The stack I work across",
+    hint: "Hover or tap a layer to see where I've used it.",
+    projectCount: { one: "# project", other: "# projects" },
+  },
+  projects: {
+    tahwisa: {
+      title: "Tahwisa",
+      summary:
+        "Employee travel platform used across multiple NAFTAL centers. REST API with role-based access control, PostgreSQL schema and Next.js frontend.",
+    },
+    guardly: {
+      title: "Guardly",
+      summary:
+        "Go backend for an AI anomaly-detection system. It receives model events, stores them in PostgreSQL and alerts users by push notification and email.",
+    },
+    "graph-ml": {
+      title: "Email Network Graph ML",
+      summary:
+        "Node2Vec embeddings on the Email-EU-Core network for department classification and link prediction (AUC 0.74).",
+    },
+    "maze-solver": {
+      title: "Maze Solver",
+      summary: "Interactive visualizer that compares BFS, DFS and A* pathfinding step by step.",
+    },
+  },
   footer: {
     rights: "All rights reserved.",
     source: "Source on GitHub",

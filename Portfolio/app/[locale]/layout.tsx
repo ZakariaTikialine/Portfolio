@@ -63,7 +63,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           <NextIntlClientProvider messages={null}>
             <a
               href="#main"
-              className="sr-only z-50 rounded-lg bg-ink px-4 py-2 text-paper focus:not-sr-only focus:fixed focus:start-4 focus:top-4"
+              className="sr-only z-50 rounded-lg bg-ink px-4 py-2 text-paper focus:not-sr-only focus:fixed focus:inset-s-4 focus:top-4"
             >
               {dict.a11y.skipToContent}
             </a>

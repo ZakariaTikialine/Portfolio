@@ -21,22 +21,25 @@ export const profile = {
   },
   portrait: "/professional-developer-portrait.png",
 
-  /** Tools per layer, as listed on the CV. */
+  /**
+   * Tools per layer, as listed on the CV, most important first. The hero shows the first few;
+   * the skills section shows them all.
+   */
   stack: {
-    interface: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "HTML & CSS"],
-    api: ["Node.js", "Express.js", "Go", "REST APIs", "WebSockets", "JWT", "RBAC"],
+    interface: ["React", "Next.js", "TypeScript", "Tailwind CSS", "JavaScript", "HTML & CSS"],
+    api: ["Node.js", "Express.js", "Go", "REST APIs", "RBAC", "JWT", "WebSockets"],
     model: ["Python", "scikit-learn", "Regression", "Classification", "Feature engineering"],
     data: [
       "PostgreSQL",
       "MongoDB",
-      "Oracle",
-      "SQL",
       "Pandas",
       "NumPy",
-      "Matplotlib",
       "Talend (ETL)",
+      "SQL",
+      "Oracle",
+      "Matplotlib",
     ],
-  } satisfies Record<Layer, readonly string[]>,
+  } as const satisfies Record<Layer, readonly string[]>,
 
   tooling: ["Git", "Docker", "Linux", "Vercel", "Railway"],
 
@@ -82,7 +85,7 @@ export const profile = {
       featured: false,
       repos: [{ label: "Source", url: `${GITHUB}/maze-solver-robot` }],
     },
-  ] satisfies readonly ProjectFacts[],
+  ] as const satisfies readonly ProjectFacts[],
 
   experience: [
     {
@@ -101,7 +104,7 @@ export const profile = {
       stack: ["Next.js", "TypeScript", "Express.js", "PostgreSQL"],
       project: "tahwisa",
     },
-  ] satisfies readonly RoleFacts[],
+  ] as const satisfies readonly RoleFacts[],
 
   community: [
     {

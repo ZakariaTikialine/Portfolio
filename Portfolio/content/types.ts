@@ -6,6 +6,8 @@
  * extra translation is a type error rather than a silent gap on the page.
  */
 
+import type { ProjectSlug } from "./profile"
+
 /** The four layers of the stack drawn in the hero, top to bottom. */
 export const LAYERS = ["interface", "api", "model", "data"] as const
 export type Layer = (typeof LAYERS)[number]
@@ -74,8 +76,24 @@ export interface Dictionary {
     ctaCv: string
     ctaContact: string
   }
+  layers: Record<Layer, string>
+  stack: {
+    title: string
+    hint: string
+    /** Plural forms; `#` is replaced by the number. */
+    projectCount: PluralForms
+  }
+  projects: Record<ProjectSlug, ProjectText>
   footer: {
     rights: string
     source: string
   }
 }
+
+export interface ProjectText {
+  title: string
+  summary: string
+}
+
+/** CLDR plural categories. `other` is always required; Arabic also uses zero, two, few and many. */
+export type PluralForms = Partial<Record<Intl.LDMLPluralRule, string>> & { other: string }
