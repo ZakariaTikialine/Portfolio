@@ -31,8 +31,9 @@ export function PersonJsonLd({ locale, dict }: { locale: Locale; dict: Dictionar
   return (
     <script
       type="application/ld+json"
-      // JSON.stringify output is safe once "<" is escaped, which prevents closing the script tag.
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\u003c") }}
+      // Safe once every "<" becomes the JSON escape \u003c (six characters), so the data can
+      // never close the <script> element.
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
     />
   )
 }

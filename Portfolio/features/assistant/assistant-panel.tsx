@@ -5,6 +5,7 @@ import type { Dictionary } from "@/content/types"
 import type { Locale } from "@/i18n/routing"
 import { ChatIcon, CloseIcon, ResetIcon, SendIcon } from "@/components/ui/icons"
 import { cn } from "@/lib/cn"
+import { MAX_QUESTION_CHARS } from "@/lib/assistant/schema"
 import { RichText } from "./rich-text"
 
 interface Message {
@@ -23,10 +24,11 @@ export interface AssistantPanelProps {
   onClose: () => void
 }
 
-/** Mirrors the server limits so the visitor gets a clear message instead of a rejected request. */
+/** The conversation itself lives on the server (keyed by an HttpOnly cookie); this caps the UI. */
 const MAX_USER_TURNS = 10
-const MAX_HISTORY = 10
-const MAX_QUESTION_CHARS = 600
+
+/** Forgets the server-side conversation, so the model never recalls a chat the visitor can't see. */
+const clearServerHistory = () => fetch("/api/ai-chat", { method: "DELETE" }).catch(() => undefined)
 
 let nextId = 1
 
@@ -48,6 +50,7 @@ export default function AssistantPanel({
   const limitReached = userTurns >= MAX_USER_TURNS
 
   useEffect(() => {
+    void clearServerHistory()
     inputRef.current?.focus()
     const onKey = (event: globalThis.KeyboardEvent) => {
       if (event.key === "Escape") onClose()
@@ -72,9 +75,6 @@ export default function AssistantPanel({
 
       const userMessage: Message = { id: nextId++, role: "user", content: question }
       const answerId = nextId++
-      const history = [...messages.filter((message) => !message.error), userMessage]
-        .slice(-MAX_HISTORY)
-        .map(({ role, content }) => ({ role, content: content.slice(0, 2_000) }))
 
       setMessages((current) => [
         ...current,
@@ -95,7 +95,7 @@ export default function AssistantPanel({
         const response = await fetch("/api/ai-chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ locale, messages: history }),
+          body: JSON.stringify({ locale, message: question }),
           signal: controller.signal,
         })
         if (response.status === 429) return update({ error: "rate" })
@@ -121,7 +121,7 @@ export default function AssistantPanel({
         inputRef.current?.focus()
       }
     },
-    [busy, limitReached, locale, messages],
+    [busy, limitReached, locale],
   )
 
   const submit = (event: FormEvent) => {
@@ -138,6 +138,7 @@ export default function AssistantPanel({
 
   const reset = () => {
     abortRef.current?.abort()
+    void clearServerHistory()
     setMessages([])
     setBusy(false)
     inputRef.current?.focus()

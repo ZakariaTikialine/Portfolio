@@ -10,18 +10,19 @@ import "server-only"
 const GUARD_MODEL = "meta-llama/llama-prompt-guard-2-86m"
 const GUARD_URL = "https://api.groq.com/openai/v1/chat/completions"
 const THRESHOLD = 0.9
-/** The classifier reads about 512 tokens; screen the most recent part of the conversation. */
+/** The classifier reads about 512 tokens; messages are capped well below that anyway. */
 const MAX_GUARD_CHARS = 1_800
 const TIMEOUT_MS = 2_500
 
 export type GuardVerdict = "safe" | "injection" | "unavailable"
 
+/** Screens one message: the visitor's latest. Earlier turns were screened when they were sent. */
 export async function screenForInjection(
-  texts: string[],
+  message: string,
   apiKey: string,
   signal?: AbortSignal,
 ): Promise<GuardVerdict> {
-  const input = texts.join("\n\n").slice(-MAX_GUARD_CHARS)
+  const input = message.slice(-MAX_GUARD_CHARS)
   try {
     const response = await fetch(GUARD_URL, {
       method: "POST",

@@ -1,10 +1,13 @@
 import { Fragment, type ReactNode } from "react"
 import { profile } from "@/content/profile"
+import { isAllowedHref } from "@/lib/assistant/links"
+import { stripImageMarkdown } from "@/lib/assistant/output-check"
 
 /**
  * Renders the small Markdown subset the assistant is allowed to use: paragraphs, "- " lists,
- * **bold** and [links](url). Everything else stays plain text, so model output can never inject
- * HTML. Links are limited to site paths and https URLs.
+ * **bold** and [links](url). Everything else stays plain text and React escapes it, so model
+ * output can never inject HTML. Links go only to allowlisted destinations (lib/assistant/links.ts)
+ * and open with rel="noopener noreferrer"; Markdown images are stripped.
  */
 
 /** The owner's email, escaped for use inside a regular expression. */
@@ -29,39 +32,6 @@ const displayUrl = (href: string) => href.replace(/^https:\/\/(www\.)?/, "").rep
 
 const linkClass =
   "font-medium text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent"
-
-/**
- * External destinations an answer may link to: Zakaria's own profiles and projects, all taken
- * from content. A manipulated answer therefore can't plant a link to any other site.
- */
-const ALLOWED_DESTINATIONS = [
-  profile.links.github,
-  profile.links.linkedin,
-  profile.education.url,
-  ...profile.experience.flatMap((role) => ("url" in role && role.url ? [role.url] : [])),
-  ...profile.projects.flatMap((project) =>
-    "live" in project && project.live ? [project.live.url] : [],
-  ),
-].map((url) => new URL(url))
-
-function isSafeHref(href: string): boolean {
-  // Same-site paths only; "//host" would be an external, protocol-relative URL.
-  if (href.startsWith("/")) return !href.startsWith("//")
-  if (href === `mailto:${profile.email}`) return true
-  let url: URL
-  try {
-    url = new URL(href)
-  } catch {
-    return false
-  }
-  if (url.protocol !== "https:" || url.username || url.password) return false
-  const host = url.hostname.replace(/^www\./, "")
-  return ALLOWED_DESTINATIONS.some(
-    (allowed) =>
-      host === allowed.hostname.replace(/^www\./, "") &&
-      url.pathname.toLowerCase().startsWith(allowed.pathname.toLowerCase()),
-  )
-}
 
 interface InlineOptions {
   sectionLabels: Record<string, string>
@@ -98,7 +68,7 @@ function renderInline(text: string, options: InlineOptions): ReactNode[] {
     }
     if (BARE_URL.test(part)) {
       // Only allowlisted destinations become links; anything else stays inert text.
-      if (!isSafeHref(part)) return <Fragment key={index}>{part}</Fragment>
+      if (!isAllowedHref(part)) return <Fragment key={index}>{part}</Fragment>
       return (
         <a
           key={index}
@@ -119,7 +89,7 @@ function renderInline(text: string, options: InlineOptions): ReactNode[] {
       // "[/ar#contact]()" or "[/fr#skills]": the label is the path.
       const href = rawHref || (SITE_PATH.test(label) ? label : "")
       if (SITE_PATH.test(href)) return siteLink(href, index, label, options)
-      if (!href || !isSafeHref(href)) return <Fragment key={index}>{label}</Fragment>
+      if (!href || !isAllowedHref(href)) return <Fragment key={index}>{label}</Fragment>
       const external = href.startsWith("https://") || href.startsWith("mailto:")
       return (
         <a
@@ -146,7 +116,9 @@ interface RichTextProps {
 
 export function RichText({ text, sectionLabels, onInternalLink }: RichTextProps) {
   const options: InlineOptions = { sectionLabels, onInternalLink }
-  const blocks = text.trim().split(/\n{2,}/)
+  const blocks = stripImageMarkdown(text)
+    .trim()
+    .split(/\n{2,}/)
 
   return (
     <div className="grid gap-2.5">
@@ -160,7 +132,7 @@ export function RichText({ text, sectionLabels, onInternalLink }: RichTextProps)
                 <li key={lineIndex} className="flex gap-2.5">
                   <span
                     aria-hidden="true"
-                    className="mt-[0.6em] size-1.5 shrink-0 rounded-[2px] bg-trace"
+                    className="mt-[0.6em] size-1.5 shrink-0 rounded-xs bg-trace"
                   />
                   <span>{renderInline(line.replace(/^\s*([-*•]|\d+\.)\s+/, ""), options)}</span>
                 </li>
