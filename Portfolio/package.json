@@ -34,14 +34,14 @@
     "@axe-core/playwright": "4.14.0",
     "@playwright/test": "1.65.0",
     "@tailwindcss/postcss": "4.3.5",
-    "@types/node": "22.20.5",
+    "@types/node": "26.6.6",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "eslint": "9.39.5",
+    "eslint": "10.14.0",
     "eslint-config-next": "16.4.6",
     "prettier": "3.9.10",
     "prettier-plugin-tailwindcss": "0.8.1",
     "tailwindcss": "4.3.5",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   }
 }
