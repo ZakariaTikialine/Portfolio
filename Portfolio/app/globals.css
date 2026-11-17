@@ -1,77 +1,86 @@
 @import "tailwindcss";
 
-/* Dark mode follows next-themes' data-theme attribute on <html>. */
+/* Dark mode follows next-themes' data-theme attribute on <html>. Navy is the default. */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* ----------------------------------------------------------------------------
-   Cross-Section design tokens.
-   Strata s1→s4 are the stack layers (interface → data), lightest to strongest.
-   "trace" is the only accent and always means "connected / active".
+   Cross-Section design tokens, navy edition.
+   Strata s1→s4 are the stack layers (interface → data), quietest to strongest.
+   "trace" (amber) is the only warm colour and always means "connected / active".
+   Navy is the default theme; light is the alternative.
    ------------------------------------------------------------------------- */
-:root {
-  --paper: #f3f4f7;
-  --card: #ffffff;
-  --ink: #0e1222;
-  --muted: #59607a;
-  --rule: #d9dce6;
-  --s1: #e3e6f7;
-  --s2: #c7cdf0;
-  --s3: #929ee2;
-  --s4: #3e4bbf;
-  --on-s4: #ffffff;
-  --trace: #e3992f;
-  --ok: #1f9d55;
-  --focus: #3e4bbf;
-  color-scheme: light;
-}
-
+:root,
 [data-theme="dark"] {
-  --paper: #0b0e18;
-  --card: #10141f;
-  --ink: #e9ebf4;
-  --muted: #8b92ab;
-  --rule: #1e2336;
-  --s1: #141a2c;
-  --s2: #1b2242;
-  --s3: #283266;
-  --s4: #4250c4;
+  --paper: #070d1f;
+  --paper-2: #0a1229;
+  --card: #0d1733;
+  --card-2: #121e40;
+  --ink: #e9edfa;
+  --muted: #9aa6c7;
+  --rule: #1a2650;
+  --rule-strong: #283869;
+  --s1: #111c40;
+  --s2: #172660;
+  --s3: #1f3488;
+  --s4: #2f55e0;
   --on-s4: #ffffff;
-  --trace: #f0b44e;
-  --ok: #34c272;
-  --focus: #9aa6ff;
+  --primary: #2f55e0;
+  --on-primary: #ffffff;
+  --accent: #7b96ff;
+  --trace: #f5b53f;
+  --ok: #3ddc97;
+  --focus: #8fa6ff;
+  --grid: rgb(123 150 255 / 0.07);
+  --glow: rgb(47 85 224 / 0.28);
+  --highlight: rgb(255 255 255 / 0.05);
+  --shadow: 0 30px 60px -36px rgb(0 0 0 / 0.8);
   color-scheme: dark;
 }
 
-/* Without JavaScript, still honour the system preference. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --paper: #0b0e18;
-    --card: #10141f;
-    --ink: #e9ebf4;
-    --muted: #8b92ab;
-    --rule: #1e2336;
-    --s1: #141a2c;
-    --s2: #1b2242;
-    --s3: #283266;
-    --s4: #4250c4;
-    --trace: #f0b44e;
-    --ok: #34c272;
-    --focus: #9aa6ff;
-    color-scheme: dark;
-  }
+[data-theme="light"] {
+  --paper: #f4f6fc;
+  --paper-2: #ebeff9;
+  --card: #ffffff;
+  --card-2: #f7f9fe;
+  --ink: #0a1533;
+  --muted: #4c5878;
+  --rule: #dde3f2;
+  --rule-strong: #c5cee6;
+  --s1: #e7ecfb;
+  --s2: #ccd7f6;
+  --s3: #93a8ec;
+  --s4: #1e3a8a;
+  --on-s4: #ffffff;
+  --primary: #1e3a8a;
+  --on-primary: #ffffff;
+  --accent: #2442b8;
+  --trace: #d9861a;
+  --ok: #138a55;
+  --focus: #2442b8;
+  --grid: rgb(30 58 138 / 0.07);
+  --glow: rgb(47 85 224 / 0.14);
+  --highlight: rgb(255 255 255 / 0.9);
+  --shadow: 0 30px 60px -40px rgb(10 21 51 / 0.35);
+  color-scheme: light;
 }
 
 @theme inline {
   --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
   --color-card: var(--card);
+  --color-card-2: var(--card-2);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
   --color-s1: var(--s1);
   --color-s2: var(--s2);
   --color-s3: var(--s3);
   --color-s4: var(--s4);
   --color-on-s4: var(--on-s4);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-accent: var(--accent);
   --color-trace: var(--trace);
   --color-ok: var(--ok);
   --color-focus: var(--focus);
@@ -81,14 +90,23 @@
   --font-kufi: var(--ff-kufi), var(--ff-arabic), "Segoe UI", sans-serif;
   --font-arabic: var(--ff-arabic), var(--ff-kufi), "Segoe UI", sans-serif;
 
-  --text-display: clamp(2.75rem, 1.4rem + 5.2vw, 4.75rem);
-  --text-display--line-height: 0.95;
-  --text-display--letter-spacing: -0.04em;
+  --text-display: clamp(3rem, 1.6rem + 5.6vw, 5.25rem);
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.045em;
+  --text-section: clamp(2rem, 1.35rem + 2.6vw, 3.25rem);
+  --text-section--line-height: 1;
+  --text-section--letter-spacing: -0.035em;
+
+  --shadow-lift: var(--shadow);
 }
 
 @theme {
   /* Layers settle into place bottom-up on first paint. Transform only: content is readable throughout. */
   --animate-settle: settle 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  /* Hero text rises in on load, staggered with animation-delay. */
+  --animate-rise: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  /* One amber sweep through the four layers after the stack settles: a request passing through. */
+  --animate-trace-boot: trace-boot 1.5s cubic-bezier(0.45, 0, 0.2, 1) 0.75s both;
 
   @keyframes settle {
     from {
@@ -98,13 +116,151 @@
       transform: none;
     }
   }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes trace-boot {
+    0% {
+      opacity: 1;
+      transform: scaleY(0);
+    }
+    65% {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scaleY(1);
+    }
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   Scroll-driven motion. Native CSS, no JavaScript: browsers without support
+   simply show everything at rest, and reduced-motion turns it off entirely.
+   ------------------------------------------------------------------------- */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes draw-down {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes stroke-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* Cards and blocks ease up as they enter the viewport. */
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+
+    /* The experience rail draws itself as you read down the timeline. */
+    .rail-draw {
+      transform-origin: top;
+      animation: draw-down linear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 55%;
+    }
+
+    /* The amber rule before each section label extends when the section arrives. */
+    .eyebrow-line {
+      transform-origin: left;
+      animation: grow-x linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 60%;
+    }
+
+    :dir(rtl) .eyebrow-line {
+      transform-origin: right;
+    }
+  }
+
+  /* Hero intro: children rise in one after another. The heading only slides (no fade) so the
+     largest text paints immediately and the page's load-speed score is unaffected. */
+  .rise-stagger > * {
+    animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .rise-stagger > h1 {
+    animation-name: settle;
+  }
+  .rise-stagger > :nth-child(2) {
+    animation-delay: 70ms;
+  }
+  .rise-stagger > :nth-child(3) {
+    animation-delay: 140ms;
+  }
+  .rise-stagger > :nth-child(4) {
+    animation-delay: 210ms;
+  }
+  .rise-stagger > :nth-child(5) {
+    animation-delay: 280ms;
+  }
+
+  /* The success check draws itself once. */
+  .draw {
+    stroke-dasharray: 1;
+    animation: stroke-draw 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s both;
+  }
+}
+
+/* Smooth cross-fade between pages (language switch, 404 → home) in browsers that support it. */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 220ms;
+  animation-timing-function: ease;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 5.5rem;
     -webkit-text-size-adjust: 100%;
+    background-color: var(--color-paper);
   }
 
   body {
@@ -127,20 +283,24 @@
     text-wrap: balance;
   }
 
+  p {
+    text-wrap: pretty;
+  }
+
   :lang(ar) :is(h1, h2, h3) {
     font-family: var(--font-kufi);
     letter-spacing: 0;
   }
 
   ::selection {
-    background-color: var(--color-s2);
+    background-color: var(--color-s3);
     color: var(--color-ink);
   }
 
   :focus-visible {
     outline: 2px solid var(--color-focus);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 6px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -150,7 +310,9 @@
 
     *,
     *::before,
-    *::after {
+    *::after,
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -164,7 +326,7 @@
     font-family: var(--font-mono);
     font-size: 0.6875rem;
     font-weight: 500;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--color-muted);
   }
@@ -192,10 +354,42 @@
     text-transform: none;
   }
 
+  /* Raised surface: hairline border plus a one-pixel top highlight. */
+  .surface {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-rule);
+    box-shadow:
+      inset 0 1px 0 var(--highlight),
+      var(--shadow);
+  }
+
+  /* Engineering-drawing grid behind the hero, fading out towards the edges. */
+  .blueprint {
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 56px 56px;
+    background-position: center top;
+    mask-image: radial-gradient(ellipse 80% 70% at 60% 30%, black 30%, transparent 100%);
+  }
+
+  /* Tool or tag chip. */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--color-rule);
+    border-radius: 6px;
+    padding: 0.125rem 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-ink);
+    background-color: var(--color-paper-2);
+  }
+
   .container-page {
     margin-inline: auto;
     width: 100%;
-    max-width: 72rem;
+    max-width: 74rem;
     padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
     padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
   }

@@ -1,7 +1,8 @@
-import { profile, type Dictionary } from "@/content"
+import { profile, SECTIONS, type Dictionary } from "@/content"
 import type { Locale } from "@/i18n/routing"
-import { BrandMark } from "@/components/ui/brand-mark"
-import { GitHubIcon, LinkedInIcon } from "@/components/ui/icons"
+import { ExternalLink } from "@/components/ui/external-link"
+import { ArrowUpIcon, GitHubIcon, LinkedInIcon } from "@/components/ui/icons"
+import { Logo } from "@/components/ui/logo"
 
 interface FooterProps {
   locale: Locale
@@ -11,51 +12,68 @@ interface FooterProps {
 export function Footer({ locale, dict }: FooterProps) {
   const name = locale === "ar" ? profile.name.arabic : profile.name.latin
   const year = new Date().getFullYear()
+  const iconLink =
+    "inline-flex size-9 items-center justify-center rounded-lg text-muted transition-colors hover:bg-card hover:text-ink"
 
   return (
-    <footer className="border-t border-rule">
-      <div className="container-page flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-2.5 text-sm text-muted">
-          <BrandMark />
-          <span>
-            © {year} {name}. {dict.footer.rights}
-          </span>
+    <footer className="border-t border-rule bg-paper-2">
+      <div className="container-page grid gap-10 py-12">
+        <div className="flex flex-wrap items-start justify-between gap-8">
+          <div className="grid gap-3">
+            <Logo className="text-base" />
+            <p className="max-w-xs text-sm text-muted">{dict.hero.role}</p>
+          </div>
+
+          <nav>
+            <ul className="grid grid-cols-2 gap-x-10 gap-y-2 text-sm sm:grid-cols-3">
+              {SECTIONS.map((id) => (
+                <li key={id}>
+                  <a
+                    href={`/${locale}#${id}`}
+                    className="text-muted transition-colors hover:text-ink"
+                  >
+                    {dict.nav[id]}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
 
-        <ul className="flex items-center gap-1">
-          <li>
-            <a
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-rule pt-6">
+          <p className="text-sm text-muted">
+            © {year} {name}. {dict.footer.rights}
+          </p>
+
+          <div className="flex items-center gap-1">
+            <ExternalLink
               href={profile.links.github}
-              target="_blank"
-              rel="noopener"
+              newTabLabel={dict.a11y.opensInNewTab}
+              className={iconLink}
               aria-label={`GitHub (${dict.a11y.opensInNewTab})`}
-              className="inline-flex size-9 items-center justify-center rounded-lg text-muted transition-colors hover:bg-s1 hover:text-ink"
             >
               <GitHubIcon className="size-4" />
-            </a>
-          </li>
-          <li>
-            <a
+            </ExternalLink>
+            <ExternalLink
               href={profile.links.linkedin}
-              target="_blank"
-              rel="noopener"
+              newTabLabel={dict.a11y.opensInNewTab}
+              className={iconLink}
               aria-label={`LinkedIn (${dict.a11y.opensInNewTab})`}
-              className="inline-flex size-9 items-center justify-center rounded-lg text-muted transition-colors hover:bg-s1 hover:text-ink"
             >
               <LinkedInIcon className="size-4" />
-            </a>
-          </li>
-          <li>
-            <a
+            </ExternalLink>
+            <ExternalLink
               href={profile.links.source}
-              target="_blank"
-              rel="noopener"
-              className="ms-2 text-sm text-muted underline-offset-4 transition-colors hover:text-ink hover:underline"
+              newTabLabel={dict.a11y.opensInNewTab}
+              className="mx-2 text-sm text-muted underline-offset-4 transition-colors hover:text-ink hover:underline"
             >
               {dict.footer.source}
+            </ExternalLink>
+            <a href="#top" className={iconLink} aria-label={dict.a11y.backToTop}>
+              <ArrowUpIcon className="size-4" aria-hidden="true" />
             </a>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </footer>
   )

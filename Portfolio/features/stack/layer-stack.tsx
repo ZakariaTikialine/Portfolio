@@ -64,10 +64,15 @@ export function LayerStack({ layers, projects, labels }: StackView) {
   }
 
   return (
-    <div className="rounded-2xl border border-rule bg-card p-3 shadow-[0_32px_64px_-40px_rgb(14_18_34/0.45)] sm:p-4">
+    <div className="surface rounded-2xl p-3 sm:p-4">
       <p className="label px-1 pt-1 pb-3">{labels.title}</p>
 
-      <ul className="grid gap-1.5">
+      <ul className="relative grid gap-1.5">
+        {/* One amber sweep through every layer on first load. */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-e-5 top-6 bottom-6 z-10 w-px origin-top bg-trace opacity-0 motion-safe:animate-trace-boot"
+        />
         {layers.map((layer, index) => {
           const part = tracePart(index)
           const isLit = lit.has(layer.id)

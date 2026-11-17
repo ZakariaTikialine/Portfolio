@@ -1,9 +1,8 @@
 import Image from "next/image"
-import { ArrowDown, Download } from "lucide-react"
 import { profile, type Dictionary } from "@/content"
 import type { Locale } from "@/i18n/routing"
 import { ButtonLink } from "@/components/ui/button-link"
-import { GitHubIcon, LinkedInIcon } from "@/components/ui/icons"
+import { ArrowDownIcon, DocumentIcon, GitHubIcon, LinkedInIcon } from "@/components/ui/icons"
 import { buildStackView } from "@/features/stack/build-stack"
 import { LayerStack } from "@/features/stack/layer-stack"
 
@@ -18,9 +17,18 @@ export function Hero({ locale, dict }: HeroProps) {
   const name = isArabic ? profile.name.arabic : profile.name.latin
 
   return (
-    <section aria-labelledby="hero-name" className="border-b border-rule">
-      <div className="container-page grid items-center gap-12 pt-12 pb-16 md:pt-16 md:pb-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,31rem)] lg:gap-14 xl:gap-20">
-        <div className="grid gap-6">
+    <section
+      id="top"
+      aria-labelledby="hero-name"
+      className="relative isolate overflow-hidden border-b border-rule"
+    >
+      <div aria-hidden="true" className="blueprint absolute inset-0 -z-10" />
+      <div
+        aria-hidden="true"
+        className="absolute end-[-10%] -top-40 -z-10 size-[44rem] rounded-full bg-[radial-gradient(closest-side,var(--glow),transparent)]"
+      />
+      <div className="container-page grid items-center gap-14 pt-14 pb-20 md:pt-20 md:pb-28 lg:grid-cols-[minmax(0,1fr)_minmax(0,31rem)] lg:gap-14 xl:gap-20">
+        <div className="rise-stagger grid gap-7">
           <div className="flex items-center gap-3.5">
             <Image
               src={profile.portrait}
@@ -29,7 +37,7 @@ export function Hero({ locale, dict }: HeroProps) {
               height={112}
               sizes="56px"
               priority
-              className="size-14 rounded-full object-cover ring-1 ring-rule"
+              className="size-14 rounded-full object-cover ring-2 ring-rule-strong ring-offset-2 ring-offset-paper"
             />
             <p className="label">{hero.role}</p>
           </div>
@@ -68,12 +76,15 @@ export function Hero({ locale, dict }: HeroProps) {
 
           <div className="flex flex-wrap items-center gap-2.5">
             <ButtonLink variant="primary" href={profile.links.cv} target="_blank" rel="noopener">
-              <Download className="size-4" aria-hidden="true" />
+              <DocumentIcon className="size-4" aria-hidden="true" />
               {hero.ctaCv}
             </ButtonLink>
-            <ButtonLink href={`/${locale}#contact`}>
+            <ButtonLink href={`/${locale}#contact`} className="group">
               {hero.ctaContact}
-              <ArrowDown className="size-4" aria-hidden="true" />
+              <ArrowDownIcon
+                className="size-4 transition-transform duration-300 group-hover:translate-y-0.5"
+                aria-hidden="true"
+              />
             </ButtonLink>
             <ButtonLink
               variant="ghost"
@@ -98,7 +109,9 @@ export function Hero({ locale, dict }: HeroProps) {
           </div>
         </div>
 
-        <LayerStack {...buildStackView(locale, dict)} />
+        <div className="motion-safe:animate-rise motion-safe:[animation-delay:150ms]">
+          <LayerStack {...buildStackView(locale, dict)} />
+        </div>
       </div>
     </section>
   )

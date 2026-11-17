@@ -4,8 +4,8 @@ import { hasLocale, NextIntlClientProvider } from "next-intl"
 import { setRequestLocale } from "next-intl/server"
 import type { ReactNode } from "react"
 import { Analytics } from "@vercel/analytics/next"
-import { getDictionary } from "@/content"
-import { direction, locales, routing } from "@/i18n/routing"
+import { getDictionary, profile } from "@/content"
+import { direction, intlLocale, locales, routing } from "@/i18n/routing"
 import { fontVariables } from "@/lib/fonts"
 import { siteUrl } from "@/lib/site"
 import { Footer } from "@/components/layout/footer"
@@ -24,10 +24,8 @@ export function generateStaticParams() {
 }
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f3f4f7" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b0e18" },
-  ],
+  themeColor: "#070d1f",
+  colorScheme: "dark light",
 }
 
 export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
@@ -46,6 +44,23 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
         "x-default": `/${routing.defaultLocale}`,
       },
     },
+    openGraph: {
+      type: "profile",
+      firstName: "Zakaria",
+      lastName: "Tikialine",
+      locale: intlLocale[locale].split("-u-")[0],
+      url: `/${locale}`,
+      siteName: profile.name.latin,
+      title: meta.title,
+      description: meta.description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description: meta.description,
+    },
+    authors: [{ name: profile.name.latin, url: siteUrl }],
+    creator: profile.name.latin,
   }
 }
 

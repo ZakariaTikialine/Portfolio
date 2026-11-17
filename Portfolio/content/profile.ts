@@ -45,6 +45,16 @@ export const profile = {
 
   projects: [
     {
+      slug: "egor",
+      layers: ["interface"],
+      stack: ["Next.js", "React", "TypeScript"],
+      featured: true,
+      period: { start: "2026-05", end: null },
+      live: { kind: "platform", url: "https://egorgaming.com" },
+      image: "/work/egor.png",
+      repos: [],
+    },
+    {
       slug: "tahwisa",
       layers: ["interface", "api", "data"],
       stack: [
@@ -58,10 +68,11 @@ export const profile = {
       ],
       featured: true,
       period: { start: "2025-06", end: "2025-07" },
-      demo: "https://tahwisa.vercel.app",
+      live: { kind: "demo", url: "https://tahwisa.vercel.app" },
+      image: "/work/tahwisa.png",
       repos: [
-        { label: "Frontend", url: `${GITHUB}/Tahwisa-frontend` },
-        { label: "Backend", url: `${GITHUB}/Tahwisa-backend` },
+        { kind: "frontend", url: `${GITHUB}/Tahwisa-frontend` },
+        { kind: "backend", url: `${GITHUB}/Tahwisa-backend` },
       ],
     },
     {
@@ -69,21 +80,21 @@ export const profile = {
       layers: ["api", "data"],
       stack: ["Go", "Gin", "GORM", "PostgreSQL", "JWT", "Firebase", "Docker"],
       featured: true,
-      repos: [{ label: "Backend", url: `${GITHUB}/Guardly-Backend` }],
+      repos: [{ kind: "backend", url: `${GITHUB}/Guardly-Backend` }],
     },
     {
       slug: "graph-ml",
       layers: ["model", "data"],
       stack: ["Python", "Node2Vec", "Jupyter"],
       featured: true,
-      repos: [{ label: "Notebooks", url: `${GITHUB}/email-eu-core-graph-ml` }],
+      repos: [{ kind: "notebooks", url: `${GITHUB}/email-eu-core-graph-ml` }],
     },
     {
       slug: "maze-solver",
       layers: ["interface"],
       stack: ["Next.js", "TypeScript", "Tailwind CSS"],
       featured: false,
-      repos: [{ label: "Source", url: `${GITHUB}/maze-solver-robot` }],
+      repos: [{ kind: "source", url: `${GITHUB}/maze-solver-robot` }],
     },
   ] as const satisfies readonly ProjectFacts[],
 
@@ -102,7 +113,6 @@ export const profile = {
       period: { start: "2025-06", end: "2025-07" },
       layers: ["interface", "api", "data"],
       stack: ["Next.js", "TypeScript", "Express.js", "PostgreSQL"],
-      project: "tahwisa",
     },
   ] as const satisfies readonly RoleFacts[],
 

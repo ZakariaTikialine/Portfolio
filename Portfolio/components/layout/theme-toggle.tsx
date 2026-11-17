@@ -1,22 +1,21 @@
 "use client"
 
-import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
+import { ContrastIcon } from "@/components/ui/icons"
 
-/** Both icons are rendered and CSS picks one, so the button never flashes the wrong icon. */
+/** A half-filled disc that turns 180° between navy and light. CSS picks the angle, so it never flashes. */
 export function ThemeToggle({ label }: { label: string }) {
   const { resolvedTheme, setTheme } = useTheme()
 
   return (
     <button
       type="button"
-      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}
       aria-label={label}
       title={label}
-      className="inline-flex size-9 items-center justify-center rounded-lg text-muted transition-colors hover:bg-s1 hover:text-ink"
+      className="inline-flex size-9 items-center justify-center rounded-lg text-muted transition-colors hover:bg-card hover:text-ink"
     >
-      <Sun className="hidden size-4 dark:block" aria-hidden="true" />
-      <Moon className="size-4 dark:hidden" aria-hidden="true" />
+      <ContrastIcon className="size-[1.125rem] transition-transform duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] dark:rotate-180" />
     </button>
   )
 }

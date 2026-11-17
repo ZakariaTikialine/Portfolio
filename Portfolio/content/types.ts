@@ -6,7 +6,7 @@
  * extra translation is a type error rather than a silent gap on the page.
  */
 
-import type { ProjectSlug } from "./profile"
+import type { CommunityId, ProjectSlug, RoleId } from "./profile"
 
 /** The four layers of the stack drawn in the hero, top to bottom. */
 export const LAYERS = ["interface", "api", "model", "data"] as const
@@ -25,8 +25,11 @@ export interface Period {
   end: YearMonth | null
 }
 
+export type RepoKind = "frontend" | "backend" | "source" | "notebooks"
+export type LiveKind = "demo" | "platform"
+
 export interface RepoLink {
-  label: string
+  kind: RepoKind
   url: string
 }
 
@@ -36,7 +39,9 @@ export interface ProjectFacts {
   stack: readonly string[]
   featured: boolean
   period?: Period
-  demo?: string
+  /** A running deployment: a demo, or the live product itself. */
+  live?: { kind: LiveKind; url: string }
+  image?: string
   repos: readonly RepoLink[]
 }
 
@@ -47,8 +52,37 @@ export interface RoleFacts {
   period: Period
   layers: readonly Layer[]
   stack: readonly string[]
-  /** Slug of a project this role produced, if any. */
-  project?: string
+}
+
+/** CLDR plural categories. `other` is always required; Arabic also uses zero, two, few and many. */
+export type PluralForms = Partial<Record<Intl.LDMLPluralRule, string>> & { other: string }
+
+export interface ProjectText {
+  title: string
+  /** What the project is and what I did, one or two sentences. */
+  summary: string
+  /** My part, shown above the title. */
+  role: string
+  points: string[]
+  imageAlt?: string
+}
+
+export interface RoleText {
+  title: string
+  context: string
+  location: string
+  points: string[]
+}
+
+export interface CommunityText {
+  title: string
+  summary: string
+}
+
+export interface SectionHeading {
+  eyebrow: string
+  title: string
+  intro?: string
 }
 
 export interface Dictionary {
@@ -65,6 +99,7 @@ export interface Dictionary {
     language: string
     backToTop: string
     opensInNewTab: string
+    home: string
   }
   nav: Record<SectionId, string>
   hero: {
@@ -83,17 +118,60 @@ export interface Dictionary {
     /** Plural forms; `#` is replaced by the number. */
     projectCount: PluralForms
   }
+  work: SectionHeading & {
+    featured: string
+    alsoBuilt: string
+    live: Record<LiveKind, string>
+    repoKinds: Record<RepoKind, string>
+    moreOnGitHub: string
+    layersLabel: string
+  }
   projects: Record<ProjectSlug, ProjectText>
+  experience: SectionHeading & {
+    present: string
+    current: string
+    communityTitle: string
+  }
+  roles: Record<RoleId, RoleText>
+  community: Record<CommunityId, CommunityText>
+  skills: SectionHeading & {
+    tooling: string
+    spokenLanguages: string
+    languages: { name: string; level: string }[]
+  }
+  education: SectionHeading & {
+    degree: string
+    field: string
+    institution: string
+    note: string
+    certificationLabel: string
+    certification: string
+    certificationNote: string
+    evidence: string
+  }
+  contact: SectionHeading & {
+    emailLabel: string
+    copy: string
+    copied: string
+    elsewhere: string
+    form: {
+      title: string
+      name: string
+      email: string
+      message: string
+      send: string
+      sending: string
+      success: string
+      error: string
+    }
+  }
+  notFound: {
+    title: string
+    body: string
+    home: string
+  }
   footer: {
     rights: string
     source: string
   }
 }
-
-export interface ProjectText {
-  title: string
-  summary: string
-}
-
-/** CLDR plural categories. `other` is always required; Arabic also uses zero, two, few and many. */
-export type PluralForms = Partial<Record<Intl.LDMLPluralRule, string>> & { other: string }
