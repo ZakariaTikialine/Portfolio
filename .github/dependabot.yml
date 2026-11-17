@@ -1,0 +1,21 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /Portfolio
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 5
+    groups:
+      next-react:
+        patterns: ["next", "eslint-config-next", "react", "react-dom", "@types/react", "@types/react-dom"]
+      tooling:
+        dependency-type: development
+      runtime:
+        dependency-type: production
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

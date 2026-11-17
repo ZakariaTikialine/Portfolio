@@ -1,0 +1,7 @@
+# Supply-chain guard: never install a package version published less than 7 days ago.
+minimumReleaseAge: 10080
+
+# Optional native build steps; prebuilt binaries are used instead.
+ignoredBuiltDependencies:
+  - "@parcel/watcher"
+  - "@swc/core"

@@ -1,103 +1,80 @@
-import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { notFound } from "next/navigation"
-import { Noto_Sans_Arabic, JetBrains_Mono } from "next/font/google"
+import { hasLocale, NextIntlClientProvider } from "next-intl"
+import { setRequestLocale } from "next-intl/server"
+import type { ReactNode } from "react"
 import { Analytics } from "@vercel/analytics/next"
-import { NextIntlClientProvider } from "next-intl"
-import { getMessages, getTranslations } from "next-intl/server"
-import SidebarNav from "@/components/sidebar-nav"
-import ThemeToggle from "@/components/theme-toggle"
-import DynamicTheme from "@/components/dynamic-theme"
-import { ThemeProvider } from "@/components/theme-provider"
-import { AiTerminal, CommandPalette, NeuralBackground } from "@/components/client-components"
-import AuroraBackground from "@/components/aurora-background"
-import { locales, type Locale } from "@/i18n"
-import "@/app/globals.css"
-
-const jetBrains = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-latin" })
-const notoArabic = Noto_Sans_Arabic({ 
-  subsets: ["arabic"], 
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-arabic",
-  display: "swap",
-})
+import { getDictionary } from "@/content"
+import { direction, locales, routing } from "@/i18n/routing"
+import { fontVariables } from "@/lib/fonts"
+import { siteUrl } from "@/lib/site"
+import { Footer } from "@/components/layout/footer"
+import { Header } from "@/components/layout/header"
+import { ThemeProvider } from "@/components/layout/theme-provider"
 
 interface LayoutProps {
-  children: React.ReactNode
-  params: Promise<{
-    locale: string
-  }>
+  children: ReactNode
+  params: Promise<{ locale: string }>
 }
 
-function isSupportedLocale(locale: string): locale is Locale {
-  return locales.includes(locale as Locale)
+export const dynamicParams = false
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }))
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f3f4f7" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b0e18" },
+  ],
+}
+
+export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
   const { locale } = await params
+  if (!hasLocale(routing.locales, locale)) return {}
+  const { meta } = getDictionary(locale)
 
-  if (!isSupportedLocale(locale)) {
-    notFound()
-  }
-
-  const t = await getTranslations({ locale, namespace: "metadata" })
   return {
-    title: t("title"),
-    description: t("description"),
-    generator: "Zakaria Tikialine",
-    keywords: ["fullstack developer", "data scientist", "AI", "Next.js", "Python", "machine learning"],
-    icons: {
-      icon: "/icon.svg",
-      apple: "/apple-icon.svg",
+    metadataBase: new URL(siteUrl),
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        ...Object.fromEntries(locales.map((l) => [l, `/${l}`])),
+        "x-default": `/${routing.defaultLocale}`,
+      },
     },
   }
 }
 
 export default async function LocaleLayout({ children, params }: LayoutProps) {
   const { locale } = await params
+  if (!hasLocale(routing.locales, locale)) notFound()
+  setRequestLocale(locale)
 
-  if (!isSupportedLocale(locale)) {
-    notFound()
-  }
-
-  const direction = locale === "ar" ? "rtl" : "ltr"
-  const messages = await getMessages({ locale })
-  const sidebarOffsetClass = locale === "ar" ? "lg:mr-64" : "lg:ml-64"
-  const themeToggleAnchor = locale === "ar" ? "lg:left-6" : "lg:right-6"
+  const dict = getDictionary(locale)
 
   return (
-    <html lang={locale} dir={direction} suppressHydrationWarning className="custom-scrollbar">
-      <head />
-      <body className={`${jetBrains.variable} ${notoArabic.variable} antialiased`}>
+    <html lang={locale} dir={direction[locale]} className={fontVariables} suppressHydrationWarning>
+      <body className="flex min-h-svh flex-col">
         <ThemeProvider>
-          <NextIntlClientProvider locale={locale} messages={messages} timeZone="Europe/Paris">
-            <DynamicTheme />
-            <NeuralBackground />
-
-            <div className="relative min-h-screen text-foreground" data-locale={locale}>
-              <div className="fixed inset-0 -z-10 bg-linear-to-br from-accent/5 via-transparent to-secondary/5" />
-              <AuroraBackground />
-
-              <SidebarNav />
-
-              <div className={`hidden lg:fixed ${themeToggleAnchor} lg:top-6 lg:z-50 lg:block`}>
-                <ThemeToggle />
-              </div>
-
-              <main
-                className={`custom-scrollbar relative min-h-screen overflow-y-auto pb-24 pt-14 lg:pt-0 ${sidebarOffsetClass}`}
-                dir={direction}
-              >
-                {children}
-              </main>
-
-              <CommandPalette />
-              <AiTerminal />
-            </div>
+          <NextIntlClientProvider messages={null}>
+            <a
+              href="#main"
+              className="sr-only z-50 rounded-lg bg-ink px-4 py-2 text-paper focus:not-sr-only focus:fixed focus:start-4 focus:top-4"
+            >
+              {dict.a11y.skipToContent}
+            </a>
+            <Header locale={locale} dict={dict} />
+            <main id="main" className="flex-1">
+              {children}
+            </main>
+            <Footer locale={locale} dict={dict} />
           </NextIntlClientProvider>
-
-          <Analytics />
         </ThemeProvider>
+        {process.env.VERCEL === "1" && <Analytics />}
       </body>
     </html>
   )

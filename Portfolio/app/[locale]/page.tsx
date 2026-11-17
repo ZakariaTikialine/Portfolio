@@ -1,39 +1,20 @@
-import Hero from "@/components/sections/hero"
-import StatsDashboard from "@/components/stats-dashboard"
-import NowSection from "@/components/now-section"
-import CodingActivityChart from "@/components/coding-activity-chart"
-import ScrollReveal from "@/components/scroll-reveal"
+import { hasLocale } from "next-intl"
+import { setRequestLocale } from "next-intl/server"
+import { notFound } from "next/navigation"
+import { getDictionary } from "@/content"
+import { routing } from "@/i18n/routing"
+import { Hero } from "@/features/hero/hero"
 
-export default function Home() {
-  return (
-    <div className="space-y-12 pb-12 md:space-y-16 md:pb-16">
-      {/* Hero Section */}
-      <ScrollReveal direction="up">
-        <div className="">
-          <Hero />
-        </div>
-      </ScrollReveal>
+interface PageProps {
+  params: Promise<{ locale: string }>
+}
 
-      {/* Now Section */}
-      <ScrollReveal direction="left" delay={0.2}>
-        <div className="mx-auto w-full max-w-4xl">
-          <NowSection />
-        </div>
-      </ScrollReveal>
+export default async function HomePage({ params }: PageProps) {
+  const { locale } = await params
+  if (!hasLocale(routing.locales, locale)) notFound()
+  setRequestLocale(locale)
 
-      {/* Coding Activity Chart */}
-      <ScrollReveal direction="right" delay={0.2}>
-        <div className="mx-auto w-full max-w-6xl">
-          <CodingActivityChart />
-        </div>
-      </ScrollReveal>
+  const dict = getDictionary(locale)
 
-      {/* Stats Dashboard */}
-      <ScrollReveal direction="up" delay={0.2}>
-        <div className="mx-auto w-full max-w-6xl">
-          <StatsDashboard />
-        </div>
-      </ScrollReveal>
-    </div>
-  )
+  return <Hero locale={locale} dict={dict} />
 }

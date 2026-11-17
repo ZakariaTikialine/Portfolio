@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { locales, type Locale } from "@/i18n"
+import { locales, type Locale } from "@/i18n/routing"
 
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 const GROQ_MODEL = "llama-3.1-8b-instant"
